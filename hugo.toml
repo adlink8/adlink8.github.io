@@ -3,3 +3,15 @@ languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = 'PaperMod'
 
+[params.profileMode]
+    enabled = true
+    title = "Hi, I'm Adlink"
+    subtitle = "Junior DevOps Enthusiast | Cloud Native Learner | MQTT Explorer"
+    imageUrl = "你的头像链接" # 可以放 GitHub 的头像
+    imageTitle = "Adlink"
+    [[params.profileMode.buttons]]
+        name = "Posts"
+        url = "posts"
+    [[params.profileMode.buttons]]
+        name = "About Me"
+        url = "about"

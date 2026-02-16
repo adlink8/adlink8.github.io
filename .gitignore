@@ -1,0 +1,12 @@
+# 忽略 Hugo 生成的成品目录（源码与产物分离的关键）
+/public
+
+# 忽略 Hugo 的编译锁定文件
+.hugo_build.lock
+
+# 忽略资源缓存
+/resources
+
+# 忽略本地操作系统产生的垃圾文件
+.DS_Store
+Thumbs.db
