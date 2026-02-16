@@ -1,0 +1,29 @@
+{{- define "main" -}}
+
+<div class="split-layout">
+    <aside class="sidebar-profile">
+        {{- partial "home_info.html" . -}}
+    </aside>
+
+    <div class="post-list-wrapper">
+        {{- $pages := union .RegularPages .Sections -}}
+        {{- $paginator := .Paginate $pages -}}
+
+        {{- range $index, $page := $paginator.Pages -}}
+        <article class="post-entry">
+            <header class="entry-header">
+                <h2>{{ .Title }}</h2>
+            </header>
+            <section class="entry-content">
+                <p>{{ .Summary }}...</p>
+            </section>
+            <footer class="entry-footer">
+                {{- partial "post_meta.html" . -}}
+            </footer>
+            <a class="entry-link" aria-label="post link to {{ .Title }}" href="{{ .Permalink }}"></a>
+        </article>
+        {{- end -}}
+    </div>
+</div>
+
+{{- end -}}

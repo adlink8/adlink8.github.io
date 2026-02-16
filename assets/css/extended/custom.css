@@ -1,0 +1,213 @@
+/* =======================================================
+   1. GLOBAL LAYOUT: 精准锁定首页 (修复居中失效)
+   ======================================================= */
+/* 使用现代 :has() 选择器：只要页面里有个人简介，就激活左右分栏 */
+.main:has(.first-entry.home-info) {
+    display: grid !important;
+    grid-template-columns: 350px 1fr; 
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+/* 左侧：个人简介固定 (保持防裁剪设置) */
+.first-entry.home-info {
+    grid-column: 1;
+    position: sticky;
+    top: 15vh;      
+    margin-top: 15vh; 
+    background: transparent;
+    box-shadow: none;
+    padding: 40px !important; 
+    text-align: left;
+    overflow: visible !important; 
+    z-index: 10;
+}
+
+/* 右侧：博文列表 */
+.main:has(.first-entry.home-info) .post-entry {
+    grid-column: 2;
+    width: 100%;
+}
+
+/* =======================================================
+   2. SINGLE PAGE: 拯救“空旷感”的高级阅读卡片
+   ======================================================= */
+/* 确保非首页恢复单栏居中 */
+body:not(:has(.first-entry.home-info)) .main {
+    display: block !important;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* 为正文添加“高级灰”卡片底底色和阴影，消除黑底的空旷感 */
+.post-single {
+    background: var(--entry);
+    padding: 50px 60px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 30px;
+}
+
+/* 优化正文头部的排版：加入一条极客风分割线 */
+.post-single .post-header {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px dashed rgba(255,255,255,0.1);
+}
+
+/* 移动端适配阅读卡片 */
+@media screen and (max-width: 768px) {
+    .post-single {
+        padding: 30px 20px;
+    }
+}
+/* =======================================================
+   3. AVATAR & PROFILE AESTHETICS (Top Positioned)
+   ======================================================= */
+/* Ensure all parent containers of the avatar allow overflow */
+.first-entry.home-info p,
+.profile-container {
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Avatar Styling with smooth hardware acceleration */
+.first-entry.home-info p:first-child img,
+.sidebar-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%; 
+    object-fit: cover;
+    margin: 15px !important; /* Safety margin for rotation */
+    border: 3px solid rgba(138, 43, 226, 0.2); 
+
+    /* Anti-aliasing and Hardware Acceleration to fix blur/jitters */
+    -webkit-backface-visibility: hidden; 
+    backface-visibility: hidden;
+    transform: translateZ(0); 
+    will-change: transform, box-shadow; 
+
+    /* Animation 1: Breathing Glow Effect */
+    animation: profile-glow 4s infinite alternate;
+    transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.5s ease;
+}
+
+/* Hover Effect: Scale & Rotate without clipping */
+.first-entry.home-info p:first-child img:hover,
+.sidebar-avatar:hover {
+    /* Scale 1.05 + 5deg rotation within the 40px padding buffer */
+    transform: scale(1.05) rotate(5deg) translateZ(0);
+    border-color: rgba(138, 43, 226, 0.6);
+    box-shadow: 0 15px 35px rgba(138, 43, 226, 0.4);
+}
+
+@keyframes profile-glow {
+    from { box-shadow: 0 0 10px rgba(138, 43, 226, 0.2); }
+    to { box-shadow: 0 0 25px rgba(138, 43, 226, 0.5); }
+}
+
+/* =======================================================
+   4. TYPOGRAPHY: Sidebar Name & Bio
+   ======================================================= */
+.first-entry.home-info h1 {
+    font-size: 2.4rem;
+    margin: 10px 0;
+    line-height: 1.2;
+    color: var(--primary);
+}
+
+.first-entry.home-info p {
+    color: var(--secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* =======================================================
+   5. POST CARDS: Hover & Elevation Effects
+   ======================================================= */
+.post-entry {
+    background: var(--entry);
+    border-radius: 15px;
+    margin-bottom: 25px;
+    transition: all 0.3s ease !important;
+}
+
+.post-entry:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    /* Subtle DevOps-style purple accent on hover */
+    border-right: 4px solid #8a2be2; 
+}
+
+/* =======================================================
+   6. FLOATING TOC: Right Sidebar Navigation
+   ======================================================= */
+/* 仅在超宽屏幕 (大于1350px) 激活右侧悬浮，保证不遮挡正文 */
+@media screen and (min-width: 1350px) {
+    .toc {
+        position: fixed !important;
+        top: 20vh; /* 与左侧个人名片保持近似的视觉起步高度 */
+        
+        /* 核心计算：屏幕中心点 50% + 正文一半宽度 425px + 留白 40px */
+        left: calc(50% + 465px); 
+        
+        width: 280px;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        max-height: 70vh;
+        overflow-y: auto; /* 如果目录太长，允许内部滚动 */
+        z-index: 100;
+        padding: 0 !important;
+    }
+
+    /* 优化目录标题的外观 */
+    .toc summary {
+        cursor: default;
+        margin-left: 18px;
+        font-size: 1.1rem;
+        color: var(--primary);
+        font-weight: 700;
+        list-style: none; /* 隐藏默认的下拉小三角 */
+    }
+    .toc summary::-webkit-details-marker {
+        display: none;
+    }
+
+    /* 将内部列表设计成极客风的“时间线”侧边栏 */
+    .toc .inner {
+        padding: 15px 0 15px 18px !important;
+        border-left: 2px solid rgba(255, 255, 255, 0.08); /* 左侧细线 */
+        margin: 10px 0 0 0 !important;
+    }
+
+    /* 目录链接的悬停交互 */
+    .toc li a {
+        color: var(--secondary);
+        transition: all 0.25s ease;
+        font-size: 0.9rem;
+        display: inline-block;
+        padding: 4px 0;
+    }
+
+    .toc li a:hover {
+        color: #8a2be2; /* 悬停时变为 DevOps 紫色 */
+        transform: translateX(5px); /* 悬停时文字微微向右推 */
+        text-shadow: 0 0 10px rgba(138, 43, 226, 0.3); /* 发光特效 */
+    }
+}
+
+/* 在笔记本等小屏幕上，让目录乖乖待在正文卡片里，并美化成高级暗色内嵌卡片 */
+@media screen and (max-width: 1349px) {
+    .toc {
+        background: rgba(0, 0, 0, 0.2) !important;
+        border-radius: 12px !important;
+        border: 1px dashed rgba(255, 255, 255, 0.1) !important;
+        box-shadow: inset 0 2px 10px rgba(0,0,0,0.2) !important;
+        margin-bottom: 35px;
+    }
+}

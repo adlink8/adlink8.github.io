@@ -1,17 +1,66 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://adlink8.github.io/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'ShuoYan | Engineering Portfolio'
 theme = 'PaperMod'
 
-[params.profileMode]
-    enabled = true
-    title = "Hi, I'm Adlink"
-    subtitle = "Junior DevOps Enthusiast | Cloud Native Learner | MQTT Explorer"
-    imageUrl = "你的头像链接" # 可以放 GitHub 的头像
-    imageTitle = "Adlink"
-    [[params.profileMode.buttons]]
-        name = "Posts"
-        url = "posts"
-    [[params.profileMode.buttons]]
-        name = "About Me"
-        url = "about"
+[pagination]
+    pageSize = 10
+
+# Required for Search to work
+[outputs]
+    home = ["HTML", "RSS", "JSON"]
+
+# Navigation Menu (Top Right)
+[[menu.main]]
+    identifier = "posts"
+    name = "Insights"
+    url = "/posts/"
+    weight = 10
+
+[[menu.main]]
+    identifier = "search"
+    name = "Search"
+    url = "/search/"
+    weight = 20
+
+[params]
+    env = "production"
+    ShowCodeCopyButtons = true
+    ShowReadingTime = true
+    # CRITICAL: This ensures ONLY posts show up in the right column
+    mainSections = ["posts"] 
+
+    # Left Sidebar Profile Configuration
+    # Use homeInfoParams for the Left Sidebar content
+    [params.homeInfoParams]
+        # 1. 标题放空，我们把所有内容都塞进 Content 里以控制顺序
+        Title = "" 
+        
+        # 2. 使用 Markdown 语法：![头像描述](路径)
+        # 注意：图片放在最上面，然后是名字，最后是简介
+        Content = """
+![Avatar](/image/tx.jpg)
+
+# Hi, I'm Li ShuoYan 👨‍💻
+
+**DevOps Engineer | Cloud Native & CI/CD Enthusiast**
+
+Focusing on building scalable, automated, and high-performance infrastructure.
+"""
+
+    # Social Icons (GitHub and LinkedIn below the bio)
+    [[params.socialIcons]]
+        name = "github"
+        url = "https://github.com/adlink8"
+    [[params.socialIcons]]
+        name = "linkedin"
+        url = "https://www.linkedin.com/feed/"
+
+[markup.highlight]
+    style = "dracula"
+    lineNos = true
+# =======================================================
+# CRITICAL: Allow HTML rendering for the Avatar image tag
+# =======================================================
+[markup.goldmark.renderer]
+    unsafe = true
