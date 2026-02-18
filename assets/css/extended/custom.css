@@ -1,7 +1,7 @@
 /* =======================================================
-   1. GLOBAL LAYOUT: 精准锁定首页 (修复居中失效)
+   1. GLOBAL LAYOUT: Home Page Grid System
    ======================================================= */
-/* 使用现代 :has() 选择器：只要页面里有个人简介，就激活左右分栏 */
+/* Activate split-column layout on Home Page using :has() selector */
 .main:has(.first-entry.home-info) {
     display: grid !important;
     grid-template-columns: 350px 1fr; 
@@ -11,95 +11,80 @@
     align-items: start;
 }
 
-/* 左侧：个人简介固定 (保持防裁剪设置) */
+/* Fixed left-side profile card */
 .first-entry.home-info {
     grid-column: 1;
     position: sticky;
     top: 15vh;      
     margin-top: 15vh; 
     background: transparent;
-    box-shadow: none;
     padding: 40px !important; 
     text-align: left;
     overflow: visible !important; 
     z-index: 10;
 }
 
-/* 右侧：博文列表 */
+/* Post list on the right side */
 .main:has(.first-entry.home-info) .post-entry {
     grid-column: 2;
     width: 100%;
 }
 
-/* =======================================================
-   2. SINGLE PAGE: 拯救“空旷感”的高级阅读卡片
-   ======================================================= */
-/* 确保非首页恢复单栏居中 */
+/* Restore single-column centered layout for non-home pages */
 body:not(:has(.first-entry.home-info)) .main {
     display: block !important;
     max-width: 850px;
     margin: 0 auto;
 }
 
-/* 为正文添加“高级灰”卡片底底色和阴影，消除黑底的空旷感 */
+/* =======================================================
+   2. SINGLE PAGE: Article Card Aesthetics
+   ======================================================= */
 .post-single {
+    position: relative;
     background: var(--entry);
     padding: 50px 60px;
     border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.05);
     margin-top: 30px;
 }
 
-/* 优化正文头部的排版：加入一条极客风分割线 */
 .post-single .post-header {
     margin-bottom: 30px;
     padding-bottom: 25px;
     border-bottom: 1px dashed rgba(255,255,255,0.1);
 }
 
-/* 移动端适配阅读卡片 */
 @media screen and (max-width: 768px) {
-    .post-single {
-        padding: 30px 20px;
-    }
-}
-/* =======================================================
-   3. AVATAR & PROFILE AESTHETICS (Top Positioned)
-   ======================================================= */
-/* Ensure all parent containers of the avatar allow overflow */
-.first-entry.home-info p,
-.profile-container {
-    overflow: visible !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    .post-single { padding: 30px 20px; }
 }
 
-/* Avatar Styling with smooth hardware acceleration */
-.first-entry.home-info p:first-child img,
-.sidebar-avatar {
+/* =======================================================
+   3. AVATAR & TYPOGRAPHY: Profile Details
+   ======================================================= */
+.first-entry.home-info p, .profile-container {
+    overflow: visible !important;
+    margin: 0 !important;
+}
+
+/* Avatar with hardware-accelerated breathing glow */
+.first-entry.home-info p:first-child img, .sidebar-avatar {
     width: 140px;
     height: 140px;
     border-radius: 50%; 
     object-fit: cover;
-    margin: 15px !important; /* Safety margin for rotation */
+    margin: 15px !important; 
     border: 3px solid rgba(138, 43, 226, 0.2); 
-
-    /* Anti-aliasing and Hardware Acceleration to fix blur/jitters */
     -webkit-backface-visibility: hidden; 
     backface-visibility: hidden;
     transform: translateZ(0); 
     will-change: transform, box-shadow; 
-
-    /* Animation 1: Breathing Glow Effect */
     animation: profile-glow 4s infinite alternate;
-    transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.5s ease;
+    transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1), border-color 0.5s ease;
 }
 
-/* Hover Effect: Scale & Rotate without clipping */
-.first-entry.home-info p:first-child img:hover,
-.sidebar-avatar:hover {
-    /* Scale 1.05 + 5deg rotation within the 40px padding buffer */
+.first-entry.home-info p:first-child img:hover, .sidebar-avatar:hover {
     transform: scale(1.05) rotate(5deg) translateZ(0);
     border-color: rgba(138, 43, 226, 0.6);
     box-shadow: 0 15px 35px rgba(138, 43, 226, 0.4);
@@ -110,24 +95,11 @@ body:not(:has(.first-entry.home-info)) .main {
     to { box-shadow: 0 0 25px rgba(138, 43, 226, 0.5); }
 }
 
-/* =======================================================
-   4. TYPOGRAPHY: Sidebar Name & Bio
-   ======================================================= */
-.first-entry.home-info h1 {
-    font-size: 2.4rem;
-    margin: 10px 0;
-    line-height: 1.2;
-    color: var(--primary);
-}
-
-.first-entry.home-info p {
-    color: var(--secondary);
-    font-size: 1rem;
-    line-height: 1.6;
-}
+.first-entry.home-info h1 { font-size: 2.4rem; margin: 10px 0; color: var(--primary); }
+.first-entry.home-info p { color: var(--secondary); font-size: 1rem; line-height: 1.6; }
 
 /* =======================================================
-   5. POST CARDS: Hover & Elevation Effects
+   4. POST CARDS: Interactive List Style
    ======================================================= */
 .post-entry {
     background: var(--entry);
@@ -139,53 +111,41 @@ body:not(:has(.first-entry.home-info)) .main {
 .post-entry:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    /* Subtle DevOps-style purple accent on hover */
     border-right: 4px solid #8a2be2; 
 }
 
 /* =======================================================
-   6. FLOATING TOC: Right Sidebar Navigation
+   5. FLOATING TOC: Responsive Navigation
    ======================================================= */
-/* 仅在超宽屏幕 (大于1350px) 激活右侧悬浮，保证不遮挡正文 */
 @media screen and (min-width: 1350px) {
     .toc {
         position: fixed !important;
-        top: 20vh; /* 与左侧个人名片保持近似的视觉起步高度 */
-        
-        /* 核心计算：屏幕中心点 50% + 正文一半宽度 425px + 留白 40px */
+        top: 20vh;
         left: calc(50% + 465px); 
-        
         width: 280px;
         background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
         max-height: 70vh;
-        overflow-y: auto; /* 如果目录太长，允许内部滚动 */
+        overflow-y: auto;
         z-index: 100;
         padding: 0 !important;
+        border: none !important;
     }
 
-    /* 优化目录标题的外观 */
     .toc summary {
         cursor: default;
         margin-left: 18px;
         font-size: 1.1rem;
         color: var(--primary);
         font-weight: 700;
-        list-style: none; /* 隐藏默认的下拉小三角 */
-    }
-    .toc summary::-webkit-details-marker {
-        display: none;
+        list-style: none;
     }
 
-    /* 将内部列表设计成极客风的“时间线”侧边栏 */
     .toc .inner {
         padding: 15px 0 15px 18px !important;
-        border-left: 2px solid rgba(255, 255, 255, 0.08); /* 左侧细线 */
+        border-left: 2px solid rgba(255, 255, 255, 0.08);
         margin: 10px 0 0 0 !important;
     }
 
-    /* 目录链接的悬停交互 */
     .toc li a {
         color: var(--secondary);
         transition: all 0.25s ease;
@@ -195,13 +155,13 @@ body:not(:has(.first-entry.home-info)) .main {
     }
 
     .toc li a:hover {
-        color: #8a2be2; /* 悬停时变为 DevOps 紫色 */
-        transform: translateX(5px); /* 悬停时文字微微向右推 */
-        text-shadow: 0 0 10px rgba(138, 43, 226, 0.3); /* 发光特效 */
+        color: #8a2be2;
+        transform: translateX(5px);
+        text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
     }
 }
 
-/* 在笔记本等小屏幕上，让目录乖乖待在正文卡片里，并美化成高级暗色内嵌卡片 */
+/* Inline TOC for smaller screens */
 @media screen and (max-width: 1349px) {
     .toc {
         background: rgba(0, 0, 0, 0.2) !important;
@@ -210,4 +170,144 @@ body:not(:has(.first-entry.home-info)) .main {
         box-shadow: inset 0 2px 10px rgba(0,0,0,0.2) !important;
         margin-bottom: 35px;
     }
+}
+
+/* =======================================================
+   6. TOPICS PAGE: Category Skill Cards
+   ======================================================= */
+.terms-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 30px 0;
+    list-style: none !important;
+}
+
+.terms-tags a {
+    display: flex !important;
+    align-items: center;
+    background: var(--entry) !important;
+    padding: 15px 25px !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: var(--primary) !important;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.terms-tags a sup {
+    margin-left: 10px;
+    background: rgba(138, 43, 226, 0.2);
+    color: #8a2be2;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    top: 0;
+}
+
+.terms-tags a:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(138, 43, 226, 0.4) !important;
+    box-shadow: 0 10px 25px rgba(138, 43, 226, 0.2) !important;
+    color: #8a2be2 !important;
+}
+
+/* =======================================================
+   7. CODE BLOCK: Terminal UI Aesthetics
+   ======================================================= */
+.post-content pre {
+    position: relative;
+    padding-top: 45px !important;
+    background: #1e1e1e !important;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+/* Force internal code transparency */
+.post-content pre code, .post-content pre .chroma, .post-content pre span {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+/* Terminal Traffic Lights */
+.post-content pre::before {
+    content: "";
+    position: absolute;
+    top: 18px; left: 18px;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: #ff5f56; 
+    box-shadow: 22px 0 0 #ffbd2e, 44px 0 0 #27c93f; 
+    opacity: 0.9;
+}
+
+/* Terminal Prompt Decor */
+.post-content pre::after {
+    content: "zsh — 80x24";
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.25);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.copy-code {
+    top: 12px !important;
+    right: 110px !important;
+    background: rgba(255,255,255,0.1) !important;
+}
+
+/* =======================================================
+   8. INTERACTIVITY: Sidebar & Animations
+   ======================================================= */
+@media screen and (min-width: 1250px) {
+    .sidebar-left-nav {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: -240px; 
+        top: 20px;
+        width: 200px;
+        text-align: right;
+    }
+    .back-link { 
+        font-size: 0.8rem; 
+        font-weight: 800; 
+        color: #8a2be2 !important; 
+        text-decoration: none; 
+        border-bottom: 1px solid rgba(138, 43, 226, 0.2); 
+        padding-bottom: 8px; 
+        transition: all 0.3s ease;
+    }
+    .back-link:hover { transform: translateX(-5px); opacity: 0.8; }
+    .sidebar-bio { margin-top: 25px; }
+    .bio-name { font-size: 1rem; font-weight: 700; color: var(--primary); margin: 0; }
+    .bio-role { font-size: 0.8rem; color: var(--secondary); margin: 5px 0 0 0; }
+}
+
+/* Heart-pop animation for profile clicks */
+.heart-pop {
+    position: fixed;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: heartFly 1s ease-out forwards;
+}
+
+@keyframes heartFly {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-120px) scale(1.6) rotate(15deg); opacity: 0; }
+}
+
+/* Footer & Progress Bar */
+.footer-quote { text-align: center; font-style: italic; opacity: 0.6; font-size: 0.85rem; margin-bottom: 15px; }
+
+#scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    width: 0%; height: 3px;
+    background: linear-gradient(to right, #8a2be2, #ff5f56);
+    z-index: 10000;
 }

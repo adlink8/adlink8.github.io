@@ -18,6 +18,12 @@ theme = 'PaperMod'
     weight = 10
 
 [[menu.main]]
+    identifier = "categories"
+    name = "Topics"       
+    url = "/categories/"
+    weight = 15          
+
+[[menu.main]]
     identifier = "search"
     name = "Search"
     url = "/search/"

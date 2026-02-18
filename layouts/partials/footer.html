@@ -1,0 +1,59 @@
+<footer class="footer">
+    <div id="quote-container" class="footer-quote"></div>
+    <span>&copy; {{ now.Year }} {{ site.Title }}</span>
+</footer>
+
+<script>
+(function() {
+    /**
+     * 1. Heart-Pop Interaction
+     * Triggers heart animation when clicking profile-related elements
+     */
+    document.addEventListener('click', (e) => {
+        const selectors = ['.sidebar-avatar', '.sidebar-left-nav', '.home-info'];
+        if (selectors.some(s => e.target.closest(s))) {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.className = 'heart-pop';
+            heart.style.left = `${e.clientX}px`;
+            heart.style.top = `${e.clientY}px`;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 1000);
+        }
+    });
+
+    /**
+     * 2. Random Quote Generator
+     * Injects a random technical quote into the footer
+     */
+    const quotes = [
+              "“Slow is smooth, smooth is fast.”"
+    ];
+    const quoteEl = document.getElementById('quote-container');
+    if (quoteEl) {
+        quoteEl.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+    }
+
+    /**
+     * 3. Console Easter Egg
+     * Displays recruitment info in browser DevTools for inquisitive engineers
+     */
+    const recruitStyle = "background: #8a2be2; color: #fff; font-size: 20px; font-weight: bold; border-radius: 5px; padding: 10px;";
+    console.log("%c Hi! Looking for a DevOps Engineer? ", recruitStyle);
+    console.log("%c Contact me at: 2448366060l@email.com ", "color: #8a2be2; font-family: monospace;");
+
+    /**
+     * 4. Reading Progress Bar
+     * Updates the top progress bar width based on scroll depth
+     */
+    window.addEventListener('scroll', () => {
+        const progBar = document.getElementById("scroll-progress");
+        if (progBar) {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progBar.style.width = `${scrolled}%`;
+        }
+    }, { passive: true });
+})();
+</script>
