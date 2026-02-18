@@ -311,3 +311,28 @@ body:not(:has(.first-entry.home-info)) .main {
     background: linear-gradient(to right, #8a2be2, #ff5f56);
     z-index: 10000;
 }
+/* =======================================================
+   TAGS & TECH STACK PAGE: Card-style layout
+   ======================================================= */
+/* Ensure the tags list uses the same elegant card style as categories */
+.terms-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px 0;
+}
+
+.terms-tags a {
+    background: var(--entry) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 12px 20px !important;
+    border-radius: 10px !important;
+    font-weight: 500;
+    transition: all 0.3s ease !important;
+}
+
+.terms-tags a:hover {
+    transform: translateY(-3px);
+    border-color: #8a2be2 !important;
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2);
+}

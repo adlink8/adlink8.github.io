@@ -2,9 +2,10 @@
 date = '2026-02-16T14:57:56+08:00'
 draft = false
 title = 'My Roadmap to becoming a DevOps Engineer: Why I chose the Hard Way'
-ShowToc = true     # <-- 新增：开启这篇博文的目录
-TocOpen = true     # <-- 新增：默认展开目录
-categories = ["🛠️ DevOps", "☁️ Cloud Native"]  # <-- 新增：所属大纲
+ShowToc = true     
+TocOpen = true     
+categories = ["insights"]  
+tags = ["Docker"]
 +++
 
 
