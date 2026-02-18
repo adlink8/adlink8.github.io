@@ -15,40 +15,45 @@ theme = 'PaperMod'
     home = ["HTML", "RSS", "JSON"]
 
 # =======================================================
-# NAVIGATION MENU: Optimized for Process & Tech Stack
+# NAVIGATION MENU: Complete DevOps Cycle
 # =======================================================
 
-# 1. Timeline: Focus on "Daily Learning" category
+# 1. Timeline: Daily progress (Input)
 [[menu.main]]
     identifier = "daily"
     name = "Timeline"
     url = "/categories/daily-learning/"
     weight = 10
 
-# 2. Lab Notes: Focus on "Troubleshooting" category
+# 2. Lab Notes: Troubleshooting & Fixes (Practice)
 [[menu.main]]
     identifier = "pitfalls"
     name = "Lab Notes"
     url = "/categories/troubleshooting/"
     weight = 20
 
-# 3. Insights: Focus on "Insights" category
-# FIX: Points to category URL instead of the old /posts/ folder
+# 3. Insights: Architecture & Deep Dives (Depth)
 [[menu.main]]
     identifier = "insights"
     name = "Insights"
     url = "/categories/insights/"
     weight = 30
 
-# 4. Tech Stack: This is your TAGS (Docker, K8s, etc.)
-# We move this to the right side by increasing weight
+# 4. Reflection: Retrospectives (Review) <-- ADDED THIS
+[[menu.main]]
+    identifier = "reflections"
+    name = "Reflection"
+    url = "/categories/reflection/"
+    weight = 35
+
+# 5. Tech Stack: Tags Filter (Index)
 [[menu.main]]
     identifier = "tags"
     name = "Tech Stack"
     url = "/tags/"
     weight = 40
 
-# 5. Search: Keep it at the end
+# 6. Search
 [[menu.main]]
     identifier = "search"
     name = "Search"
