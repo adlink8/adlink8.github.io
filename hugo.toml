@@ -22,14 +22,14 @@ theme = 'PaperMod'
 [[menu.main]]
     identifier = "daily"
     name = "Timeline"
-    url = "/categories/daily-learning/"
+    url = "/categories/daily/"
     weight = 10
 
 # 2. Lab Notes: Troubleshooting & Fixes (Practice)
 [[menu.main]]
     identifier = "pitfalls"
     name = "Lab Notes"
-    url = "/categories/troubleshooting/"
+    url = "/categories/pitfalls/"
     weight = 20
 
 # 3. Insights: Architecture & Deep Dives (Depth)
@@ -43,7 +43,7 @@ theme = 'PaperMod'
 [[menu.main]]
     identifier = "reflections"
     name = "Reflection"
-    url = "/categories/reflection/"
+    url = "/categories/reflections/"
     weight = 35
 
 # 5. Tech Stack: Tags Filter (Index)
