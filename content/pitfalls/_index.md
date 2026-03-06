@@ -1,6 +1,6 @@
 +++
-title = "Lab Notes"
-date = 2026-03-06
+title = "Pitfalls"
+date = 2026-03-06T00:00:00+08:00
 draft = false
 +++
 
