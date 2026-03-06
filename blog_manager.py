@@ -57,20 +57,19 @@ class AnimatedCat(tk.Canvas):
                         highlightthickness=0, bg=parent.cget('bg'))
         
         self.size = size
-        self.is_awake = False  # Server status
+        self.is_awake = False
         self.frame = 0
         self.blink_counter = 0
         self.is_blinking = False
         self.tail_angle = 0
         self.tail_direction = 1
         self.breath_offset = 0
-        self.z_offset = 0  # Floating Zs when sleeping
+        self.z_offset = 0
         
         self.draw_cat()
         self.animate()
         
     def set_awake(self, awake):
-        """Set cat state: awake (server running) or sleeping (server stopped)"""
         self.is_awake = awake
         self.draw_cat()
         
@@ -86,190 +85,178 @@ class AnimatedCat(tk.Canvas):
             self._draw_sleeping_cat(cx, s)
             
     def _draw_sleeping_cat(self, cx, s):
-        """Draw cat sleeping curled up (side view)"""
-        cy = s // 2 + 5
+        """Draw cat sleeping curled up (side view) - cute version"""
+        cy = s // 2 + 8
         
-        # Tail wrapped around
-        tail_points = [
-            cx + 25, cy + 8,
-            cx + 30, cy + 3,
-            cx + 28, cy - 5,
-            cx + 22, cy - 8,
-        ]
-        self.create_line(tail_points, fill='#ffb6c1', width=6, smooth=True)
+        # Tail wrapped around body
+        self.create_arc(cx + 8, cy + 5, cx + 30, cy + 25, 
+                       start=280, extent=180, style=tk.ARC,
+                       outline='#ffccd5', width=4)
         
-        # Back body (curled)
-        self.create_oval(cx - 10, cy - 5, cx + 25, cy + 18, 
-                        fill='#fff0f5', outline='#ffb6c1', width=1)
+        # Body (curled up ball)
+        body_y = cy + 3 + self.breath_offset * 0.3
+        self.create_oval(cx - 8, body_y - 8, cx + 22, body_y + 15, 
+                        fill='#fff5f8', outline='#ffccd5', width=1)
         
-        # Front body
-        self.create_oval(cx - 15, cy - 2, cx + 10, cy + 20, 
-                        fill='#fff0f5', outline='#ffb6c1', width=1)
+        # Head resting
+        head_y = cy - 2 + self.breath_offset * 0.3
+        self.create_oval(cx - 15, head_y - 10, cx + 8, head_y + 10, 
+                        fill='#fff5f8', outline='#ffccd5', width=1)
         
-        # Head resting on paws
-        head_y = cy + 2 + self.breath_offset
-        self.create_oval(cx - 22, head_y - 12, cx + 5, head_y + 12, 
-                        fill='#fff0f5', outline='#ffb6c1', width=1)
-        
-        # Ear (one visible, side view)
-        ear_twitch = 2 if (self.frame % 120 < 10) else 0
+        # Ear (side view, one visible)
         self.create_polygon(
-            cx - 18, head_y - 8,
-            cx - 22 + ear_twitch, head_y - 22,
-            cx - 8, head_y - 10,
-            fill='#ffb6c1', outline='#ff6b9d', width=1, smooth=True
+            cx - 12, head_y - 6,
+            cx - 16, head_y - 20,
+            cx - 4, head_y - 8,
+            fill='#ffccd5', outline='#ff99aa', width=1, smooth=True
         )
         # Inner ear
         self.create_polygon(
-            cx - 16, head_y - 9,
-            cx - 19 + ear_twitch//2, head_y - 18,
-            cx - 11, head_y - 11,
-            fill='#ff6b9d', outline='', smooth=True
+            cx - 11, head_y - 8,
+            cx - 14, head_y - 16,
+            cx - 6, head_y - 10,
+            fill='#ff99aa', outline='', smooth=True
         )
         
-        # Closed eyes (sleeping lines)
-        self.create_line(cx - 14, head_y - 2, cx - 6, head_y - 2, 
-                        fill='#4a4a6a', width=2)
+        # Closed eyes (happy sleeping)
+        self.create_arc(cx - 10, head_y - 3, cx - 2, head_y + 2, 
+                       start=0, extent=180, style=tk.ARC,
+                       outline='#666', width=1.5)
         
         # Nose
-        self.create_oval(cx - 20, head_y + 2, cx - 16, head_y + 6, 
-                        fill='#ff6b9d', outline='')
+        self.create_oval(cx - 13, head_y + 3, cx - 9, head_y + 6, 
+                        fill='#ff99aa', outline='')
         
-        # Mouth (small line)
-        self.create_line(cx - 22, head_y + 8, cx - 18, head_y + 6, 
-                        fill='#ff6b9d', width=1)
+        # Tiny smile
+        self.create_arc(cx - 15, head_y + 5, cx - 9, head_y + 9, 
+                       start=200, extent=140, style=tk.ARC,
+                       outline='#ff99aa', width=1)
         
-        # Paw tucked under
-        self.create_oval(cx - 8, cy + 12, cx + 8, cy + 20, 
-                        fill='#fff0f5', outline='#ffb6c1', width=1)
-        
-        # Stripes on body
-        self.create_arc(cx + 5, cy, cx + 20, cy + 15, 
-                       start=60, extent=60, style=tk.ARC, 
-                       outline='#ffccd5', width=2)
+        # Blush
+        self.create_oval(cx - 4, head_y + 4, cx, head_y + 7, 
+                        fill='#ffccd5', outline='')
         
         # Floating Zs
-        z_y = head_y - 25 + self.z_offset
-        self.create_text(cx - 5, z_y, text="z", fill='#b366ff', 
-                        font=("Arial", 8, "italic"))
-        self.create_text(cx + 8, z_y - 8, text="Z", fill='#b366ff', 
-                        font=("Arial", 10, "italic"))
-        self.create_text(cx + 18, z_y - 18, text="Z", fill='#b366ff', 
-                        font=("Arial", 12, "bold"))
+        z_y = head_y - 22 - self.z_offset
+        self.create_text(cx + 5, z_y, text="z", fill='#b366ff', 
+                        font=("Arial", 7, "italic"))
+        self.create_text(cx + 12, z_y - 6, text="Z", fill='#b366ff', 
+                        font=("Arial", 9, "italic"))
+        self.create_text(cx + 20, z_y - 14, text="Z", fill='#b366ff', 
+                        font=("Arial", 11, "bold"))
         
     def _draw_awake_cat(self, cx, s):
-        """Draw cat sitting up and alert (side view)"""
-        cy = s // 2
+        """Draw cat sitting up and alert (side view) - cute version"""
+        cy = s // 2 - 2
         
         # Tail wagging
-        tail_x = cx + 28 + self.tail_angle
-        self.create_line(cx + 18, cy + 15, tail_x, cy + 20, 
-                        fill='#ffb6c1', width=5, smooth=True)
-        self.create_oval(tail_x - 4, cy + 17, tail_x + 4, cy + 25, 
-                        fill='#fff0f5', outline='#ffb6c1', width=1)
+        tail_x = cx + 25 + self.tail_angle
+        tail_y = cy + 22
+        self.create_line(cx + 15, cy + 18, tail_x - 3, tail_y, 
+                        fill='#ffccd5', width=4, smooth=True)
+        self.create_oval(tail_x - 4, tail_y - 3, tail_x + 4, tail_y + 5, 
+                        fill='#fff5f8', outline='#ffccd5', width=1)
         
-        # Body (sitting up)
-        self.create_oval(cx - 12, cy + 5, cx + 20, cy + 28, 
-                        fill='#fff0f5', outline='#ffb6c1', width=1)
+        # Back leg
+        self.create_oval(cx + 5, cy + 15, cx + 20, cy + 28, 
+                        fill='#fff5f8', outline='#ffccd5', width=1)
         
-        # Chest
-        self.create_oval(cx - 8, cy + 2, cx + 15, cy + 18, 
-                        fill='#fff0f5', outline='#ffb6c1', width=1)
+        # Body
+        self.create_oval(cx - 8, cy + 5, cx + 18, cy + 22, 
+                        fill='#fff5f8', outline='#ffccd5', width=1)
         
-        # Front legs
-        self.create_oval(cx - 10, cy + 18, cx - 2, cy + 28, 
-                        fill='#fff0f5', outline='#ffb6c1', width=1)
-        self.create_oval(cx + 5, cy + 18, cx + 13, cy + 28, 
-                        fill='#fff0f5', outline='#ffb6c1', width=1)
+        # Front paws
+        self.create_oval(cx - 10, cy + 18, cx - 2, cy + 26, 
+                        fill='#fff5f8', outline='#ffccd5', width=1)
+        self.create_oval(cx + 2, cy + 18, cx + 10, cy + 26, 
+                        fill='#fff5f8', outline='#ffccd5', width=1)
         
         # Head
-        self.create_oval(cx - 18, cy - 15, cx + 10, cy + 8, 
-                        fill='#fff0f5', outline='#ffb6c1', width=1)
+        self.create_oval(cx - 16, cy - 12, cx + 8, cy + 6, 
+                        fill='#fff5f8', outline='#ffccd5', width=1)
         
-        # Ears (both visible when sitting up)
-        # Left ear
+        # Ears
         self.create_polygon(
-            cx - 14, cy - 10,
-            cx - 18, cy - 28,
-            cx - 4, cy - 14,
-            fill='#ffb6c1', outline='#ff6b9d', width=1, smooth=True
+            cx - 12, cy - 6,
+            cx - 16, cy - 22,
+            cx - 3, cy - 10,
+            fill='#ffccd5', outline='#ff99aa', width=1, smooth=True
         )
-        # Right ear (behind)
         self.create_polygon(
-            cx - 2, cy - 12,
-            cx + 2, cy - 26,
-            cx + 10, cy - 12,
-            fill='#ffb6c1', outline='#ff6b9d', width=1, smooth=True
+            cx - 2, cy - 8,
+            cx + 2, cy - 20,
+            cx + 10, cy - 6,
+            fill='#ffccd5', outline='#ff99aa', width=1, smooth=True
         )
         # Inner ears
         self.create_polygon(
-            cx - 12, cy - 12, cx - 15, cy - 22, cx - 6, cy - 15,
-            fill='#ff6b9d', outline='', smooth=True
+            cx - 10, cy - 8, cx - 13, cy - 18, cx - 5, cy - 11,
+            fill='#ff99aa', outline='', smooth=True
         )
         self.create_polygon(
-            cx, cy - 13, cx + 3, cy - 22, cx + 8, cy - 13,
-            fill='#ff6b9d', outline='', smooth=True
+            cx, cy - 9, cx + 2, cy - 17, cx + 7, cy - 8,
+            fill='#ff99aa', outline='', smooth=True
         )
         
         # Eyes
         if self.is_blinking:
-            self.create_line(cx - 12, cy - 4, cx - 4, cy - 4, 
-                           fill='#4a4a6a', width=2)
+            self.create_arc(cx - 11, cy - 4, cx - 3, cy + 1, 
+                           start=0, extent=180, style=tk.ARC,
+                           outline='#555', width=1.5)
         else:
-            # Open eyes
-            self.create_oval(cx - 13, cy - 6, cx - 5, cy + 1, 
+            # Big cute eyes
+            self.create_oval(cx - 12, cy - 5, cx - 3, cy + 3, 
                            fill='#4a4a6a', outline='')
             # Eye highlight
-            self.create_oval(cx - 11, cy - 5, cx - 8, cy - 2, 
+            self.create_oval(cx - 10, cy - 4, cx - 6, cy, 
                            fill='white', outline='')
+            self.create_oval(cx - 8, cy - 2, cx - 6, cy, 
+                           fill='#fff', outline='')
         
         # Nose
-        self.create_oval(cx - 18, cy + 2, cx - 14, cy + 6, 
-                        fill='#ff6b9d', outline='')
+        self.create_oval(cx - 14, cy + 4, cx - 10, cy + 7, 
+                        fill='#ff99aa', outline='')
         
-        # Mouth
-        self.create_arc(cx - 22, cy + 4, cx - 16, cy + 10, 
-                       start=200, extent=140, style=tk.ARC, 
-                       outline='#ff6b9d', width=1)
-        self.create_arc(cx - 16, cy + 4, cx - 10, cy + 10, 
-                       start=200, extent=140, style=tk.ARC, 
-                       outline='#ff6b9d', width=1)
-        
-        # Whiskers
-        self.create_line(cx - 25, cy, cx - 15, cy + 2, fill='#ffb6c1', width=1)
-        self.create_line(cx - 26, cy + 4, cx - 15, cy + 5, fill='#ffb6c1', width=1)
+        # Cute mouth
+        self.create_arc(cx - 17, cy + 6, cx - 11, cy + 11, 
+                       start=200, extent=140, style=tk.ARC,
+                       outline='#ff99aa', width=1)
+        self.create_arc(cx - 11, cy + 6, cx - 5, cy + 11, 
+                       start=200, extent=140, style=tk.ARC,
+                       outline='#ff99aa', width=1)
         
         # Blush
-        self.create_oval(cx - 20, cy + 6, cx - 14, cy + 10, 
-                        fill='#ffb6c1', outline='')
+        self.create_oval(cx - 5, cy + 6, cx, cy + 9, 
+                        fill='#ffccd5', outline='')
         
-        # Stripes
-        self.create_arc(cx + 2, cy + 8, cx + 15, cy + 22, 
-                       start=60, extent=60, style=tk.ARC, 
-                       outline='#ffccd5', width=2)
+        # Whiskers
+        self.create_line(cx - 20, cy + 2, cx - 12, cy + 4, 
+                        fill='#ffccd5', width=1)
+        self.create_line(cx - 20, cy + 5, cx - 12, cy + 6, 
+                        fill='#ffccd5', width=1)
         
     def animate(self):
         self.frame += 1
         
         if self.is_awake:
-            # Tail wagging when awake
-            self.tail_angle += 0.8 * self.tail_direction
-            if self.tail_angle > 6 or self.tail_angle < -6:
+            # Tail wagging
+            self.tail_angle += 0.6 * self.tail_direction
+            if self.tail_angle > 5 or self.tail_angle < -5:
                 self.tail_direction *= -1
             
             # Blinking
             self.blink_counter += 1
-            if self.blink_counter >= 50:
+            if self.blink_counter >= 60:
                 self.is_blinking = True
-                if self.blink_counter >= 55:
+                if self.blink_counter >= 66:
                     self.is_blinking = False
                     self.blink_counter = 0
         else:
-            # Breathing animation when sleeping
+            # Breathing
             self.breath_offset = 2 * (1 + (self.frame % 60) / 30 - 1)
             
             # Floating Zs
-            self.z_offset = (self.frame % 40) * 0.3
+            self.z_offset = (self.frame % 50) * 0.25
         
         self.draw_cat()
         self.after(50, self.animate)
