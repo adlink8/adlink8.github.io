@@ -1,6 +1,6 @@
 +++
-title = '{{ replace .File.ContentBaseName "-" " " | title }}'
-date = '{{ .Date }}'
+title = 'Docker Container Basics'
+date = '2026-03-06T19:28:40+08:00'
 draft = true
 ShowToc = true
 TocOpen = true

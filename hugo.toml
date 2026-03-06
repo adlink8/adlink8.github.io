@@ -22,41 +22,55 @@ theme = 'PaperMod'
 [[menu.main]]
     identifier = "daily"
     name = "Timeline"
-    url = "/categories/daily/"
+    pre = "📅 "
+    url = "/daily/"
     weight = 10
 
 # 2. Lab Notes: Troubleshooting & Fixes (Practice)
 [[menu.main]]
     identifier = "pitfalls"
     name = "Lab Notes"
-    url = "/categories/pitfalls/"
+    pre = "🛠️ "
+    url = "/pitfalls/"
     weight = 20
 
 # 3. Insights: Architecture & Deep Dives (Depth)
 [[menu.main]]
     identifier = "insights"
     name = "Insights"
-    url = "/categories/insights/"
+    pre = "💡 "
+    url = "/insights/"
     weight = 30
 
-# 4. Reflection: Retrospectives (Review) <-- ADDED THIS
+# 4. Reflection: Retrospectives (Review)
 [[menu.main]]
     identifier = "reflections"
     name = "Reflection"
-    url = "/categories/reflections/"
+    pre = "🔄 "
+    url = "/reflections/"
     weight = 35
 
-# 5. Tech Stack: Tags Filter (Index)
+# 5. Project Logs: Build logs & progress
+[[menu.main]]
+    identifier = "project-logs"
+    name = "Project Logs"
+    pre = "📁 "
+    url = "/project-logs/"
+    weight = 36
+
+# 6. Tech Stack: Tags Filter (Index)
 [[menu.main]]
     identifier = "tags"
     name = "Tech Stack"
+    pre = "🏷️ "
     url = "/tags/"
     weight = 40
 
-# 6. Search
+# 7. Search
 [[menu.main]]
     identifier = "search"
     name = "Search"
+    pre = "🔍 "
     url = "/search/"
     weight = 50
 
@@ -65,25 +79,26 @@ theme = 'PaperMod'
     ShowCodeCopyButtons = true
     ShowReadingTime = true
     # Ensures only posts appear in the main content area
-    mainSections = ["daily", "pitfalls", "reflections", "insights"]
+    mainSections = ["daily", "pitfalls", "reflections", "insights", "project-logs"]
 
     # Left Sidebar Profile Configuration
  [params.homeInfoParams]
-    Title = "" 
+    Title = ""
     Content = """
 ![Avatar](/image/tx.jpg)
 
-# Hi, I'm Li Shuo Yan 👨‍💻
+# Hi, I'm Li Shuo Yan
 
 **DevOps Aspirant | Cloud Native & CI/CD Learner**
 
 ---
 
-### 🔍 Learning Tracks
-- 📅 **[Timeline](/categories/daily-learning/)**: Daily progress & notes
-- 🛠️ **[Lab Notes](/categories/troubleshooting/)**: Debugging & pitfalls
-- 🔄 **[Reflection](/categories/reflection/)**: Periodic retrospectives
-- 🏛️ **[Insights](/categories/insights/)**: Architecture analysis
+### Learning Tracks
+- 📅 Timeline: **[Daily Progress](/daily/)**
+- 🛠️ Lab Notes: **[Troubleshooting](/pitfalls/)**
+- 💡 Insights: **[Architecture](/insights/)**
+- 🔄 Reflection: **[Retrospectives](/reflections/)**
+- 📁 Project Logs: **[Build Progress](/project-logs/)**
 
 ---
 [Personal Website Link]
