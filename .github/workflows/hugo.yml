@@ -27,7 +27,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest' 
+          hugo-version: 'latest'
           extended: true        # 许多主题需要 extended 版本处理 SCSS
 
       - name: Build with Hugo
@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
-  
+
   deploy:
     environment:
       name: github-pages
