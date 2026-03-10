@@ -13,7 +13,7 @@ theme = 'PaperMod'
 # Output formats required for search functionality
 [outputs]
     home = ["HTML", "RSS", "JSON"]
-    section = ["HTML", "RSS"]
+    section = ["HTML"]
     taxonomy = ["HTML"]
     term = ["HTML"]
 
