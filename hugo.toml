@@ -13,6 +13,9 @@ theme = 'PaperMod'
 # Output formats required for search functionality
 [outputs]
     home = ["HTML", "RSS", "JSON"]
+    section = ["HTML"]
+    taxonomy = ["HTML"]
+    term = ["HTML"]
 
 # =======================================================
 # NAVIGATION MENU: Complete DevOps Cycle
