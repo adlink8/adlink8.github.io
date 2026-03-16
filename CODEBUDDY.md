@@ -12,18 +12,18 @@ This is a Hugo static site blog documenting a DevOps and Infrastructure as Code 
 # Start local development server
 hugo server -D --port 1313
 # Or use the convenience script
-./start.sh
+./scripts/start.sh
 
 # Create a new post (use hyphens, not spaces)
 hugo new <category>/<filename>.md
 # Or use the convenience script
-./new-post.sh <category> <filename>
+./scripts/new-post.sh <category> <filename>
 
 # Build for production
 hugo --minify
 
 # Launch GUI blog manager
-python blog_manager.py
+python tools/blog_manager.py
 ```
 
 ## Content Categories
@@ -46,6 +46,9 @@ Posts are organized into 5 categories, each with its own archetype template:
 ├── layouts/             # Custom Hugo layouts (overrides theme defaults)
 ├── themes/PaperMod/     # Hugo theme (git submodule - do not edit directly)
 ├── static/image/        # Static assets (images, etc.)
+├── scripts/             # Shell scripts (start.sh, new-post.sh, watchdog.sh)
+├── tools/               # Python tools and Windows launch files
+├── docs/                # Project documentation
 ├── hugo.toml            # Hugo configuration
 ├── public/              # Generated site (gitignored)
 └── .github/workflows/   # GitHub Actions auto-deployment
@@ -75,7 +78,7 @@ tags = ['tag1', 'tag2']
 
 ## Development Workflow
 
-1. Create post using `./new-post.sh <category> <filename>` or `hugo new`
+1. Create post using `./scripts/new-post.sh <category> <filename>` or `hugo new`
 2. Run `hugo server -D` to preview locally at http://localhost:1313
 3. Edit the Markdown file in `content/<category>/`
 4. Set `draft = false` when ready to publish
@@ -83,10 +86,10 @@ tags = ['tag1', 'tag2']
 
 ## GUI Blog Manager
 
-`blog_manager.py` is a Python/Tkinter GUI tool with features:
+`tools/blog_manager.py` is a Python/Tkinter GUI tool with features:
 - Create/delete posts via form interface
 - Start/stop Hugo server
 - Git operations (add, commit, push)
 - Deploy to GitHub
 
-Launch with `python blog_manager.py`.
+Launch with `python tools/blog_manager.py`.
