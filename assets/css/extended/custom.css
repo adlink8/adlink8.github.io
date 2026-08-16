@@ -1492,6 +1492,66 @@ body:not(:has(.first-entry.home-info)) .main {
 .cloud-6 { top: 66%; animation-duration: 110s; animation-delay: -70s; transform: scale(1.1);  opacity: 0.4;  filter: blur(3px); }
 .cloud-7 { top: 80%; animation-duration: 130s; animation-delay: -35s; transform: scale(0.6);  opacity: 0.5;  filter: blur(2.5px); }
 
+/* ---------- LIGHT: ambient mist (云雾缭绕) ---------- */
+.mist {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.35) 45%,
+        transparent 70%);
+    filter: blur(28px);
+}
+
+/* high mist band, slow crossing */
+.mist-a {
+    width: 65vw;
+    height: 26vh;
+    top: 18%;
+    animation: mist-cross-a 110s linear infinite;
+}
+
+/* lower mist band, even slower, deeper blur */
+.mist-b {
+    width: 50vw;
+    height: 20vh;
+    top: 58%;
+    opacity: 0.75;
+    filter: blur(40px);
+    animation: mist-cross-b 160s linear infinite;
+    animation-delay: -70s;
+}
+
+/* ground fog settling at the bottom, gently swaying */
+.mist-c {
+    width: 120vw;
+    height: 20vh;
+    left: -10vw;
+    bottom: -9vh;
+    border-radius: 0;
+    background: linear-gradient(to top,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.4) 45%,
+        transparent 100%);
+    filter: blur(18px);
+    animation: mist-sway 26s ease-in-out infinite alternate;
+}
+
+@keyframes mist-cross-a {
+    from { left: -70vw; }
+    to   { left: 105vw; }
+}
+
+@keyframes mist-cross-b {
+    from { left: 105vw; }
+    to   { left: -60vw; }
+}
+
+@keyframes mist-sway {
+    from { transform: translateX(-3vw); }
+    to   { transform: translateX(3vw); }
+}
+
 @keyframes cloud-drift {
     from { left: -180px; }
     to   { left: calc(100% + 180px); }
@@ -1504,7 +1564,8 @@ body:not(:has(.first-entry.home-info)) .main {
 
 [data-theme="dark"] .sun,
 [data-theme="dark"] .sunrays,
-[data-theme="dark"] .cloud {
+[data-theme="dark"] .cloud,
+[data-theme="dark"] .mist {
     display: none;
 }
 
@@ -1530,6 +1591,7 @@ body:not(:has(.first-entry.home-info)) .main {
     .stars { opacity: 0.6; }
     .moon, .sun, .sunrays { animation: none; }
     .cloud { animation-duration: 400s; }
+    .mist { animation: none; }
 }
 
 /* =======================================================
