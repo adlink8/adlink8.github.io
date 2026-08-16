@@ -44,3 +44,7 @@ featured_projects:
   other: "精选项目"
 featured_more:
   other: "全部项目"
+project_posts:
+  other: "相关文章"
+project_label:
+  other: "所属项目"

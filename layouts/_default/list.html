@@ -40,6 +40,13 @@
 
 {{- $pages := union .RegularPages .Sections }}
 
+{{- /* Project hub pages (/project/<slug>/): list every post whose
+       frontmatter `projects` contains this hub's slug */ -}}
+{{- if and (eq .Type "project") .Parent (eq .Parent.Type "project") }}
+{{- $slug := path.Base .RelPermalink }}
+{{- $pages = where site.RegularPages "Params.projects" "intersect" (slice $slug) }}
+{{- end }}
+
 {{- if .IsHome }}
 {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true"  }}

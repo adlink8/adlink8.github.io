@@ -6,6 +6,7 @@ ShowToc = true
 TocOpen = true
 categories = ['insights']
 tags = []
+projects = ['devops-roadmap']
 description = '每个 DevOps 工程师都应掌握的 Docker 核心概念：镜像、容器、分层机制，以及容器化在现代交付流水线中的意义。'
 +++
 

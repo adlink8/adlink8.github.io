@@ -44,3 +44,7 @@ featured_projects:
   other: "Featured Projects"
 featured_more:
   other: "All projects"
+project_posts:
+  other: "Posts"
+project_label:
+  other: "Project"

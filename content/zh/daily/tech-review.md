@@ -6,6 +6,7 @@ ShowToc = true
 TocOpen = true
 categories = ["insights"]
 tags = ["Docker"]
+projects = ['devops-roadmap']
 +++
 
 许多人追求走捷径带来的即时满足，而我选择死磕底层架构。对我来说，慢即是快。

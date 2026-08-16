@@ -6,6 +6,7 @@ ShowToc = true
 TocOpen = true
 categories = ['insights']
 tags = []
+projects = ['devops-roadmap']
 description = 'Core Docker concepts every DevOps engineer should know: images, containers, layering, and why containerization matters in modern delivery pipelines.'
 +++
 

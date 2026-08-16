@@ -8,7 +8,7 @@ description = '我设计并交付的系统 —— 从 IoT 固件到长文本 RAG
 <div class="project-card">
 <div class="project-head">
 <h3>novel-mind — 长文本 RAG 平台</h3>
-<a class="project-link" href="https://github.com/adlink8">GitHub →</a>
+<span class="project-links"><a class="project-link" href="/zh/project/novel-mind/">相关文章 →</a><a class="project-link" href="https://github.com/adlink8">GitHub →</a></span>
 </div>
 <p class="project-stack"><code>Python</code> <code>FastAPI</code> <code>Next.js</code> <code>PostgreSQL</code> <code>ChromaDB</code> <code>Ollama</code></p>
 <ul>
@@ -21,7 +21,7 @@ description = '我设计并交付的系统 —— 从 IoT 固件到长文本 RAG
 <div class="project-card">
 <div class="project-head">
 <h3>t5ai-codex-quota — IoT 设备监视器</h3>
-<a class="project-link" href="https://github.com/adlink8">GitHub →</a>
+<span class="project-links"><a class="project-link" href="/zh/project/t5ai-codex-quota/">相关文章 →</a><a class="project-link" href="https://github.com/adlink8">GitHub →</a></span>
 </div>
 <p class="project-stack"><code>C</code> <code>TuyaOpen SDK</code> <code>LVGL</code> <code>MQTT</code> <code>Mosquitto</code> <code>HTTP</code></p>
 <ul>
@@ -53,4 +53,4 @@ description = '我设计并交付的系统 —— 从 IoT 固件到长文本 RAG
 | 3 | 多云部署 | Terraform, AWS, DigitalOcean |
 | 4 | 可观测性 | Prometheus, Grafana |
 
-构建进度记录在[项目日志](/zh/project-logs/)。
+构建进度记录在[项目日志](/zh/project-logs/)，路线图相关的所有文章汇总在 [devops-roadmap 项目页](/zh/project/devops-roadmap/)。

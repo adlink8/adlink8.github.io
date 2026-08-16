@@ -6,6 +6,7 @@ ShowToc = true
 TocOpen = true
 categories = ['daily']
 tags = []
+projects = []
 description = ''
 +++
 

@@ -8,7 +8,7 @@ A selection of systems I designed and shipped. Architecture decisions, tech sele
 <div class="project-card">
 <div class="project-head">
 <h3>novel-mind — Long-text RAG Platform</h3>
-<a class="project-link" href="https://github.com/adlink8">GitHub →</a>
+<span class="project-links"><a class="project-link" href="/project/novel-mind/">Posts →</a><a class="project-link" href="https://github.com/adlink8">GitHub →</a></span>
 </div>
 <p class="project-stack"><code>Python</code> <code>FastAPI</code> <code>Next.js</code> <code>PostgreSQL</code> <code>ChromaDB</code> <code>Ollama</code></p>
 <ul>
@@ -21,7 +21,7 @@ A selection of systems I designed and shipped. Architecture decisions, tech sele
 <div class="project-card">
 <div class="project-head">
 <h3>t5ai-codex-quota — IoT Device Monitor</h3>
-<a class="project-link" href="https://github.com/adlink8">GitHub →</a>
+<span class="project-links"><a class="project-link" href="/project/t5ai-codex-quota/">Posts →</a><a class="project-link" href="https://github.com/adlink8">GitHub →</a></span>
 </div>
 <p class="project-stack"><code>C</code> <code>TuyaOpen SDK</code> <code>LVGL</code> <code>MQTT</code> <code>Mosquitto</code> <code>HTTP</code></p>
 <ul>
@@ -53,4 +53,4 @@ A selection of systems I designed and shipped. Architecture decisions, tech sele
 | 3 | Multi-cloud deployment | Terraform, AWS, DigitalOcean |
 | 4 | Observability | Prometheus, Grafana |
 
-Build progress is logged in [Project Logs](/project-logs/).
+Build progress is logged in [Project Logs](/project-logs/), and every roadmap-related post is gathered on the [devops-roadmap hub](/project/devops-roadmap/).

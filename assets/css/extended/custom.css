@@ -1654,3 +1654,38 @@ body:not(:has(.first-entry.home-info)) .main {
     transform: scale(1.5);
     box-shadow: 0 0 10px rgba(var(--accent), 0.6);
 }
+
+/* =======================================================
+   29. PROJECT HUB LINKS
+   ======================================================= */
+.featured-name:hover {
+    color: rgb(var(--accent));
+}
+
+.featured-links {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.featured-links a {
+    color: rgb(var(--accent));
+}
+
+.featured-links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.project-links {
+    display: inline-flex;
+    gap: 14px;
+}
+
+.post-projects li a {
+    color: rgb(var(--accent)) !important;
+    border-color: rgba(var(--accent), 0.35) !important;
+    background: rgba(var(--accent), 0.08) !important;
+}

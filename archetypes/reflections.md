@@ -6,6 +6,7 @@ ShowToc = true
 TocOpen = true
 categories = ['reflections']
 tags = []
+projects = []
 description = ''
 +++
 

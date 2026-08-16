@@ -3,13 +3,17 @@
 <section class="featured-projects">
   <h2 class="featured-title">{{ i18n "featured_projects" }}</h2>
   {{- range first 2 .featured }}
-  <a class="featured-card" href="{{ .url }}" target="_blank" rel="noopener">
-    <div class="featured-name">{{ .name }}</div>
+  <div class="featured-card">
+    <a class="featured-name" href="{{ (printf "/project/%s/" .slug) | relLangURL }}">{{ .name }}</a>
     <p class="featured-tagline">{{ .tagline }}</p>
     <div class="featured-stack">
       {{- range .stack }}<code>{{ . }}</code>{{ end }}
     </div>
-  </a>
+    <div class="featured-links">
+      <a href="{{ (printf "/project/%s/" .slug) | relLangURL }}">{{ i18n "project_posts" }} →</a>
+      <a href="{{ .url }}" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
   {{- end }}
   <a class="featured-more" href="{{ "/projects/" | relLangURL }}">{{ i18n "featured_more" }} →</a>
 </section>

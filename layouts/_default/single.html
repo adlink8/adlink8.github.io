@@ -26,6 +26,13 @@
   </div>
 
   <footer class="post-footer">
+    {{- with .Params.projects }}
+    <ul class="post-tags post-projects" aria-label="{{ i18n "project_label" }}">
+      {{- range . }}
+      <li><a href="{{ (printf "/project/%s/" .) | relLangURL }}">🚀 {{ . }}</a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
     {{- with ($.GetTerms $tags) }}
     <ul class="post-tags">
