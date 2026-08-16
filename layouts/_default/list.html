@@ -94,6 +94,12 @@
     <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
   </div>
   {{- end }}
+  {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
+  {{- with (.GetTerms $tags) }}
+  <div class="entry-tags" aria-hidden="true">
+    {{- range . }}<span class="entry-tag">{{ .LinkTitle }}</span>{{ end }}
+  </div>
+  {{- end }}
   {{- if not (.Param "hideMeta") }}
   <footer class="entry-footer">
     {{- partial "post_meta.html" . -}}

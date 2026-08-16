@@ -20,7 +20,9 @@
   {{- end }}
 
   <div class="post-content">
-    {{- .Content }}
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
   </div>
 
   <footer class="post-footer">

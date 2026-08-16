@@ -1125,3 +1125,175 @@ body:not(:has(.first-entry.home-info)) .main {
 @media screen and (max-width: 768px) {
     .code-lang { display: none; }
 }
+
+/* =======================================================
+   19. TOC SCROLL-SPY & ANCHORED HEADINGS
+   ======================================================= */
+.toc a.active-toc {
+    color: rgb(var(--accent)) !important;
+    font-weight: 600;
+    transform: translateX(5px);
+}
+
+.post-content .anchor {
+    opacity: 0;
+    transition: opacity 0.25s ease, color 0.25s ease;
+    color: rgb(var(--accent));
+}
+
+.post-content h1:hover .anchor,
+.post-content h2:hover .anchor,
+.post-content h3:hover .anchor,
+.post-content h4:hover .anchor,
+.post-content h5:hover .anchor,
+.post-content h6:hover .anchor {
+    opacity: 1;
+}
+
+/* =======================================================
+   20. ENTRY TAG CHIPS (list cards)
+   ======================================================= */
+.entry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 10px 0 2px;
+}
+
+.entry-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgb(var(--accent));
+    background: rgba(var(--accent), 0.1);
+    padding: 2px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+}
+
+/* =======================================================
+   21. VIEW TRANSITIONS & HEADER ENTRANCE
+   ======================================================= */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.25s;
+}
+
+.header {
+    animation: header-in 0.5s var(--ease-spring);
+}
+
+@keyframes header-in {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: none; opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header { animation: none; }
+}
+
+/* =======================================================
+   22. CJK TYPOGRAPHY (progressive enhancement)
+   ======================================================= */
+.post-content {
+    hanging-punctuation: first allow-end last;
+    text-spacing-trim: trim-start;
+    text-autospace: normal;
+}
+
+:lang(zh) .post-content p,
+:lang(zh) .post-content li {
+    text-align: justify;
+    text-justify: inter-ideograph;
+}
+
+/* =======================================================
+   23. IMAGE LIGHTBOX
+   ======================================================= */
+.post-content img.zoomable {
+    cursor: zoom-in;
+}
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    cursor: zoom-out;
+}
+
+.lightbox.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox img {
+    max-width: 92vw;
+    max-height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    transform: scale(0.94);
+    transition: transform 0.3s var(--ease-spring);
+}
+
+.lightbox.open img {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 26px;
+    font-size: 2.4rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1;
+}
+
+/* =======================================================
+   24. EXTERNAL LINK MARKER
+   ======================================================= */
+.post-content a.ext-link::after {
+    content: "↗";
+    font-size: 0.75em;
+    margin-left: 2px;
+    opacity: 0.6;
+}
+
+/* =======================================================
+   25. SEARCH SKELETON
+   ======================================================= */
+#search-skeleton {
+    margin-top: 24px;
+}
+
+.sk-line {
+    height: 18px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    background: linear-gradient(90deg,
+        rgba(var(--accent), 0.08) 25%,
+        rgba(var(--accent), 0.18) 50%,
+        rgba(var(--accent), 0.08) 75%);
+    background-size: 200% 100%;
+    animation: sk-shimmer 1.4s infinite linear;
+}
+
+@keyframes sk-shimmer {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sk-line { animation: none; }
+}
+
+/* Tilt: cards need a hint of depth for the perspective effect */
+.post-entry, .featured-card, .project-card, .stat-card {
+    transform-style: preserve-3d;
+}

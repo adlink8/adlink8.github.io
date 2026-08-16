@@ -120,6 +120,130 @@
     });
 
     /**
+     * 7. TOC Scroll-Spy
+     * Highlights the current section in the table of contents
+     */
+    var tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+    if (tocLinks.length && 'IntersectionObserver' in window) {
+        var linkFor = {};
+        var heads = [];
+        tocLinks.forEach(function(a) {
+            var id = decodeURIComponent(a.getAttribute('href').slice(1));
+            var h = document.getElementById(id);
+            if (h) { linkFor[id] = a; heads.push(h); }
+        });
+        var spy = new IntersectionObserver(function(entries) {
+            entries.forEach(function(en) {
+                if (!en.isIntersecting) return;
+                tocLinks.forEach(function(l) { l.classList.remove('active-toc'); });
+                var a = linkFor[en.target.id];
+                if (a) a.classList.add('active-toc');
+            });
+        }, { rootMargin: '-90px 0px -70% 0px' });
+        heads.forEach(function(h) { spy.observe(h); });
+    }
+
+    /**
+     * 8. Stats Count-Up
+     */
+    var statNums = document.querySelectorAll('.stat-num');
+    if (statNums.length && !reduceMotion && 'IntersectionObserver' in window) {
+        var countUp = function(el) {
+            var target = parseInt(el.textContent.replace(/\D/g, ''), 10) || 0;
+            var duration = 900, t0 = null;
+            var step = function(ts) {
+                if (!t0) t0 = ts;
+                var p = Math.min((ts - t0) / duration, 1);
+                var eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.round(target * eased);
+                if (p < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+        };
+        var cObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(en) {
+                if (en.isIntersecting) { countUp(en.target); cObs.unobserve(en.target); }
+            });
+        }, { threshold: 0.5 });
+        statNums.forEach(function(n) { cObs.observe(n); });
+    }
+
+    /**
+     * 9. Image Lightbox
+     */
+    var zoomables = document.querySelectorAll('.post-content img');
+    if (zoomables.length) {
+        var lb = document.createElement('div');
+        lb.className = 'lightbox';
+        lb.setAttribute('role', 'dialog');
+        lb.setAttribute('aria-label', 'Image preview');
+        lb.innerHTML = '<img alt=""><span class="lightbox-close" aria-hidden="true">×</span>';
+        document.body.appendChild(lb);
+        var lbImg = lb.querySelector('img');
+        var closeLb = function() {
+            lb.classList.remove('open');
+            document.body.style.overflow = '';
+        };
+        zoomables.forEach(function(img) {
+            img.classList.add('zoomable');
+            img.addEventListener('click', function() {
+                lbImg.src = img.currentSrc || img.src;
+                lbImg.alt = img.alt || '';
+                lb.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        lb.addEventListener('click', closeLb);
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLb();
+        });
+    }
+
+    /**
+     * 10. External Link Markers (open in new tab, add ↗)
+     */
+    document.querySelectorAll('.post-content a[href^="http"]').forEach(function(a) {
+        if (a.hostname === location.hostname) return;
+        if (/(^|\.)(adlink8\.github\.io|shuoyan\.me)$/.test(a.hostname)) return;
+        a.classList.add('ext-link');
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+    });
+
+    /**
+     * 11. Avatar Parallax + Card Tilt (desktop pointers only)
+     */
+    var finePointer = window.matchMedia('(pointer: fine)').matches;
+    if (finePointer && !reduceMotion) {
+        var avatar = document.querySelector('.first-entry.home-info p:first-child img');
+        var homeCard = document.querySelector('.first-entry.home-info');
+        if (avatar && homeCard) {
+            homeCard.addEventListener('mousemove', function(e) {
+                var r = homeCard.getBoundingClientRect();
+                var dx = (e.clientX - r.left - r.width / 2) / r.width;
+                var dy = (e.clientY - r.top - r.height / 2) / r.height;
+                avatar.style.transform = 'translate(' + (dx * 8) + 'px, ' + (dy * 8) + 'px) scale(1.03)';
+            });
+            homeCard.addEventListener('mouseleave', function() {
+                avatar.style.transform = '';
+            });
+        }
+
+        document.querySelectorAll('.post-entry, .featured-card, .project-card, .stat-card')
+            .forEach(function(card) {
+                card.addEventListener('mousemove', function(e) {
+                    var r = card.getBoundingClientRect();
+                    var rx = ((e.clientY - r.top) / r.height - 0.5) * -2.5;
+                    var ry = ((e.clientX - r.left) / r.width - 0.5) * 2.5;
+                    card.style.transform = 'perspective(900px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-4px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    card.style.transform = '';
+                });
+            });
+    }
+
+    /**
      * 5. Scroll-Reveal Animations
      * Fades/slides entries into view with a subtle stagger
      */
