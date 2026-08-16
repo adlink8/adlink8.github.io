@@ -61,6 +61,30 @@
 </aside>
 {{- end }}
 
+{{- /* Timeline axis: year → month (count) → day nodes, daily section only */ -}}
+{{- $isDaily := and (.IsSection) (eq .Type "daily") }}
+{{- if $isDaily }}
+<aside class="timeline-axis" aria-label="Timeline">
+  {{- range $yearGroup := $pages.GroupByDate "2006" }}
+  <div class="ta-year">
+    <div class="ta-year-label">{{ $yearGroup.Key }}</div>
+    {{- range $monthGroup := $yearGroup.Pages.GroupByDate "2006-01" }}
+    <div class="ta-month">
+      <span class="ta-month-name">
+        {{- $monthDate := time (printf "%s-01" $monthGroup.Key) -}}
+        {{- cond (eq site.Language.Lang "zh") ($monthDate.Format "1月") ($monthDate.Format "Jan") -}}
+      </span>
+      <span class="ta-count">{{ len $monthGroup.Pages }}</span>
+      {{- range $monthGroup.Pages }}
+      <a class="ta-day" href="#post-{{ .Date.Format "2006-01-02" }}-{{ .File.ContentBaseName }}"><i></i><span>{{ .Date.Format "02" }}</span></a>
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+  {{- end }}
+</aside>
+{{- end }}
+
 {{- $term := .Data.Term }}
 {{- range $index, $page := $paginator.Pages }}
 
@@ -73,7 +97,7 @@
 {{- $class = "post-entry tag-entry" }}
 {{- end }}
 
-<article class="{{ $class }}">
+<article class="{{ $class }}"{{ if $isDaily }} id="post-{{ .Date.Format "2006-01-02" }}-{{ .File.ContentBaseName }}"{{ end }}>
   {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
   {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
   <header class="entry-header">

@@ -1557,3 +1557,100 @@ body:not(:has(.first-entry.home-info)) .main {
 .featured-card {
     border-color: color-mix(in srgb, var(--border) 70%, rgba(var(--accent), 0.18)) !important;
 }
+
+/* =======================================================
+   28. TIMELINE AXIS (/daily/ section, wide screens)
+   year → month(count) → day nodes, scroll-spy synced
+   ======================================================= */
+.timeline-axis {
+    display: none;
+}
+
+@media screen and (min-width: 1350px) {
+    .timeline-axis {
+        display: block;
+        position: fixed;
+        top: 20vh;
+        left: calc(50% + 465px);
+        width: 180px;
+        max-height: 70vh;
+        overflow-y: auto;
+        z-index: 100;
+        padding-left: 16px;
+        border-left: 2px solid rgba(var(--accent), 0.25);
+    }
+}
+
+.ta-year + .ta-year {
+    margin-top: 22px;
+}
+
+.ta-year-label {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 0.5px;
+}
+
+.ta-month {
+    margin-top: 12px;
+}
+
+.ta-month-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+.ta-count {
+    display: inline-block;
+    margin-left: 8px;
+    min-width: 20px;
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: rgb(var(--accent));
+    background: rgba(var(--accent), 0.14);
+    border-radius: 20px;
+    padding: 1px 7px;
+}
+
+.ta-day {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    margin-left: 2px;
+    font-size: 0.85rem;
+    color: var(--secondary);
+    transition: color 0.25s ease, transform 0.25s var(--ease-spring);
+}
+
+/* day node dot, threaded on the axis line */
+.ta-day i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--secondary);
+    opacity: 0.45;
+    margin-left: -20px; /* sit on the axis border */
+    border: 2px solid var(--theme);
+    transition: all 0.25s var(--ease-spring);
+}
+
+.ta-day:hover {
+    color: rgb(var(--accent));
+    transform: translateX(4px);
+}
+
+.ta-day.active {
+    color: rgb(var(--accent));
+    font-weight: 700;
+}
+
+.ta-day.active i {
+    background: rgb(var(--accent));
+    opacity: 1;
+    transform: scale(1.5);
+    box-shadow: 0 0 10px rgba(var(--accent), 0.6);
+}
