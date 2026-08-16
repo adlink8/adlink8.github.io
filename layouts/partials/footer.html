@@ -450,14 +450,21 @@
         var W = canvas.width = window.innerWidth;
         var H = canvas.height = window.innerHeight;
 
-        // swirl centers (golden one sits on the moon, top right)
-        var centers = [
-            { x: W * 0.22, y: H * 0.34, dir: 1,  gold: false },
-            { x: W * 0.55, y: H * 0.22, dir: -1, gold: false },
-            { x: W * 0.38, y: H * 0.70, dir: 1,  gold: false },
-            { x: W * 0.78, y: H * 0.58, dir: -1, gold: false },
-            { x: W * 0.945, y: H * 0.11, dir: 1, gold: true }
-        ];
+        // swirl centers — randomized positions every activation,
+        // kept ≥220px apart and away from the edges
+        var centers = [];
+        var nC = 4 + Math.floor(Math.random() * 2); // 4–5 centers
+        var tries = 0;
+        while (centers.length < nC && tries < 80) {
+            tries++;
+            var cx = W * (0.1 + Math.random() * 0.8);
+            var cy = H * (0.1 + Math.random() * 0.8);
+            var ok = centers.every(function(c) {
+                var dx = c.x - cx, dy = c.y - cy;
+                return dx * dx + dy * dy > 220 * 220;
+            });
+            if (ok) centers.push({ x: cx, y: cy, dir: Math.random() < 0.5 ? 1 : -1 });
+        }
         var nearest = function(x, y) {
             var best = centers[0], bd = Infinity;
             centers.forEach(function(c) {
@@ -484,8 +491,10 @@
         cells = cells.slice(0, Math.round(cells.length * 0.85));
 
         var GATHER_MS = 5000;
+        // blue-only trail palette
         var palette = [
-            [160, 200, 255], [210, 225, 255], [140, 220, 255], [190, 180, 250]
+            [120, 170, 255], [160, 200, 255], [100, 190, 255],
+            [180, 215, 255], [140, 220, 255]
         ];
         var mkStar = function(cellXY, appearAt) {
             var x = cellXY[0] * cell + Math.random() * cell;
@@ -493,7 +502,7 @@
             var c = nearest(x, y);
             var ang = Math.atan2(y - c.y, x - c.x);
             var dist = Math.sqrt((x - c.x) * (x - c.x) + (y - c.y) * (y - c.y));
-            var col = c.gold ? [255, 215, 130] : palette[Math.floor(Math.random() * palette.length)];
+            var col = palette[Math.floor(Math.random() * palette.length)];
             return {
                 c: c, ang: ang, rad: Math.max(24, dist),
                 size: 0.8 + Math.random() * 1.4,
@@ -514,6 +523,18 @@
             var ns = mkStar(cellXY, -1); // already visible
             s.c = ns.c; s.ang = ns.ang; s.rad = ns.rad; s.col = ns.col;
             s.omega = ns.omega; s.px = ns.px; s.py = ns.py;
+            s.traveled = 0;
+        };
+        // re-orbit: jump to another swirl center WITHOUT teleporting —
+        // the trail bends smoothly onto the new orbit
+        var reorbit = function(s) {
+            var c = centers[Math.floor(Math.random() * centers.length)];
+            if (c === s.c) return;
+            s.c = c;
+            var dx = s.px - c.x, dy = s.py - c.y;
+            s.ang = Math.atan2(dy, dx);
+            s.rad = Math.max(24, Math.sqrt(dx * dx + dy * dy));
+            s.omega = (0.25 + Math.random() * 0.3) / Math.max(0.5, s.rad / 90);
             s.traveled = 0;
         };
 
@@ -566,6 +587,8 @@
                     ctx.lineCap = 'round';
                     ctx.stroke();
                     s.px = nx; s.py = ny;
+                    // rare mid-flight orbit change (~0.15% per frame per star)
+                    if (Math.random() < 0.0015) reorbit(s);
                     // semicircle brush stroke done -> respawn elsewhere
                     if (s.traveled >= Math.PI) respawn(s);
                 });
