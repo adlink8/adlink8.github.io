@@ -36,6 +36,8 @@ nf_title:
   other: "This page took a wrong turn at /dev/null"
 nf_text:
   other: "The page you're looking for doesn't exist — but the rest of the journey does."
+nf_lost:
+  other: "This meteor lost its way too."
 nf_home:
   other: "← Back to Home"
 nf_archives:

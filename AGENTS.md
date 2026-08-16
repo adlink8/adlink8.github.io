@@ -47,6 +47,8 @@ hugo.toml                   # config; menus & homeInfoParams exist PER LANGUAGE
 
 **Sky background is CSS-only** (no images, no WebGL). Theme-conditional via `[data-theme="dark"|"light"]` selectors. Every animation must have a `prefers-reduced-motion` fallback and `aria-hidden` markup.
 
+**Easter eggs.** All eggs live in footer.html JS sections 12–13 + custom.css sections 32–33: Konami (↑↑↓↓←→←→BA), moon/sun click, Oct 25 golden Scorpius, typed words (`starry`/`scorpio`/`rocket`), logo ×5 disco, late-night toast, copy toast, mouse-circle gesture, rare (~4%) Van Gogh "Starry Night" (dark only), 404 lost meteor. Toast text is bilingual via the `isZh` lang check in JS — keep both strings when editing.
+
 **Frontmatter.** TOML (`+++`). Every post needs a lead paragraph followed by `<!--more-->` (it becomes the home excerpt) and a `description`. Set `projects = ['<slug>']` to attach a post to a project hub; hubs at `/project/<slug>/` auto-aggregate across sections — do not create per-project directories anywhere else.
 
 **Deploy.** Push to `main` triggers the full pipeline (build → link check → deploy). The lychee link check is intentionally non-blocking. There is no staging; `hugo --minify` locally is the gate.

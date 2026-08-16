@@ -2056,3 +2056,161 @@ body:not(:has(.first-entry.home-info)) .main {
         font-size: 11pt;
     }
 }
+
+/* =======================================================
+   32. EASTER EGGS — konami meteor storm, clickable moon/sun,
+   golden Scorpius on the author's birthday (Oct 25)
+   ======================================================= */
+/* sky is pointer-events:none; re-enable just the celestial bodies */
+.moon, .sun {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* konami burst meteors: one-shot, faster, brighter, violet-tinged */
+.meteor.burst {
+    height: 3px;
+    background: linear-gradient(90deg, #fff, rgba(190, 160, 255, 0));
+    filter: drop-shadow(0 0 10px rgba(220, 200, 255, 0.9));
+}
+
+/* light-mode party: the sun flares and its rays spin wildly */
+body.party-sky .sun {
+    filter: brightness(1.25) saturate(1.6);
+}
+body.party-sky .sunrays,
+body.party-sky .sunrays-b {
+    animation-duration: 2.5s !important;
+}
+
+/* birthday: Scorpius turns gold */
+.constellation.birthday .con-star {
+    fill: #ffd97a;
+    filter: drop-shadow(0 0 4px rgba(255, 210, 120, 0.9));
+}
+.constellation.birthday .con-lines {
+    stroke: rgba(255, 210, 120, 0.55);
+}
+
+/* shared toast for all eggs */
+.egg-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 34px;
+    transform: translate(-50%, 20px);
+    z-index: 999;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    color: #fff;
+    background: rgba(70, 40, 130, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.egg-toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+[data-theme="light"] .egg-toast {
+    color: #4a3570;
+    background: rgba(255, 255, 255, 0.65);
+    border-color: rgba(120, 90, 200, 0.25);
+}
+
+/* =======================================================
+   33. EASTER EGGS II — 404 lost star, logo disco mode,
+   Van Gogh "Starry Night" (rare, dark only), rocket fly-by
+   ======================================================= */
+
+/* ---------- 404: a meteor that fell and got lost ---------- */
+.nf-lost-star {
+    width: 130px;
+    height: 3px;
+    margin: 30px auto 0;
+    border-radius: 3px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85));
+    filter: drop-shadow(0 0 8px rgba(200, 180, 255, 0.7));
+    animation: lost-star-pulse 3.2s ease-in-out infinite;
+}
+[data-theme="light"] .nf-lost-star {
+    background: linear-gradient(90deg, rgba(120, 90, 200, 0), rgba(120, 90, 200, 0.6));
+    filter: drop-shadow(0 0 8px rgba(120, 90, 200, 0.4));
+}
+.nf-lost-caption {
+    margin-top: 10px;
+    font-size: 0.82rem;
+    color: var(--secondary);
+}
+@keyframes lost-star-pulse {
+    0%, 100% { opacity: 0.35; transform: scaleX(0.8); }
+    50%      { opacity: 1;    transform: scaleX(1); }
+}
+
+/* ---------- logo ×5 clicks: disco mode ---------- */
+@keyframes disco-hue {
+    to { filter: hue-rotate(360deg); }
+}
+body.disco .header,
+body.disco .main {
+    animation: disco-hue 1.6s linear infinite;
+}
+
+/* ---------- Van Gogh "The Starry Night" — swirling sky, dark only ---------- */
+.vangogh { display: none; }
+[data-theme="dark"] .vangogh {
+    display: block;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 2.5s ease;
+}
+[data-theme="dark"] .sky.starry .vangogh { opacity: 1; }
+.sky.starry .stars { filter: brightness(1.4) saturate(1.6); }
+.swirl {
+    position: absolute;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from 0deg,
+        rgba(90, 140, 230, 0) 0deg 10deg,
+        rgba(120, 175, 255, 0.4) 10deg 16deg,
+        rgba(90, 140, 230, 0) 16deg 30deg);
+    -webkit-mask: radial-gradient(circle, transparent 16%, #000 24%, #000 62%, transparent 74%);
+    mask: radial-gradient(circle, transparent 16%, #000 24%, #000 62%, transparent 74%);
+    animation: swirl-spin 26s linear infinite;
+}
+@keyframes swirl-spin {
+    to { transform: rotate(360deg); }
+}
+.swirl-1 { width: 46vmin; height: 46vmin; top: 5%;  left: 7%; }
+.swirl-2 { width: 30vmin; height: 30vmin; top: 34%; left: 36%; animation-duration: 20s; animation-direction: reverse; }
+.swirl-3 { width: 22vmin; height: 22vmin; top: 10%; left: 56%; animation-duration: 32s; }
+.swirl-4 { width: 16vmin; height: 16vmin; top: 55%; left: 16%; animation-duration: 18s; animation-direction: reverse; }
+/* golden halo swirl near the moon (top right) */
+.swirl-5 {
+    width: 30vmin; height: 30vmin; top: -6%; right: -2%;
+    animation-duration: 24s;
+    background: repeating-conic-gradient(from 0deg,
+        rgba(255, 214, 120, 0) 0deg 12deg,
+        rgba(255, 214, 120, 0.45) 12deg 18deg,
+        rgba(255, 214, 120, 0) 18deg 32deg);
+}
+
+/* ---------- "rocket": a rocket flies by ---------- */
+.rocket-fly {
+    position: fixed;
+    left: -80px;
+    bottom: 18%;
+    z-index: 998;
+    font-size: 42px;
+    line-height: 1;
+    pointer-events: none;
+    animation: rocket-fly 3.2s cubic-bezier(0.35, 0.55, 0.6, 1) forwards;
+}
+@keyframes rocket-fly {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(calc(100vw + 200px), -55vh); }
+}

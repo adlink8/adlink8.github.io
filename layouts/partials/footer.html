@@ -20,6 +20,15 @@
     <div class="mist mist-b"></div>
     <div class="mist mist-c"></div>
 
+    <!-- Van Gogh swirls for the rare "Starry Night" egg (dark only) -->
+    <div class="vangogh" aria-hidden="true">
+        <div class="swirl swirl-1"></div>
+        <div class="swirl swirl-2"></div>
+        <div class="swirl swirl-3"></div>
+        <div class="swirl swirl-4"></div>
+        <div class="swirl swirl-5"></div>
+    </div>
+
     <!-- Scorpius constellation (Oct 23 – Nov 21), drawn star by star -->
     <svg class="constellation" viewBox="0 0 100 150" aria-hidden="true">
         <polyline class="con-lines" points="40,8 50,15 58,22 55,38 52,55 48,72 38,88 28,100 30,114 38,126 52,132 64,128 72,120 78,112"/>
@@ -141,6 +150,7 @@
     var recruitStyle = "background: #8a2be2; color: #fff; font-size: 20px; font-weight: bold; border-radius: 5px; padding: 10px;";
     console.log("%c Hi! Looking for a DevOps Engineer? ", recruitStyle);
     console.log("%c Contact me at: 2448366060l@email.com ", "color: #8a2be2; font-family: monospace;");
+    console.log("%c psst… ↑↑↓↓←→←→BA · click the moon · type \"starry\"/\"scorpio\"/\"rocket\" · logo ×5 · draw a circle · Oct 25 🎂", "color: #8a2be2; font-family: monospace;");
 
     /**
      * 4. Reading Progress Bar (rAF-throttled)
@@ -329,6 +339,214 @@
                     card.style.transform = '';
                 });
             });
+    }
+
+    /**
+     * 12. Easter Eggs
+     * - Konami code ↑↑↓↓←→←→BA : meteor storm (dark) / sunlight party (light)
+     * - Click the moon / sun   : celestial reaction
+     * - Oct 25 (birthday)      : toast + golden Scorpius
+     */
+    var isZh = (document.documentElement.lang || '').indexOf('zh') === 0;
+    var eggToastTimer = null;
+    var showToast = function(text, ms) {
+        var t = document.querySelector('.egg-toast');
+        if (!t) {
+            t = document.createElement('div');
+            t.className = 'egg-toast';
+            t.setAttribute('role', 'status');
+            document.body.appendChild(t);
+        }
+        t.textContent = text;
+        t.classList.add('show');
+        clearTimeout(eggToastTimer);
+        eggToastTimer = setTimeout(function() { t.classList.remove('show'); }, ms || 3500);
+    };
+
+    var meteorBurst = function(count) {
+        if (!sky || reduceMotion) return;
+        for (var i = 0; i < count; i++) {
+            (function(n) {
+                setTimeout(function() {
+                    var m = document.createElement('div');
+                    m.className = 'meteor burst';
+                    m.style.top = (Math.random() * 40 - 5) + '%';
+                    m.style.left = (20 + Math.random() * 90) + '%';
+                    m.style.width = (90 + Math.random() * 140) + 'px';
+                    var dur = 0.7 + Math.random() * 0.9;
+                    m.style.animationDuration = dur + 's';
+                    m.style.animationIterationCount = '1';
+                    sky.appendChild(m);
+                    setTimeout(function() { m.remove(); }, dur * 1000 + 150);
+                }, n * 120);
+            })(i);
+        }
+    };
+
+    var KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+                  'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    var kIdx = 0;
+    document.addEventListener('keydown', function(e) {
+        var k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+        kIdx = (k === KONAMI[kIdx]) ? kIdx + 1 : (k === KONAMI[0] ? 1 : 0);
+        if (kIdx === KONAMI.length) {
+            kIdx = 0;
+            if (document.documentElement.dataset.theme === 'dark') {
+                meteorBurst(30);
+            } else {
+                document.body.classList.add('party-sky');
+                setTimeout(function() { document.body.classList.remove('party-sky'); }, 8000);
+            }
+            showToast(isZh ? '🌠 隐藏咒语生效！' : '🌠 Konami unlocked!');
+        }
+    });
+
+    var moonEl = document.querySelector('.moon');
+    var sunEl = document.querySelector('.sun');
+    if (moonEl) {
+        moonEl.addEventListener('click', function() {
+            meteorBurst(6);
+            showToast(isZh ? '🌙 你戳了一下月亮' : '🌙 You poked the moon');
+        });
+    }
+    if (sunEl) {
+        sunEl.addEventListener('click', function() {
+            document.body.classList.add('party-sky');
+            setTimeout(function() { document.body.classList.remove('party-sky'); }, 3000);
+            showToast(isZh ? '☀️ 小心刺眼' : '☀️ Careful, it\'s bright');
+        });
+    }
+
+    var today = new Date();
+    if (today.getMonth() === 9 && today.getDate() === 25) {
+        var con = document.querySelector('.constellation');
+        if (con) con.classList.add('birthday');
+        setTimeout(function() {
+            showToast(isZh ? '🎂 今天是博主的生日，天蝎座 full power！'
+                           : '🎂 It\'s the author\'s birthday — Scorpius at full power!', 6000);
+        }, 1500);
+    }
+
+    /**
+     * 13. More Eggs — typed words, Van Gogh starry night, logo disco,
+     * late-night owl, copy toast, circle gesture
+     */
+    var starryTimer = null;
+    var starryNight = function(auto) {
+        if (!sky || reduceMotion) return;
+        if (document.documentElement.dataset.theme !== 'dark') {
+            showToast(isZh ? '🎨 星月夜只在黑夜出现' : '🎨 The Starry Night only shows at night');
+            return;
+        }
+        sky.classList.add('starry');
+        clearTimeout(starryTimer);
+        starryTimer = setTimeout(function() { sky.classList.remove('starry'); }, 40000);
+        showToast(auto ? (isZh ? '🎨 今晚的夜空是梵高画的（稀有彩蛋）' : '🎨 Van Gogh painted tonight\'s sky (rare!)')
+                       : (isZh ? '🎨 星月夜' : '🎨 The Starry Night'));
+    };
+
+    // typed words: "starry" / "scorpio" / "rocket" (skipped while typing in inputs)
+    var typeBuf = '';
+    document.addEventListener('keydown', function(e) {
+        if (e.key.length !== 1 || !/[a-z]/i.test(e.key)) return;
+        var ae = document.activeElement;
+        if (ae && /^(INPUT|TEXTAREA)$/.test(ae.tagName)) return;
+        typeBuf = (typeBuf + e.key.toLowerCase()).slice(-8);
+        if (typeBuf.endsWith('starry')) {
+            typeBuf = '';
+            starryNight(false);
+        } else if (typeBuf.endsWith('scorpio')) {
+            typeBuf = '';
+            var c = document.querySelector('.constellation');
+            if (c && !reduceMotion) {
+                var cl = c.cloneNode(true); // re-insert to replay the draw-in animation
+                c.parentNode.replaceChild(cl, c);
+            }
+            showToast(isZh ? '♏ 天蝎座重新点亮' : '♏ Scorpius relit');
+        } else if (typeBuf.endsWith('rocket')) {
+            typeBuf = '';
+            if (!reduceMotion) {
+                var r = document.createElement('div');
+                r.className = 'rocket-fly';
+                r.textContent = '🚀';
+                document.body.appendChild(r);
+                setTimeout(function() { r.remove(); }, 3400);
+            }
+        }
+    });
+
+    // rare: ~4% of dark-mode visits get Van Gogh for free
+    if (document.documentElement.dataset.theme === 'dark' && Math.random() < 0.04) {
+        setTimeout(function() { starryNight(true); }, 2500);
+    }
+
+    // logo ×5 clicks within 3s: disco mode
+    var logoEl = document.querySelector('.logo');
+    var logoClicks = [];
+    if (logoEl) {
+        logoEl.addEventListener('click', function() {
+            var now = Date.now();
+            logoClicks = logoClicks.filter(function(t) { return now - t < 3000; });
+            logoClicks.push(now);
+            if (logoClicks.length >= 5) {
+                logoClicks = [];
+                document.body.classList.add('disco');
+                setTimeout(function() { document.body.classList.remove('disco'); }, 10000);
+                showToast(isZh ? '🪩 迪斯科时间！' : '🪩 Disco time!');
+            }
+        });
+    }
+
+    // late-night visitor (00:00–05:00), once per session
+    var hourNow = today.getHours();
+    if (hourNow >= 0 && hourNow < 5 && !sessionStorage.getItem('night-owl-toasted')) {
+        sessionStorage.setItem('night-owl-toasted', '1');
+        setTimeout(function() {
+            showToast(isZh ? '🌙 这么晚还没睡？早点休息' : '🌙 Up late? Get some rest');
+        }, 4000);
+    }
+
+    // copy toast
+    document.addEventListener('copy', function() {
+        showToast(isZh ? '📋 已复制' : '📋 Copied', 1500);
+    });
+
+    // draw a circle with the mouse: summon meteors (dark) / wake the sun (light)
+    if (finePointer && !reduceMotion) {
+        var pts = [];
+        var circleCooldown = 0;
+        document.addEventListener('mousemove', function(e) {
+            var now = Date.now();
+            pts.push({ x: e.clientX, y: e.clientY, t: now });
+            while (pts.length && now - pts[0].t > 1200) pts.shift();
+            if (pts.length < 12 || now < circleCooldown) return;
+            var cx = 0, cy = 0;
+            pts.forEach(function(p) { cx += p.x; cy += p.y; });
+            cx /= pts.length; cy /= pts.length;
+            var total = 0, prev = null;
+            pts.forEach(function(p) {
+                var a = Math.atan2(p.y - cy, p.x - cx);
+                if (prev !== null) {
+                    var d = a - prev;
+                    if (d > Math.PI) d -= 2 * Math.PI;
+                    if (d < -Math.PI) d += 2 * Math.PI;
+                    total += d;
+                }
+                prev = a;
+            });
+            if (Math.abs(total) > Math.PI * 1.8) {
+                circleCooldown = now + 15000;
+                pts = [];
+                if (document.documentElement.dataset.theme === 'dark') {
+                    meteorBurst(10);
+                    showToast(isZh ? '⭕ 你画了个圈，召唤了流星' : '⭕ Circle drawn — meteors summoned');
+                } else {
+                    document.body.classList.add('party-sky');
+                    setTimeout(function() { document.body.classList.remove('party-sky'); }, 3000);
+                    showToast(isZh ? '⭕ 你画了个圈，太阳精神了' : '⭕ Circle drawn — the sun perks up');
+                }
+            }
+        }, { passive: true });
     }
 
     /**
