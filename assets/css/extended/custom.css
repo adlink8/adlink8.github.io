@@ -67,8 +67,8 @@ code, pre, kbd, samp {
     color: rgb(var(--accent));
 }
 
-/* Compact header in the mid-width band so the EN menu stays on one line */
-@media screen and (min-width: 1024px) and (max-width: 1360px) {
+/* Compact header on all desktop widths so the menu stays on one line */
+@media screen and (min-width: 1024px) {
     .logo a { font-size: 20px; }
     #menu li + li { margin-inline-start: 10px; }
     #menu a { font-size: 14px; }
@@ -1329,17 +1329,20 @@ body:not(:has(.first-entry.home-info)) .main {
 }
 
 /* ---------- DARK: moon ---------- */
-/* ---------- DARK: waning crescent moon ---------- */
+/* ---------- DARK: moon phase cycle (60s) ----------
+   crescent → full → lunar eclipse (blood moon) → crescent
+   ::after is the moon disc (craters baked in, eclipse tint via filter);
+   ::before is the shadow disc sweeping across to shape the phases. */
 .moon {
     width: 84px;
     height: 84px;
     background: transparent;
+    overflow: hidden; /* clips the shadow disc to the moon's circle */
     box-shadow: 0 0 40px 12px rgba(255, 248, 214, 0.22),
                 0 0 120px 40px rgba(255, 248, 214, 0.08);
-    animation: moon-breathe 7s ease-in-out infinite alternate;
+    animation: moon-glow-cycle 60s linear infinite;
 }
 
-/* crescent disc: bite taken out at top-right via mask; craters baked into the gradient */
 .moon::after {
     content: "";
     position: absolute;
@@ -1349,15 +1352,45 @@ body:not(:has(.first-entry.home-info)) .main {
         radial-gradient(circle at 30% 62%, rgba(180, 172, 150, 0.4) 0 9%, transparent 10%),
         radial-gradient(circle at 44% 48%, rgba(180, 172, 150, 0.3) 0 6%, transparent 7%),
         radial-gradient(circle at 36% 38%, #fdfbf0, #e9e4d4 62%, #d5cfc0);
-    mask-image: radial-gradient(circle at 76% 24%, transparent 58%, black 66%);
-    -webkit-mask-image: radial-gradient(circle at 76% 24%, transparent 58%, black 66%);
+    animation: moon-eclipse 60s linear infinite;
 }
 
-@keyframes moon-breathe {
-    from { box-shadow: 0 0 40px 12px rgba(255, 248, 214, 0.18),
-                       0 0 120px 40px rgba(255, 248, 214, 0.06); }
-    to   { box-shadow: 0 0 52px 16px rgba(255, 248, 214, 0.28),
-                       0 0 140px 52px rgba(255, 248, 214, 0.1); }
+/* shadow disc — feathered edge for a soft terminator line */
+.moon::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgb(33, 30, 44) 58%,
+        rgba(33, 30, 44, 0.85) 72%,
+        transparent 88%);
+    transform: translateX(62%);
+    animation: moon-shadow 60s linear infinite;
+}
+
+@keyframes moon-shadow {
+    0%      { transform: translateX(62%); }   /* crescent */
+    15%     { transform: translateX(120%); }  /* full — shadow swept off */
+    42%     { transform: translateX(120%); }
+    64%     { transform: translateX(120%); }  /* still full after eclipse */
+    78%     { transform: translateX(62%); }   /* waning back to crescent */
+    100%    { transform: translateX(62%); }
+}
+
+@keyframes moon-eclipse {
+    0%, 44%   { filter: none; }
+    50%, 58%  { filter: brightness(0.45) sepia(0.9) hue-rotate(-28deg) saturate(3.2); } /* blood moon */
+    66%, 100% { filter: none; }
+}
+
+@keyframes moon-glow-cycle {
+    0%, 44%   { box-shadow: 0 0 40px 12px rgba(255, 248, 214, 0.22),
+                            0 0 120px 40px rgba(255, 248, 214, 0.08); }
+    50%, 58%  { box-shadow: 0 0 30px 8px rgba(214, 90, 70, 0.25),
+                            0 0 90px 30px rgba(214, 90, 70, 0.1); }
+    66%, 100% { box-shadow: 0 0 40px 12px rgba(255, 248, 214, 0.22),
+                            0 0 120px 40px rgba(255, 248, 214, 0.08); }
 }
 
 /* ---------- DARK: starfield (two tiled layers, twinkling) ---------- */
@@ -1460,6 +1493,22 @@ body:not(:has(.first-entry.home-info)) .main {
 @keyframes rays-sway {
     from { opacity: 0.55; transform: rotate(-1.6deg); }
     to   { opacity: 1; transform: rotate(1.6deg); }
+}
+
+/* second ray fan, offset angles + out-of-phase shimmer — the light keeps shifting */
+.sunrays-b {
+    background: conic-gradient(from 190deg at 98% 2%,
+        transparent 0deg,
+        rgba(255, 222, 120, 0.10) 10deg, transparent 19deg,
+        rgba(255, 222, 120, 0.16) 30deg, transparent 41deg,
+        rgba(255, 222, 120, 0.09) 55deg, transparent 66deg,
+        rgba(255, 222, 120, 0.14) 85deg, transparent 100deg);
+    animation: rays-sway-b 9s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes rays-sway-b {
+    from { opacity: 0.35; transform: rotate(1.2deg); }
+    to   { opacity: 0.9; transform: rotate(-1.2deg); }
 }
 
 /* ---------- LIGHT: drifting clouds (soft, translucent layers) ---------- */
