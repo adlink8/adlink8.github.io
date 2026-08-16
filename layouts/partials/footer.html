@@ -20,15 +20,6 @@
     <div class="mist mist-b"></div>
     <div class="mist mist-c"></div>
 
-    <!-- Van Gogh swirls for the rare "Starry Night" egg (dark only) -->
-    <div class="vangogh" aria-hidden="true">
-        <div class="swirl swirl-1"></div>
-        <div class="swirl swirl-2"></div>
-        <div class="swirl swirl-3"></div>
-        <div class="swirl swirl-4"></div>
-        <div class="swirl swirl-5"></div>
-    </div>
-
     <!-- Scorpius constellation (Oct 23 – Nov 21), drawn star by star -->
     <svg class="constellation" viewBox="0 0 100 150" aria-hidden="true">
         <polyline class="con-lines" points="40,8 50,15 58,22 55,38 52,55 48,72 38,88 28,100 30,114 38,126 52,132 64,128 72,120 78,112"/>
@@ -150,7 +141,7 @@
     var recruitStyle = "background: #8a2be2; color: #fff; font-size: 20px; font-weight: bold; border-radius: 5px; padding: 10px;";
     console.log("%c Hi! Looking for a DevOps Engineer? ", recruitStyle);
     console.log("%c Contact me at: 2448366060l@email.com ", "color: #8a2be2; font-family: monospace;");
-    console.log("%c psst… ↑↑↓↓←→←→BA · click the moon · type \"starry\"/\"scorpio\"/\"rocket\" · logo ×5 · draw a circle · Oct 25 🎂", "color: #8a2be2; font-family: monospace;");
+    console.log("%c psst… ↑↑↓↓←→←→BA · click the moon · type \"starry\"/\"scorpio\" · logo ×5 · Oct 25 🎂", "color: #8a2be2; font-family: monospace;");
 
     /**
      * 4. Reading Progress Bar (rAF-throttled)
@@ -428,24 +419,178 @@
     }
 
     /**
-     * 13. More Eggs — typed words, Van Gogh starry night, logo disco,
-     * late-night owl, copy toast, circle gesture
+     * 13. More Eggs — Van Gogh "Starry Night" (canvas), typed words,
+     * logo disco, late-night owl, copy toast
+     *
+     * Starry Night flow:
+     *   1. GATHER (~5s) — faint stars light up one by one on a jittered
+     *      grid (even coverage, neither dense nor sparse)
+     *   2. SWIRL — stars orbit the nearest swirl center along SEMICIRCLE
+     *      arcs, leaving fading trails; angular speed ramps up gradually;
+     *      after ~180° of travel a star respawns elsewhere (brush-stroke feel)
      */
     var starryTimer = null;
+    var starry = null; // active canvas session
+
+    var stopStarry = function() {
+        if (!starry) return;
+        var s = starry;
+        starry = null;
+        if (s.raf) cancelAnimationFrame(s.raf);
+        sky.classList.remove('starry');
+        s.canvas.classList.add('starry-out');
+        setTimeout(function() { s.canvas.remove(); }, 1800);
+    };
+
+    var startStarry = function() {
+        var canvas = document.createElement('canvas');
+        canvas.className = 'starry-canvas';
+        sky.appendChild(canvas);
+        var ctx = canvas.getContext('2d');
+        var W = canvas.width = window.innerWidth;
+        var H = canvas.height = window.innerHeight;
+
+        // swirl centers (golden one sits on the moon, top right)
+        var centers = [
+            { x: W * 0.22, y: H * 0.34, dir: 1,  gold: false },
+            { x: W * 0.55, y: H * 0.22, dir: -1, gold: false },
+            { x: W * 0.38, y: H * 0.70, dir: 1,  gold: false },
+            { x: W * 0.78, y: H * 0.58, dir: -1, gold: false },
+            { x: W * 0.945, y: H * 0.11, dir: 1, gold: true }
+        ];
+        var nearest = function(x, y) {
+            var best = centers[0], bd = Infinity;
+            centers.forEach(function(c) {
+                var d = (x - c.x) * (x - c.x) + (y - c.y) * (y - c.y);
+                if (d < bd) { bd = d; best = c; }
+            });
+            return best;
+        };
+
+        // jittered grid: exactly one potential star per cell -> even spread
+        var area = W * H;
+        var count = Math.max(90, Math.min(230, Math.round(area / 7500)));
+        var cell = Math.sqrt(area / count);
+        var cols = Math.ceil(W / cell), rows = Math.ceil(H / cell);
+        var cells = [];
+        for (var r = 0; r < rows; r++)
+            for (var q = 0; q < cols; q++)
+                cells.push([q, r]);
+        // shuffle, keep ~85% for a natural (not mechanical) coverage
+        for (var i = cells.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = cells[i]; cells[i] = cells[j]; cells[j] = tmp;
+        }
+        cells = cells.slice(0, Math.round(cells.length * 0.85));
+
+        var GATHER_MS = 5000;
+        var palette = [
+            [160, 200, 255], [210, 225, 255], [140, 220, 255], [190, 180, 250]
+        ];
+        var mkStar = function(cellXY, appearAt) {
+            var x = cellXY[0] * cell + Math.random() * cell;
+            var y = cellXY[1] * cell + Math.random() * cell;
+            var c = nearest(x, y);
+            var ang = Math.atan2(y - c.y, x - c.x);
+            var dist = Math.sqrt((x - c.x) * (x - c.x) + (y - c.y) * (y - c.y));
+            var col = c.gold ? [255, 215, 130] : palette[Math.floor(Math.random() * palette.length)];
+            return {
+                c: c, ang: ang, rad: Math.max(24, dist),
+                size: 0.8 + Math.random() * 1.4,
+                col: col,
+                tw: Math.random() * Math.PI * 2,       // twinkle phase
+                twF: 0.0015 + Math.random() * 0.0025,  // twinkle freq
+                omega: (0.25 + Math.random() * 0.3) / Math.max(0.5, dist / 90), // inner faster
+                traveled: 0,
+                appearAt: appearAt,
+                px: x, py: y
+            };
+        };
+        var stars = cells.map(function(cellXY, idx) {
+            return mkStar(cellXY, (idx / cells.length) * GATHER_MS);
+        });
+        var respawn = function(s) {
+            var cellXY = cells[Math.floor(Math.random() * cells.length)];
+            var ns = mkStar(cellXY, -1); // already visible
+            s.c = ns.c; s.ang = ns.ang; s.rad = ns.rad; s.col = ns.col;
+            s.omega = ns.omega; s.px = ns.px; s.py = ns.py;
+            s.traveled = 0;
+        };
+
+        var t0 = performance.now();
+        var sess = { canvas: canvas, raf: null };
+        starry = sess;
+        sky.classList.add('starry');
+
+        var frame = function(now) {
+            if (starry !== sess) return;
+            // stop if the user switched to light mode mid-show
+            if (document.documentElement.dataset.theme !== 'dark') { stopStarry(); return; }
+            var t = now - t0;
+
+            if (t < GATHER_MS) {
+                // phase 1: gather — plain redraw, stars appear one by one, twinkle
+                ctx.clearRect(0, 0, W, H);
+                stars.forEach(function(s) {
+                    if (s.appearAt > t) return;
+                    var fadeIn = Math.min(1, (t - s.appearAt) / 900);
+                    var tw = 0.55 + 0.45 * Math.sin(now * s.twF + s.tw);
+                    ctx.beginPath();
+                    ctx.arc(s.px, s.py, s.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(' + s.col[0] + ',' + s.col[1] + ',' + s.col[2] + ',' + (fadeIn * tw * 0.9).toFixed(3) + ')';
+                    ctx.fill();
+                });
+            } else {
+                // phase 2: swirl — destination-out fade leaves motion trails
+                var ramp = Math.min(1, (t - GATHER_MS) / 8000);       // speed ramps up
+                var speed = 0.15 + ramp * 1.35;                        // 0.15x -> 1.5x
+                var dt = Math.min(50, now - (sess.last || now)); sess.last = now;
+
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.fillStyle = 'rgba(0,0,0,0.06)';
+                ctx.fillRect(0, 0, W, H);
+                ctx.globalCompositeOperation = 'source-over';
+
+                stars.forEach(function(s) {
+                    var dA = s.omega * speed * s.c.dir * dt / 1000 * Math.PI;
+                    s.ang += dA;
+                    s.traveled += Math.abs(dA);
+                    var nx = s.c.x + Math.cos(s.ang) * s.rad;
+                    var ny = s.c.y + Math.sin(s.ang) * s.rad;
+                    var tw = 0.6 + 0.4 * Math.sin(now * s.twF + s.tw);
+                    ctx.beginPath();
+                    ctx.moveTo(s.px, s.py);
+                    ctx.lineTo(nx, ny);
+                    ctx.strokeStyle = 'rgba(' + s.col[0] + ',' + s.col[1] + ',' + s.col[2] + ',' + (tw * 0.85).toFixed(3) + ')';
+                    ctx.lineWidth = s.size;
+                    ctx.lineCap = 'round';
+                    ctx.stroke();
+                    s.px = nx; s.py = ny;
+                    // semicircle brush stroke done -> respawn elsewhere
+                    if (s.traveled >= Math.PI) respawn(s);
+                });
+            }
+            sess.raf = requestAnimationFrame(frame);
+        };
+        sess.raf = requestAnimationFrame(frame);
+
+        clearTimeout(starryTimer);
+        starryTimer = setTimeout(stopStarry, 50000);
+    };
+
     var starryNight = function(auto) {
         if (!sky || reduceMotion) return;
         if (document.documentElement.dataset.theme !== 'dark') {
             showToast(isZh ? '🎨 星月夜只在黑夜出现' : '🎨 The Starry Night only shows at night');
             return;
         }
-        sky.classList.add('starry');
-        clearTimeout(starryTimer);
-        starryTimer = setTimeout(function() { sky.classList.remove('starry'); }, 40000);
+        if (starry) return; // already showing
+        startStarry();
         showToast(auto ? (isZh ? '🎨 今晚的夜空是梵高画的（稀有彩蛋）' : '🎨 Van Gogh painted tonight\'s sky (rare!)')
                        : (isZh ? '🎨 星月夜' : '🎨 The Starry Night'));
     };
 
-    // typed words: "starry" / "scorpio" / "rocket" (skipped while typing in inputs)
+    // typed words: "starry" / "scorpio" (skipped while typing in inputs)
     var typeBuf = '';
     document.addEventListener('keydown', function(e) {
         if (e.key.length !== 1 || !/[a-z]/i.test(e.key)) return;
@@ -463,15 +608,6 @@
                 c.parentNode.replaceChild(cl, c);
             }
             showToast(isZh ? '♏ 天蝎座重新点亮' : '♏ Scorpius relit');
-        } else if (typeBuf.endsWith('rocket')) {
-            typeBuf = '';
-            if (!reduceMotion) {
-                var r = document.createElement('div');
-                r.className = 'rocket-fly';
-                r.textContent = '🚀';
-                document.body.appendChild(r);
-                setTimeout(function() { r.remove(); }, 3400);
-            }
         }
     });
 
@@ -510,44 +646,6 @@
     document.addEventListener('copy', function() {
         showToast(isZh ? '📋 已复制' : '📋 Copied', 1500);
     });
-
-    // draw a circle with the mouse: summon meteors (dark) / wake the sun (light)
-    if (finePointer && !reduceMotion) {
-        var pts = [];
-        var circleCooldown = 0;
-        document.addEventListener('mousemove', function(e) {
-            var now = Date.now();
-            pts.push({ x: e.clientX, y: e.clientY, t: now });
-            while (pts.length && now - pts[0].t > 1200) pts.shift();
-            if (pts.length < 12 || now < circleCooldown) return;
-            var cx = 0, cy = 0;
-            pts.forEach(function(p) { cx += p.x; cy += p.y; });
-            cx /= pts.length; cy /= pts.length;
-            var total = 0, prev = null;
-            pts.forEach(function(p) {
-                var a = Math.atan2(p.y - cy, p.x - cx);
-                if (prev !== null) {
-                    var d = a - prev;
-                    if (d > Math.PI) d -= 2 * Math.PI;
-                    if (d < -Math.PI) d += 2 * Math.PI;
-                    total += d;
-                }
-                prev = a;
-            });
-            if (Math.abs(total) > Math.PI * 1.8) {
-                circleCooldown = now + 15000;
-                pts = [];
-                if (document.documentElement.dataset.theme === 'dark') {
-                    meteorBurst(10);
-                    showToast(isZh ? '⭕ 你画了个圈，召唤了流星' : '⭕ Circle drawn — meteors summoned');
-                } else {
-                    document.body.classList.add('party-sky');
-                    setTimeout(function() { document.body.classList.remove('party-sky'); }, 3000);
-                    showToast(isZh ? '⭕ 你画了个圈，太阳精神了' : '⭕ Circle drawn — the sun perks up');
-                }
-            }
-        }, { passive: true });
-    }
 
     /**
      * 5. Scroll-Reveal Animations

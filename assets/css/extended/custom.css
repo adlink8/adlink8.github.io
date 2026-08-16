@@ -2160,57 +2160,12 @@ body.disco .main {
     animation: disco-hue 1.6s linear infinite;
 }
 
-/* ---------- Van Gogh "The Starry Night" — swirling sky, dark only ---------- */
-.vangogh { display: none; }
-[data-theme="dark"] .vangogh {
-    display: block;
+/* ---------- Van Gogh "The Starry Night" — canvas of swirling stars ---------- */
+/* stars are drawn by JS (footer.html section 13): gather one by one, then
+   orbit swirl centers along semicircle arcs with fading motion trails */
+.starry-canvas {
     position: absolute;
     inset: 0;
-    opacity: 0;
-    transition: opacity 2.5s ease;
+    transition: opacity 1.8s ease;
 }
-[data-theme="dark"] .sky.starry .vangogh { opacity: 1; }
-.sky.starry .stars { filter: brightness(1.4) saturate(1.6); }
-.swirl {
-    position: absolute;
-    border-radius: 50%;
-    background: repeating-conic-gradient(from 0deg,
-        rgba(90, 140, 230, 0) 0deg 10deg,
-        rgba(120, 175, 255, 0.4) 10deg 16deg,
-        rgba(90, 140, 230, 0) 16deg 30deg);
-    -webkit-mask: radial-gradient(circle, transparent 16%, #000 24%, #000 62%, transparent 74%);
-    mask: radial-gradient(circle, transparent 16%, #000 24%, #000 62%, transparent 74%);
-    animation: swirl-spin 26s linear infinite;
-}
-@keyframes swirl-spin {
-    to { transform: rotate(360deg); }
-}
-.swirl-1 { width: 46vmin; height: 46vmin; top: 5%;  left: 7%; }
-.swirl-2 { width: 30vmin; height: 30vmin; top: 34%; left: 36%; animation-duration: 20s; animation-direction: reverse; }
-.swirl-3 { width: 22vmin; height: 22vmin; top: 10%; left: 56%; animation-duration: 32s; }
-.swirl-4 { width: 16vmin; height: 16vmin; top: 55%; left: 16%; animation-duration: 18s; animation-direction: reverse; }
-/* golden halo swirl near the moon (top right) */
-.swirl-5 {
-    width: 30vmin; height: 30vmin; top: -6%; right: -2%;
-    animation-duration: 24s;
-    background: repeating-conic-gradient(from 0deg,
-        rgba(255, 214, 120, 0) 0deg 12deg,
-        rgba(255, 214, 120, 0.45) 12deg 18deg,
-        rgba(255, 214, 120, 0) 18deg 32deg);
-}
-
-/* ---------- "rocket": a rocket flies by ---------- */
-.rocket-fly {
-    position: fixed;
-    left: -80px;
-    bottom: 18%;
-    z-index: 998;
-    font-size: 42px;
-    line-height: 1;
-    pointer-events: none;
-    animation: rocket-fly 3.2s cubic-bezier(0.35, 0.55, 0.6, 1) forwards;
-}
-@keyframes rocket-fly {
-    from { transform: translate(0, 0); }
-    to   { transform: translate(calc(100vw + 200px), -55vh); }
-}
+.starry-canvas.starry-out { opacity: 0; }
