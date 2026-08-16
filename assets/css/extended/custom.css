@@ -1320,11 +1320,11 @@ body:not(:has(.first-entry.home-info)) .main {
     transition: background 0.6s ease;
 }
 
-/* ---------- shared celestial body spot (top right) ---------- */
+/* ---------- shared celestial body spot (top right, clear of content) ---------- */
 .moon, .sun {
     position: absolute;
     top: 9%;
-    right: 11%;
+    right: 3.5%;
     border-radius: 50%;
 }
 
@@ -1355,41 +1355,55 @@ body:not(:has(.first-entry.home-info)) .main {
     animation: moon-eclipse 60s linear infinite;
 }
 
-/* shadow disc — feathered edge for a soft terminator line */
+/* shadow disc — feathered edge for a soft terminator line.
+   z-index puts it ABOVE the moon disc (::after), otherwise the
+   opaque disc covers the shadow and phases never appear. */
 .moon::before {
     content: "";
     position: absolute;
     inset: -6px;
     border-radius: 50%;
+    z-index: 2;
     background: radial-gradient(circle,
         rgb(33, 30, 44) 58%,
         rgba(33, 30, 44, 0.85) 72%,
         transparent 88%);
-    transform: translateX(62%);
+    transform: translateX(32%);
     animation: moon-shadow 60s linear infinite;
 }
 
+/* 60s loop:
+   0-15%   waxing — shadow sweeps off right, crescent -> full
+   15-35%  full moon
+   35-50%  eclipse ingress — shadow creeps in from the LEFT edge,
+           disc tints blood-red as the shadow covers it
+   50-55%  totality (moon fully covered, deep red)
+   55-65%  egress — shadow leaves right, disc brightens
+   65-80%  full moon again
+   80-100% waning — shadow sweeps in from left, back to crescent */
 @keyframes moon-shadow {
-    0%      { transform: translateX(62%); }   /* crescent */
-    15%     { transform: translateX(120%); }  /* full — shadow swept off */
-    42%     { transform: translateX(120%); }
-    64%     { transform: translateX(120%); }  /* still full after eclipse */
-    78%     { transform: translateX(62%); }   /* waning back to crescent */
-    100%    { transform: translateX(62%); }
+    0%      { transform: translateX(32%); }   /* crescent: right 2/3 covered */
+    15%     { transform: translateX(130%); }  /* full — shadow off-screen right */
+    35%     { transform: translateX(-130%); } /* parked off-screen left (invisible jump) */
+    50%     { transform: translateX(0%); }    /* totality — fully covered */
+    55%     { transform: translateX(0%); }
+    65%     { transform: translateX(130%); }  /* egress */
+    80%     { transform: translateX(-130%); } /* parked again */
+    100%    { transform: translateX(32%); }   /* waning back to crescent */
 }
 
 @keyframes moon-eclipse {
-    0%, 44%   { filter: none; }
-    50%, 58%  { filter: brightness(0.45) sepia(0.9) hue-rotate(-28deg) saturate(3.2); } /* blood moon */
-    66%, 100% { filter: none; }
+    0%, 38%   { filter: none; }
+    50%, 60%  { filter: brightness(0.45) sepia(0.9) hue-rotate(-28deg) saturate(3.2); } /* blood moon */
+    72%, 100% { filter: none; }
 }
 
 @keyframes moon-glow-cycle {
-    0%, 44%   { box-shadow: 0 0 40px 12px rgba(255, 248, 214, 0.22),
+    0%, 40%   { box-shadow: 0 0 40px 12px rgba(255, 248, 214, 0.22),
                             0 0 120px 40px rgba(255, 248, 214, 0.08); }
-    50%, 58%  { box-shadow: 0 0 30px 8px rgba(214, 90, 70, 0.25),
+    50%, 60%  { box-shadow: 0 0 30px 8px rgba(214, 90, 70, 0.25),
                             0 0 90px 30px rgba(214, 90, 70, 0.1); }
-    66%, 100% { box-shadow: 0 0 40px 12px rgba(255, 248, 214, 0.22),
+    72%, 100% { box-shadow: 0 0 40px 12px rgba(255, 248, 214, 0.22),
                             0 0 120px 40px rgba(255, 248, 214, 0.08); }
 }
 
@@ -1487,12 +1501,12 @@ body:not(:has(.first-entry.home-info)) .main {
     mask-image: radial-gradient(circle at 98% 2%, black 0%, transparent 68%);
     -webkit-mask-image: radial-gradient(circle at 98% 2%, black 0%, transparent 68%);
     transform-origin: 98% 2%;
-    animation: rays-sway 14s ease-in-out infinite alternate;
+    animation: rays-sway 11s ease-in-out infinite alternate;
 }
 
 @keyframes rays-sway {
-    from { opacity: 0.55; transform: rotate(-1.6deg); }
-    to   { opacity: 1; transform: rotate(1.6deg); }
+    from { opacity: 0.4; transform: rotate(-5deg); }
+    to   { opacity: 1; transform: rotate(5deg); }
 }
 
 /* second ray fan, offset angles + out-of-phase shimmer — the light keeps shifting */
@@ -1503,12 +1517,12 @@ body:not(:has(.first-entry.home-info)) .main {
         rgba(255, 222, 120, 0.16) 30deg, transparent 41deg,
         rgba(255, 222, 120, 0.09) 55deg, transparent 66deg,
         rgba(255, 222, 120, 0.14) 85deg, transparent 100deg);
-    animation: rays-sway-b 9s ease-in-out infinite alternate-reverse;
+    animation: rays-sway-b 7s ease-in-out infinite alternate-reverse;
 }
 
 @keyframes rays-sway-b {
-    from { opacity: 0.35; transform: rotate(1.2deg); }
-    to   { opacity: 0.9; transform: rotate(-1.2deg); }
+    from { opacity: 0.2; transform: rotate(4deg); }
+    to   { opacity: 0.85; transform: rotate(-4deg); }
 }
 
 /* ---------- LIGHT: drifting clouds (soft, translucent layers) ---------- */
