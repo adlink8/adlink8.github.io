@@ -8,6 +8,8 @@ nav_archives:
   other: "归档"
 nav_stats:
   other: "统计"
+nav_resume:
+  other: "简历"
 stats_posts:
   other: "文章"
 stats_words:

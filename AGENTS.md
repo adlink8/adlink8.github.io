@@ -26,6 +26,7 @@ content/<lang>/project/<slug>/_index.md   # project hubs (see below)
 archetypes/                 # per-category post templates
 i18n/en.yaml, i18n/zh.yaml  # custom UI strings (merged with theme's)
 layouts/                    # theme overrides — never edit themes/PaperMod (submodule)
+layouts/_default/resume.html   # clean print-ready resume sheet — always light, no sky/animations
 assets/css/extended/custom.css   # ALL custom styling, numbered sections
 data/projects.yaml          # featured-project cards, keyed by language
 static/image/               # avatar, og-cover.png

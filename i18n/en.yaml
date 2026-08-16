@@ -8,6 +8,8 @@ nav_archives:
   other: "Archives"
 nav_stats:
   other: "Stats"
+nav_resume:
+  other: "Resume"
 stats_posts:
   other: "Posts"
 stats_words:

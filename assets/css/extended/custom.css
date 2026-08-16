@@ -1840,3 +1840,126 @@ body:not(:has(.first-entry.home-info)) .main {
     .con-star { animation: none; opacity: 1; }
     .con-label { animation: none; opacity: 1; }
 }
+
+/* =======================================================
+   31. RESUME PAGE — a clean sheet of paper
+   Always light (even in dark mode), no animations, print-ready
+   ======================================================= */
+.resume-page {
+    max-width: 780px;
+    margin: 30px auto 60px;
+    padding: 60px 70px;
+    background: #ffffff;
+    color: #1a1a1a;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 20px 60px rgba(0, 0, 0, 0.12);
+    line-height: 1.75;
+    font-size: 0.97rem;
+}
+
+/* force light palette inside the sheet regardless of theme */
+.resume-page h1, .resume-page h2, .resume-page h3,
+.resume-page p, .resume-page li, .resume-page td {
+    color: #1a1a1a;
+}
+
+.resume-page .resume-head h1 {
+    font-size: 2rem;
+    margin: 0 0 4px;
+    letter-spacing: -0.5px;
+}
+
+.resume-page .resume-role {
+    font-size: 1.05rem;
+    color: #555 !important;
+    margin: 0 0 6px;
+}
+
+.resume-page .resume-contact {
+    font-size: 0.88rem;
+    color: #777 !important;
+    margin: 0 0 8px;
+}
+
+.resume-page .resume-contact a {
+    color: #555 !important;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+    background: none !important;
+}
+
+.resume-page h2 {
+    font-size: 1.15rem;
+    margin: 2.2em 0 0.7em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #e0e0e0;
+    letter-spacing: 0.5px;
+}
+
+.resume-page h3 {
+    font-size: 1rem;
+    margin: 1.5em 0 0.4em;
+}
+
+.resume-page .resume-meta {
+    color: #888 !important;
+    font-size: 0.85rem;
+    margin: 0 0 0.5em;
+}
+
+.resume-page .resume-stack {
+    font-size: 0.82rem;
+    color: #666 !important;
+    margin: 0.2em 0 0.6em;
+}
+
+.resume-page .resume-stack code {
+    background: #f2f2f4 !important;
+    color: #444 !important;
+    padding: 1px 7px;
+    border-radius: 4px;
+    margin-right: 4px;
+    font-size: 0.8em;
+}
+
+.resume-page ul { padding-left: 20px; }
+.resume-page li { margin: 0.3em 0; }
+
+.resume-page a { color: #6d4bc4; }
+
+.resume-hint {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.78rem;
+    color: #aaa !important;
+}
+
+@media screen and (max-width: 768px) {
+    .resume-page {
+        margin: 15px;
+        padding: 32px 24px;
+    }
+}
+
+/* ---------- print: clean A4 sheet ---------- */
+@media print {
+    .header, .footer, .sky, .sidebar-left-nav,
+    #scroll-progress, .no-print, #theme-toggle {
+        display: none !important;
+    }
+
+    body, .main {
+        background: #fff !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .resume-page {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+        font-size: 11pt;
+    }
+}
