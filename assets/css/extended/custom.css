@@ -45,6 +45,10 @@ code, pre, kbd, samp {
 /* =======================================================
    1. HEADER / NAV
    ======================================================= */
+:root {
+    --nav-width: 1140px; /* room for the extra Projects menu entry */
+}
+
 .header {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -61,8 +65,13 @@ code, pre, kbd, samp {
 }
 
 /* Animated underline for menu links */
+#menu li + li {
+    margin-inline-start: 16px;
+}
+
 #menu a {
     position: relative;
+    font-size: 15px;
     transition: color 0.25s ease;
 }
 
@@ -803,4 +812,220 @@ body:not(:has(.first-entry.home-info)) .main {
     }
 
     .reveal { opacity: 1; transform: none; }
+}
+
+/* =======================================================
+   13. PROJECT CARDS (/projects/)
+   ======================================================= */
+.project-card {
+    background: rgba(var(--accent), 0.04);
+    border: 1px solid var(--border);
+    border-left: 3px solid rgba(var(--accent), 0.55);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 26px 0;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.35s var(--ease-spring),
+                box-shadow 0.35s var(--ease-spring),
+                border-color 0.35s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card-hover);
+    border-left-color: rgb(var(--accent));
+}
+
+.project-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.project-head h3 {
+    margin: 0 !important;
+}
+
+.project-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.project-stack {
+    margin: 8px 0 4px !important;
+}
+
+.project-card ul {
+    margin-bottom: 0;
+}
+
+/* =======================================================
+   14. STATS PAGE (/stats/)
+   ======================================================= */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    margin: 28px 0;
+}
+
+.stat-card {
+    background: rgba(var(--accent), 0.05);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 14px;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.35s var(--ease-spring), box-shadow 0.35s var(--ease-spring);
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: rgb(var(--accent));
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+    margin-top: 6px;
+    font-size: 0.78rem;
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stats-table { white-space: normal !important; }
+
+.stats-table td:last-child, .stats-table th:last-child {
+    text-align: right;
+}
+
+.stats-foot {
+    color: var(--secondary);
+    font-size: 0.85rem;
+    margin-top: 18px;
+}
+
+/* =======================================================
+   15. 404 PAGE (custom classes — theme's .not-found is absolute/160px)
+   ======================================================= */
+.nf-page {
+    text-align: center;
+    padding: 8vh 20px 10vh;
+}
+
+.nf-code {
+    font-size: clamp(5rem, 18vw, 9rem);
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, rgb(var(--accent)), rgb(var(--accent-warm)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -4px;
+}
+
+.nf-title {
+    margin: 18px 0 10px;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+}
+
+.nf-text {
+    color: var(--secondary);
+    margin-bottom: 32px;
+}
+
+.nf-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.nf-btn {
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #fff !important;
+    background: rgb(var(--accent));
+    border: 1px solid rgb(var(--accent));
+    transition: all 0.3s var(--ease-spring);
+}
+
+.nf-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(var(--accent), 0.35);
+}
+
+.nf-btn.ghost {
+    color: rgb(var(--accent)) !important;
+    background: transparent;
+    border-color: rgba(var(--accent), 0.4);
+}
+
+.nf-btn.ghost:hover {
+    background: rgba(var(--accent), 0.08);
+    box-shadow: none;
+}
+
+/* =======================================================
+   16. FOOTER LINKS & POST FOOTER
+   ======================================================= */
+.footer-links {
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+}
+
+.footer-links a {
+    color: var(--secondary);
+    transition: color 0.25s ease;
+}
+
+.footer-links a:hover {
+    color: rgb(var(--accent));
+}
+
+.footer-sep {
+    margin: 0 10px;
+    opacity: 0.4;
+}
+
+/* Post tags & prev/next nav */
+.post-tags a {
+    transition: all 0.25s var(--ease-spring) !important;
+}
+
+.post-tags a:hover {
+    color: rgb(var(--accent)) !important;
+    border-color: rgba(var(--accent), 0.4) !important;
+    background: rgba(var(--accent), 0.08) !important;
+    transform: translateY(-2px);
+}
+
+.paginav a {
+    transition: all 0.25s var(--ease-spring) !important;
+}
+
+.paginav a:hover {
+    color: rgb(var(--accent));
+}
+
+.paginav span:hover:not(.title) {
+    box-shadow: none;
+}
+
+.comments {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--border);
 }

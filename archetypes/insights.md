@@ -6,7 +6,12 @@ ShowToc = true
 TocOpen = true
 categories = ['insights']
 tags = []
+description = ''
 +++
+
+One or two sentences summarizing this post (shown as the home-page excerpt).
+
+<!--more-->
 
 ## Overview
 

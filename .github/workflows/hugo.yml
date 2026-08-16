@@ -4,6 +4,9 @@ on:
   push:
     branches: ["main"] # 仅在 main 分支提交时触发
   workflow_dispatch:   # 允许手动触发
+  schedule:
+    # 每周一 UTC 04:17 重建一次，让 Stats 页的 streak / "days since" 保持新鲜
+    - cron: '17 4 * * 1'
 
 permissions:
   contents: read

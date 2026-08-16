@@ -1,0 +1,23 @@
+{{- /* giscus comments — rendered only when .Param "comments" is true.
+     Setup: enable Discussions on the repo, install https://github.com/apps/giscus,
+     create an "Announcements" category and paste its node ID into hugo.toml params.giscus.categoryId. */ -}}
+{{- with site.Params.giscus }}
+<div class="comments">
+<script src="https://giscus.app/client.js"
+        data-repo="{{ .repo }}"
+        data-repo-id="{{ .repoId }}"
+        data-category="{{ .category }}"
+        data-category-id="{{ .categoryId }}"
+        data-mapping="{{ .mapping | default "pathname" }}"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="{{ .theme | default "preferred_color_scheme" }}"
+        data-lang="{{ .lang | default "en" }}"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+{{- end }}

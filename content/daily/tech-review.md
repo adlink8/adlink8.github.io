@@ -12,6 +12,8 @@ tags = ["Docker"]
 
 While many prefer cutting corners for instant gratification, I'm  doubling down on the underlying architecture. For me slow is faster in the long run.
 
+<!--more-->
+
 My journey is divided into Four distinct phase, evolving form Linux and Python-based automation to Multi-cloud orchestration and Observability.
 
 ### Milestone 1

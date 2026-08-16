@@ -6,7 +6,12 @@ ShowToc = true
 TocOpen = true
 categories = ['insights']
 tags = []
+description = 'Core Docker concepts every DevOps engineer should know: images, containers, layering, and why containerization matters in modern delivery pipelines.'
 +++
+
+A practical walkthrough of Docker's core concepts — images, containers, and layers — and why they matter in a modern delivery pipeline.
+
+<!--more-->
 
 ## Overview
 

@@ -6,7 +6,12 @@ ShowToc = true
 TocOpen = true
 categories = ['daily']
 tags = []
+description = ''
 +++
+
+One or two sentences summarizing this post (shown as the home-page excerpt).
+
+<!--more-->
 
 ## Summary
 

@@ -1,0 +1,84 @@
+{{- $sections := site.Params.mainSections -}}
+{{- $posts := where site.RegularPages "Type" "in" $sections -}}
+{{- $total := len $posts -}}
+
+{{- $words := 0 -}}
+{{- range $posts -}}
+  {{- $words = add $words .WordCount -}}
+{{- end -}}
+
+{{- /* unique publish days, sorted ascending */ -}}
+{{- $dates := slice -}}
+{{- range $posts -}}
+  {{- $d := .Date.Format "2006-01-02" -}}
+  {{- if not (in $dates $d) -}}
+    {{- $dates = $dates | append $d -}}
+  {{- end -}}
+{{- end -}}
+{{- $dates = sort $dates -}}
+
+{{- /* streaks over consecutive days */ -}}
+{{- $longest := 0 -}}
+{{- $run := 0 -}}
+{{- $prev := "" -}}
+{{- range $dates -}}
+  {{- if eq $prev "" -}}
+    {{- $run = 1 -}}
+  {{- else -}}
+    {{- $gap := div ((time .).Sub (time $prev)).Hours 24 -}}
+    {{- if eq $gap 1 -}}
+      {{- $run = add $run 1 -}}
+    {{- else -}}
+      {{- $run = 1 -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if gt $run $longest -}}{{- $longest = $run -}}{{- end -}}
+  {{- $prev = . -}}
+{{- end -}}
+
+{{- /* current streak only counts if the latest run reaches today or yesterday */ -}}
+{{- $current := 0 -}}
+{{- if gt (len $dates) 0 -}}
+  {{- $last := index $dates (sub (len $dates) 1) -}}
+  {{- $daysSinceLast := div ((now.Sub (time $last)).Hours) 24 -}}
+  {{- if le $daysSinceLast 1 -}}
+    {{- $current = $run -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $firstDate := "" -}}
+{{- $daysActive := 0 -}}
+{{- if gt (len $dates) 0 -}}
+  {{- $firstDate = index $dates 0 -}}
+  {{- $daysActive = add (math.Round (div ((now.Sub (time $firstDate)).Hours) 24)) 1 -}}
+{{- end -}}
+
+<div class="stats-grid">
+  <div class="stat-card"><div class="stat-num">{{ $total }}</div><div class="stat-label">Posts</div></div>
+  <div class="stat-card"><div class="stat-num">{{ $words }}</div><div class="stat-label">Words Written</div></div>
+  <div class="stat-card"><div class="stat-num">{{ len $dates }}</div><div class="stat-label">Active Days</div></div>
+  <div class="stat-card"><div class="stat-num">{{ $current }}</div><div class="stat-label">Current Streak</div></div>
+  <div class="stat-card"><div class="stat-num">{{ $longest }}</div><div class="stat-label">Longest Streak</div></div>
+  <div class="stat-card"><div class="stat-num">{{ $daysActive }}</div><div class="stat-label">Days Since First Post</div></div>
+</div>
+
+<table class="stats-table">
+  <thead><tr><th>Section</th><th>Posts</th><th>Words</th></tr></thead>
+  <tbody>
+  {{- range $section := $sections }}
+    {{- $sp := where site.RegularPages "Type" $section }}
+    {{- if gt (len $sp) 0 }}
+    {{- $sw := 0 }}{{ range $sp }}{{ $sw = add $sw .WordCount }}{{ end }}
+    <tr>
+      <td><a href="{{ (printf "/%s/" $section) | relURL }}">{{ humanize $section }}</a></td>
+      <td>{{ len $sp }}</td>
+      <td>{{ $sw }}</td>
+    </tr>
+    {{- end }}
+  {{- end }}
+  </tbody>
+</table>
+
+{{- if $firstDate }}
+<p class="stats-foot">First post: {{ time $firstDate | time.Format "January 2, 2006" }} · Generated {{ now.Format "2006-01-02" }}</p>
+{{- end }}

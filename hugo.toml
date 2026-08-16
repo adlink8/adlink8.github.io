@@ -61,7 +61,15 @@ theme = 'PaperMod'
     url = "/project-logs/"
     weight = 36
 
-# 6. Tech Stack: Tags Filter (Index)
+# 6. Projects: Showcase page
+[[menu.main]]
+    identifier = "projects"
+    name = "Projects"
+    pre = "🚀 "
+    url = "/projects/"
+    weight = 37
+
+# 7. Tech Stack: Tags Filter (Index)
 [[menu.main]]
     identifier = "tags"
     name = "Tech Stack"
@@ -69,7 +77,7 @@ theme = 'PaperMod'
     url = "/tags/"
     weight = 40
 
-# 7. Search
+# 8. Search
 [[menu.main]]
     identifier = "search"
     name = "Search"
@@ -82,8 +90,28 @@ theme = 'PaperMod'
     author = "Li Shuo Yan"
     ShowCodeCopyButtons = true
     ShowReadingTime = true
+    ShowPostNavLinks = true
+    # Open Graph fallback image for social sharing cards
+    images = ["/image/tx.jpg"]
     # Ensures only posts appear in the main content area
     mainSections = ["daily", "pitfalls", "reflections", "insights", "project-logs"]
+
+    # Comments via giscus (GitHub Discussions). Flip to true after:
+    # 1. enabling Discussions on the repo (Settings > General > Features)
+    # 2. installing the giscus app: https://github.com/apps/giscus
+    # 3. creating an "Announcements" discussion category and pasting its ID below
+    comments = false
+    [params.giscus]
+        repo = "adlink8/adlink8.github.io"
+        repoId = "R_kgDORRQung"
+        category = "Announcements"
+        categoryId = "" # paste category node ID here (get it from https://giscus.app)
+        mapping = "pathname"
+        theme = "preferred_color_scheme"
+        lang = "en"
+
+    # Analytics: set your GoatCounter site code to enable (free signup at goatcounter.com)
+    # goatcounter = "shuoyan"
 
     # Left Sidebar Profile Configuration
  [params.homeInfoParams]
@@ -111,9 +139,11 @@ theme = 'PaperMod'
     [[params.socialIcons]]
         name = "github"
         url = "https://github.com/adlink8"
-    [[params.socialIcons]]
-        name = "linkedin"
-        url = "https://www.linkedin.com/feed/"
+    # TODO: replace with your real LinkedIn profile URL (https://www.linkedin.com/in/<you>)
+    # The old value linkedin.com/feed/ sends visitors to their own feed, not your profile.
+    # [[params.socialIcons]]
+    #     name = "linkedin"
+    #     url = "https://www.linkedin.com/in/your-handle"
 
 # Syntax Highlighting Settings
 [markup.highlight]
