@@ -679,17 +679,18 @@ body:not(:has(.first-entry.home-info)) .main {
         font-weight: 600;
         color: rgb(var(--accent)) !important;
         text-decoration: none;
-        padding: 8px 16px;
-        background: var(--entry);
-        border-radius: 8px;
-        border: 1px solid rgba(var(--accent), 0.2);
+        padding: 0;
+        background: none !important;
+        border: none !important;
+        border-radius: 0;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
         transition: all 0.3s var(--ease-spring);
     }
 
     .back-link:hover {
-        background: rgba(var(--accent), 0.1);
-        border-color: rgba(var(--accent), 0.4);
         transform: translateX(-3px);
+        opacity: 0.8;
     }
 }
 
@@ -1611,8 +1612,7 @@ body:not(:has(.first-entry.home-info)) .main {
 .first-entry.home-info,
 .post-entry,
 .featured-card,
-.terms-tags a,
-.back-link {
+.terms-tags a {
     background: var(--glass-bg) !important;
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
