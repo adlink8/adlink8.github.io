@@ -1454,14 +1454,15 @@ body:not(:has(.first-entry.home-info)) .main {
     to   { opacity: 1; transform: rotate(1.6deg); }
 }
 
-/* ---------- LIGHT: drifting clouds ---------- */
+/* ---------- LIGHT: drifting clouds (soft, translucent layers) ---------- */
 .cloud {
     position: absolute;
     width: 120px;
     height: 38px;
     border-radius: 40px;
-    background: #f4f8fc;
-    box-shadow: 0 6px 18px rgba(120, 150, 190, 0.18);
+    background: rgba(244, 248, 252, 0.88);
+    box-shadow: 0 6px 18px rgba(120, 150, 190, 0.14);
+    filter: blur(1.5px);
     animation: cloud-drift linear infinite;
 }
 
@@ -1470,7 +1471,7 @@ body:not(:has(.first-entry.home-info)) .main {
     content: "";
     position: absolute;
     border-radius: 50%;
-    background: #f4f8fc;
+    background: rgba(244, 248, 252, 0.88);
 }
 
 .cloud::before {
@@ -1483,9 +1484,13 @@ body:not(:has(.first-entry.home-info)) .main {
     top: -16px; left: 62px;
 }
 
-.cloud-1 { top: 16%; animation-duration: 85s; animation-delay: -20s; }
-.cloud-2 { top: 32%; animation-duration: 120s; animation-delay: -65s; transform: scale(0.7); opacity: 0.85; }
-.cloud-3 { top: 55%; animation-duration: 100s; animation-delay: -45s; transform: scale(1.25); opacity: 0.75; }
+.cloud-1 { top: 14%; animation-duration: 85s;  animation-delay: -20s; opacity: 0.8; }
+.cloud-2 { top: 30%; animation-duration: 120s; animation-delay: -65s; transform: scale(0.7);  opacity: 0.6; }
+.cloud-3 { top: 50%; animation-duration: 100s; animation-delay: -45s; transform: scale(1.25); opacity: 0.5; }
+.cloud-4 { top: 7%;  animation-duration: 145s; animation-delay: -90s; transform: scale(0.5);  opacity: 0.45; filter: blur(3px); }
+.cloud-5 { top: 40%; animation-duration: 95s;  animation-delay: -10s; transform: scale(0.9);  opacity: 0.55; }
+.cloud-6 { top: 66%; animation-duration: 110s; animation-delay: -70s; transform: scale(1.1);  opacity: 0.4;  filter: blur(3px); }
+.cloud-7 { top: 80%; animation-duration: 130s; animation-delay: -35s; transform: scale(0.6);  opacity: 0.5;  filter: blur(2.5px); }
 
 @keyframes cloud-drift {
     from { left: -180px; }
