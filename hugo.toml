@@ -122,7 +122,7 @@ I ship working systems, not tutorial replicas: 3 delivered projects, 11k+ events
         weight = 35
     [[languages.en.menu.main]]
         identifier = "project-logs"
-        name = "Project Logs"
+        name = "Logs"
         pre = "📁 "
         url = "/project-logs/"
         weight = 36
@@ -134,7 +134,7 @@ I ship working systems, not tutorial replicas: 3 delivered projects, 11k+ events
         weight = 37
     [[languages.en.menu.main]]
         identifier = "tags"
-        name = "Tech Stack"
+        name = "Stack"
         pre = "🏷️ "
         url = "/tags/"
         weight = 40
