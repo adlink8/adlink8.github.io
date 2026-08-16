@@ -53,7 +53,7 @@
 
 {{- if not .IsHome }}
 <aside class="sidebar-left-nav list-page-nav">
-    <a href="/" class="back-link">← BACK TO HOME</a>
+    <a href="{{ "/" | relLangURL }}" class="back-link">{{ i18n "back_to_home" }}</a>
 </aside>
 {{- end }}
 

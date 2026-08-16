@@ -1,10 +1,10 @@
 {{- define "main" }}
 <article class="post-single">
   <aside class="sidebar-left-nav">
-      <a href="/" class="back-link">← BACK TO HOME</a>
+      <a href="{{ "/" | relLangURL }}" class="back-link">{{ i18n "back_to_home" }}</a>
       <div class="sidebar-bio">
           <p class="bio-name">Li ShuoYan</p>
-          <p class="bio-role">DevOps Aspirant</p>
+          <p class="bio-role">{{ i18n "bio_role" }}</p>
       </div>
   </aside>
 

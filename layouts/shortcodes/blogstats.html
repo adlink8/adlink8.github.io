@@ -54,23 +54,24 @@
 {{- end -}}
 
 <div class="stats-grid">
-  <div class="stat-card"><div class="stat-num">{{ $total }}</div><div class="stat-label">Posts</div></div>
-  <div class="stat-card"><div class="stat-num">{{ $words }}</div><div class="stat-label">Words Written</div></div>
-  <div class="stat-card"><div class="stat-num">{{ len $dates }}</div><div class="stat-label">Active Days</div></div>
-  <div class="stat-card"><div class="stat-num">{{ $current }}</div><div class="stat-label">Current Streak</div></div>
-  <div class="stat-card"><div class="stat-num">{{ $longest }}</div><div class="stat-label">Longest Streak</div></div>
-  <div class="stat-card"><div class="stat-num">{{ $daysActive }}</div><div class="stat-label">Days Since First Post</div></div>
+  <div class="stat-card"><div class="stat-num">{{ $total }}</div><div class="stat-label">{{ i18n "stats_posts" }}</div></div>
+  <div class="stat-card"><div class="stat-num">{{ $words }}</div><div class="stat-label">{{ i18n "stats_words" }}</div></div>
+  <div class="stat-card"><div class="stat-num">{{ len $dates }}</div><div class="stat-label">{{ i18n "stats_active_days" }}</div></div>
+  <div class="stat-card"><div class="stat-num">{{ $current }}</div><div class="stat-label">{{ i18n "stats_current_streak" }}</div></div>
+  <div class="stat-card"><div class="stat-num">{{ $longest }}</div><div class="stat-label">{{ i18n "stats_longest_streak" }}</div></div>
+  <div class="stat-card"><div class="stat-num">{{ $daysActive }}</div><div class="stat-label">{{ i18n "stats_days_since" }}</div></div>
 </div>
 
 <table class="stats-table">
-  <thead><tr><th>Section</th><th>Posts</th><th>Words</th></tr></thead>
+  <thead><tr><th>{{ i18n "stats_section" }}</th><th>{{ i18n "stats_col_posts" }}</th><th>{{ i18n "stats_col_words" }}</th></tr></thead>
   <tbody>
   {{- range $section := $sections }}
     {{- $sp := where site.RegularPages "Type" $section }}
     {{- if gt (len $sp) 0 }}
     {{- $sw := 0 }}{{ range $sp }}{{ $sw = add $sw .WordCount }}{{ end }}
+    {{- $sectionTitle := $section }}{{ with site.GetPage $section }}{{ $sectionTitle = .Title }}{{ end }}
     <tr>
-      <td><a href="{{ (printf "/%s/" $section) | relURL }}">{{ humanize $section }}</a></td>
+      <td><a href="{{ (printf "/%s/" $section) | relLangURL }}">{{ $sectionTitle }}</a></td>
       <td>{{ len $sp }}</td>
       <td>{{ $sw }}</td>
     </tr>
@@ -80,5 +81,5 @@
 </table>
 
 {{- if $firstDate }}
-<p class="stats-foot">First post: {{ time $firstDate | time.Format "January 2, 2006" }} · Generated {{ now.Format "2006-01-02" }}</p>
+<p class="stats-foot">{{ i18n "stats_first_post" }}: {{ time $firstDate | time.Format ":date_long" }} · {{ i18n "stats_generated" }} {{ now.Format "2006-01-02" }}</p>
 {{- end }}

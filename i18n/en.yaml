@@ -1,0 +1,42 @@
+back_to_home:
+  other: "← BACK TO HOME"
+bio_role:
+  other: "DevOps Engineer"
+nav_now:
+  other: "Now"
+nav_archives:
+  other: "Archives"
+nav_stats:
+  other: "Stats"
+stats_posts:
+  other: "Posts"
+stats_words:
+  other: "Words Written"
+stats_active_days:
+  other: "Active Days"
+stats_current_streak:
+  other: "Current Streak"
+stats_longest_streak:
+  other: "Longest Streak"
+stats_days_since:
+  other: "Days Since First Post"
+stats_section:
+  other: "Section"
+stats_col_posts:
+  other: "Posts"
+stats_col_words:
+  other: "Words"
+stats_first_post:
+  other: "First post"
+stats_generated:
+  other: "Generated"
+nf_title:
+  other: "This page took a wrong turn at /dev/null"
+nf_text:
+  other: "The page you're looking for doesn't exist — but the rest of the journey does."
+nf_home:
+  other: "← Back to Home"
+nf_archives:
+  other: "Browse Archives"
+nf_search:
+  other: "Search"

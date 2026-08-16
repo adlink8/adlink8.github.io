@@ -28,30 +28,34 @@ python tools/blog_manager.py
 
 ## Content Categories
 
-Posts are organized into 5 categories, each with its own archetype template:
+The site is bilingual: English content lives in `content/en/` (served at `/`), Chinese in `content/zh/` (served at `/zh/`). Posts are organized into 5 categories, each with its own archetype template:
 
 | Category | Directory | Purpose |
 |----------|-----------|---------|
-| daily | `content/daily/` | Timeline/Daily progress logs |
-| pitfalls | `content/pitfalls/` | Lab Notes/Troubleshooting |
-| insights | `content/insights/` | Architecture & deep dives |
-| reflections | `content/reflections/` | Retrospectives |
-| project-logs | `content/project-logs/` | Build progress logs |
+| daily | `content/<lang>/daily/` | Timeline/Daily progress logs |
+| pitfalls | `content/<lang>/pitfalls/` | Lab Notes/Troubleshooting |
+| insights | `content/<lang>/insights/` | Architecture & deep dives |
+| reflections | `content/<lang>/reflections/` | Retrospectives |
+| project-logs | `content/<lang>/project-logs/` | Build progress logs |
+
+Standalone pages: `projects.md` (showcase), `now.md` (current focus), `stats.md` (build-time stats via the `blogstats` shortcode), `archives.md`, `search.md` — each exists in both language trees.
 
 ## Architecture
 
 ```
 ├── archetypes/          # Post templates per category (defines frontmatter structure)
-├── content/             # All blog posts (Markdown with TOML frontmatter)
+├── content/en/          # English posts & pages (served at /)
+├── content/zh/          # Chinese posts & pages (served at /zh/)
+├── i18n/                # Custom UI strings (en.yaml, zh.yaml), merged with theme's
 ├── layouts/             # Custom Hugo layouts (overrides theme defaults)
 ├── themes/PaperMod/     # Hugo theme (git submodule - do not edit directly)
 ├── static/image/        # Static assets (images, etc.)
 ├── scripts/             # Shell scripts (start.sh, new-post.sh, watchdog.sh)
 ├── tools/               # Python tools and Windows launch files
 ├── docs/                # Project documentation
-├── hugo.toml            # Hugo configuration
+├── hugo.toml            # Hugo configuration (multilingual: languages.en / languages.zh)
 ├── public/              # Generated site (gitignored)
-└── .github/workflows/   # GitHub Actions auto-deployment
+└── .github/workflows/   # GitHub Actions auto-deployment (+ weekly scheduled rebuild)
 ```
 
 **Key points:**

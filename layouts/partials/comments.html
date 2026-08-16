@@ -2,6 +2,7 @@
      Setup: enable Discussions on the repo, install https://github.com/apps/giscus,
      create an "Announcements" category and paste its node ID into hugo.toml params.giscus.categoryId. */ -}}
 {{- with site.Params.giscus }}
+{{- $glang := cond (eq site.Language.Lang "zh") "zh-CN" "en" }}
 <div class="comments">
 <script src="https://giscus.app/client.js"
         data-repo="{{ .repo }}"
@@ -14,7 +15,7 @@
         data-emit-metadata="0"
         data-input-position="top"
         data-theme="{{ .theme | default "preferred_color_scheme" }}"
-        data-lang="{{ .lang | default "en" }}"
+        data-lang="{{ $glang }}"
         data-loading="lazy"
         crossorigin="anonymous"
         async>

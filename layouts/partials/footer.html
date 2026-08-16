@@ -3,13 +3,13 @@
 <footer class="footer">
     <div id="quote-container" class="footer-quote"></div>
     <nav class="footer-links" aria-label="Footer">
-        <a href="{{ "/now/" | relURL }}">Now</a>
+        <a href="{{ "/now/" | relLangURL }}">{{ i18n "nav_now" }}</a>
         <span class="footer-sep">·</span>
-        <a href="{{ "/archives/" | relURL }}">Archives</a>
+        <a href="{{ "/archives/" | relLangURL }}">{{ i18n "nav_archives" }}</a>
         <span class="footer-sep">·</span>
-        <a href="{{ "/stats/" | relURL }}">Stats</a>
+        <a href="{{ "/stats/" | relLangURL }}">{{ i18n "nav_stats" }}</a>
         <span class="footer-sep">·</span>
-        <a href="{{ "/index.xml" | relURL }}" title="RSS Feed">RSS</a>
+        <a href="{{ "index.xml" | relLangURL }}" title="RSS Feed">RSS</a>
     </nav>
     <span>&copy; {{ now.Year }} {{ site.Title }}</span>
 </footer>
@@ -19,6 +19,25 @@
     'use strict';
 
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /**
+     * 0. Theme Toggle
+     * The theme's own handler lives in its footer partial, which this file
+     * overrides — so we re-implement it here (same localStorage keys).
+     */
+    var themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            var html = document.querySelector('html');
+            if (html.dataset.theme === 'dark') {
+                html.dataset.theme = 'light';
+                localStorage.setItem('pref-theme', 'light');
+            } else {
+                html.dataset.theme = 'dark';
+                localStorage.setItem('pref-theme', 'dark');
+            }
+        });
+    }
 
     /**
      * 1. Heart-Pop Interaction

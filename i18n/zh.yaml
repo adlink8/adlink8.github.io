@@ -1,0 +1,42 @@
+back_to_home:
+  other: "← 返回首页"
+bio_role:
+  other: "DevOps 工程师"
+nav_now:
+  other: "近况"
+nav_archives:
+  other: "归档"
+nav_stats:
+  other: "统计"
+stats_posts:
+  other: "文章"
+stats_words:
+  other: "总字数"
+stats_active_days:
+  other: "活跃天数"
+stats_current_streak:
+  other: "当前连续"
+stats_longest_streak:
+  other: "最长连续"
+stats_days_since:
+  other: "开博天数"
+stats_section:
+  other: "分类"
+stats_col_posts:
+  other: "文章数"
+stats_col_words:
+  other: "字数"
+stats_first_post:
+  other: "首篇文章"
+stats_generated:
+  other: "生成于"
+nf_title:
+  other: "这个页面在 /dev/null 拐错了弯"
+nf_text:
+  other: "你要找的页面不存在 —— 但旅程的其余部分都在。"
+nf_home:
+  other: "← 返回首页"
+nf_archives:
+  other: "浏览归档"
+nf_search:
+  other: "搜索"
