@@ -1790,6 +1790,8 @@ body:not(:has(.first-entry.home-info)) .main {
     fill: #fff;
     filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.9));
     opacity: 0;
+    transform-box: fill-box;   /* scale around each star's own center, not the viewBox origin */
+    transform-origin: center;
     animation: con-star-in 0.5s ease forwards,
                con-twinkle 3s ease-in-out infinite alternate;
     animation-delay: calc(var(--i) * 0.5s),
