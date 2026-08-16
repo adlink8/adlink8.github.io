@@ -1,3 +1,5 @@
+<div id="scroll-progress" aria-hidden="true"></div>
+
 <footer class="footer">
     <div id="quote-container" class="footer-quote"></div>
     <span>&copy; {{ now.Year }} {{ site.Title }}</span>
@@ -5,31 +7,36 @@
 
 <script>
 (function() {
+    'use strict';
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     /**
      * 1. Heart-Pop Interaction
-     * Triggers heart animation when clicking profile-related elements
+     * Triggers a heart animation when clicking the profile avatar only
      */
-    document.addEventListener('click', (e) => {
-        const selectors = ['.sidebar-avatar', '.sidebar-left-nav', '.home-info'];
-        if (selectors.some(s => e.target.closest(s))) {
-            const heart = document.createElement('div');
-            heart.innerHTML = '❤️';
+    if (!reduceMotion) {
+        document.addEventListener('click', function(e) {
+            var avatar = e.target.closest('.home-info p:first-child img, .sidebar-avatar');
+            if (!avatar) return;
+            var heart = document.createElement('div');
+            heart.textContent = '❤️';
             heart.className = 'heart-pop';
-            heart.style.left = `${e.clientX}px`;
-            heart.style.top = `${e.clientY}px`;
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
             document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 1000);
-        }
-    });
+            setTimeout(function() { heart.remove(); }, 1000);
+        });
+    }
 
     /**
      * 2. Random Quote Generator
      * Injects a random technical quote into the footer
      */
-    const quotes = [
-              "“Slow is smooth, smooth is fast.”"
+    var quotes = [
+        '“Slow is smooth, smooth is fast.”'
     ];
-    const quoteEl = document.getElementById('quote-container');
+    var quoteEl = document.getElementById('quote-container');
     if (quoteEl) {
         quoteEl.textContent = quotes[Math.floor(Math.random() * quotes.length)];
     }
@@ -38,22 +45,58 @@
      * 3. Console Easter Egg
      * Displays recruitment info in browser DevTools for inquisitive engineers
      */
-    const recruitStyle = "background: #8a2be2; color: #fff; font-size: 20px; font-weight: bold; border-radius: 5px; padding: 10px;";
+    var recruitStyle = "background: #8a2be2; color: #fff; font-size: 20px; font-weight: bold; border-radius: 5px; padding: 10px;";
     console.log("%c Hi! Looking for a DevOps Engineer? ", recruitStyle);
     console.log("%c Contact me at: 2448366060l@email.com ", "color: #8a2be2; font-family: monospace;");
 
     /**
-     * 4. Reading Progress Bar
-     * Updates the top progress bar width based on scroll depth
+     * 4. Reading Progress Bar (rAF-throttled)
      */
-    window.addEventListener('scroll', () => {
-        const progBar = document.getElementById("scroll-progress");
-        if (progBar) {
-            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            progBar.style.width = `${scrolled}%`;
-        }
-    }, { passive: true });
+    var progBar = document.getElementById('scroll-progress');
+    if (progBar) {
+        var ticking = false;
+        var updateProgress = function() {
+            var winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            progBar.style.width = scrolled + '%';
+            ticking = false;
+        };
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateProgress);
+                ticking = true;
+            }
+        }, { passive: true });
+        updateProgress();
+    }
+
+    /**
+     * 5. Scroll-Reveal Animations
+     * Fades/slides entries into view with a subtle stagger
+     */
+    var revealTargets = document.querySelectorAll(
+        '.post-entry, .archive-entry, .terms-tags li, .first-entry.home-info'
+    );
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+        return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                var el = entry.target;
+                el.classList.add('revealed');
+                observer.unobserve(el);
+                // Clear the entrance stagger so later hover transitions stay snappy
+                setTimeout(function() { el.style.transitionDelay = '0ms'; }, 800);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    revealTargets.forEach(function(el, i) {
+        el.classList.add('reveal');
+        el.style.transitionDelay = Math.min(i * 70, 350) + 'ms';
+        observer.observe(el);
+    });
 })();
 </script>
