@@ -1297,3 +1297,210 @@ body:not(:has(.first-entry.home-info)) .main {
 .post-entry, .featured-card, .project-card, .stat-card {
     transform-style: preserve-3d;
 }
+
+/* =======================================================
+   26. DAY/NIGHT SKY BACKGROUND
+   Dark: moon + starfield + meteor shower
+   Light: warm sun + drifting clouds
+   ======================================================= */
+.sky {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    transition: background 0.6s ease;
+}
+
+/* ---------- shared celestial body spot (top right) ---------- */
+.moon, .sun {
+    position: absolute;
+    top: 9%;
+    right: 11%;
+    border-radius: 50%;
+}
+
+/* ---------- DARK: moon ---------- */
+.moon {
+    width: 84px;
+    height: 84px;
+    background: radial-gradient(circle at 38% 35%, #fdfbf0, #e9e4d4 65%, #d5cfc0);
+    box-shadow: 0 0 40px 12px rgba(255, 248, 214, 0.22),
+                0 0 120px 40px rgba(255, 248, 214, 0.08);
+    animation: moon-breathe 7s ease-in-out infinite alternate;
+}
+
+/* craters */
+.moon::before {
+    content: "";
+    position: absolute;
+    top: 20%; left: 52%;
+    width: 18%; height: 18%;
+    border-radius: 50%;
+    background: rgba(180, 172, 150, 0.35);
+    box-shadow: -26px 22px 0 2px rgba(180, 172, 150, 0.28),
+                6px 34px 0 -2px rgba(180, 172, 150, 0.3);
+}
+
+@keyframes moon-breathe {
+    from { box-shadow: 0 0 40px 12px rgba(255, 248, 214, 0.18),
+                       0 0 120px 40px rgba(255, 248, 214, 0.06); }
+    to   { box-shadow: 0 0 52px 16px rgba(255, 248, 214, 0.28),
+                       0 0 140px 52px rgba(255, 248, 214, 0.1); }
+}
+
+/* ---------- DARK: starfield (two tiled layers, twinkling) ---------- */
+.stars {
+    position: absolute;
+    inset: -50%;
+    background-repeat: repeat;
+    animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+.stars-a {
+    background-image:
+        radial-gradient(1.5px 1.5px at 25px 40px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 120px 90px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1.2px 1.2px at 220px 30px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 320px 140px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1.4px 1.4px at 420px 70px, rgba(255,255,255,0.85), transparent),
+        radial-gradient(1px 1px at 520px 160px, rgba(255,255,255,0.65), transparent),
+        radial-gradient(1.2px 1.2px at 90px 220px, rgba(255,255,255,0.75), transparent),
+        radial-gradient(1px 1px at 480px 250px, rgba(255,255,255,0.6), transparent);
+    background-size: 560px 300px;
+}
+
+.stars-b {
+    background-image:
+        radial-gradient(1.6px 1.6px at 60px 120px, rgba(255,255,255,0.85), transparent),
+        radial-gradient(1px 1px at 180px 200px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1.3px 1.3px at 300px 60px, rgba(255,255,255,0.75), transparent),
+        radial-gradient(1px 1px at 430px 190px, rgba(255,255,255,0.55), transparent),
+        radial-gradient(1.2px 1.2px at 560px 100px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 700px 240px, rgba(255,255,255,0.6), transparent);
+    background-size: 760px 380px;
+    animation-delay: 2s;
+    animation-duration: 5.5s;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.35; }
+    to   { opacity: 0.9; }
+}
+
+/* ---------- DARK: meteor shower ---------- */
+.meteor {
+    position: absolute;
+    width: 150px;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0));
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.6));
+    opacity: 0;
+    transform: rotate(-45deg) translateX(0);
+    animation: meteor-fall linear infinite;
+}
+
+.meteor-1 { top: 6%;  left: 62%; animation-duration: 7s;  animation-delay: 1s; }
+.meteor-2 { top: 14%; left: 78%; animation-duration: 9s;  animation-delay: 4.5s; width: 110px; }
+.meteor-3 { top: 3%;  left: 85%; animation-duration: 11s; animation-delay: 8s; }
+.meteor-4 { top: 22%; left: 55%; animation-duration: 13s; animation-delay: 2.5s; width: 90px; }
+.meteor-5 { top: 10%; left: 70%; animation-duration: 15s; animation-delay: 11s; width: 120px; }
+
+@keyframes meteor-fall {
+    0%   { opacity: 0; transform: rotate(-45deg) translateX(0); }
+    1.5% { opacity: 1; }
+    7%   { opacity: 0.9; }
+    12%  { opacity: 0; transform: rotate(-45deg) translateX(-480px); }
+    100% { opacity: 0; transform: rotate(-45deg) translateX(-480px); }
+}
+
+/* ---------- LIGHT: sun ---------- */
+.sun {
+    width: 96px;
+    height: 96px;
+    background: radial-gradient(circle at 40% 38%, #fff8d6, #ffd54a 70%, #ffb74d);
+    box-shadow: 0 0 60px 24px rgba(255, 213, 74, 0.35),
+                0 0 140px 60px rgba(255, 213, 74, 0.15);
+    animation: sun-breathe 8s ease-in-out infinite alternate;
+}
+
+@keyframes sun-breathe {
+    from { box-shadow: 0 0 60px 24px rgba(255, 213, 74, 0.3),
+                       0 0 140px 60px rgba(255, 213, 74, 0.12); }
+    to   { box-shadow: 0 0 76px 30px rgba(255, 213, 74, 0.42),
+                       0 0 160px 72px rgba(255, 213, 74, 0.18); }
+}
+
+/* ---------- LIGHT: drifting clouds ---------- */
+.cloud {
+    position: absolute;
+    width: 120px;
+    height: 38px;
+    border-radius: 40px;
+    background: #f4f8fc;
+    box-shadow: 0 6px 18px rgba(120, 150, 190, 0.18);
+    animation: cloud-drift linear infinite;
+}
+
+/* cloud bumps */
+.cloud::before, .cloud::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: #f4f8fc;
+}
+
+.cloud::before {
+    width: 52px; height: 52px;
+    top: -26px; left: 20px;
+}
+
+.cloud::after {
+    width: 36px; height: 36px;
+    top: -16px; left: 62px;
+}
+
+.cloud-1 { top: 16%; animation-duration: 85s; animation-delay: -20s; }
+.cloud-2 { top: 32%; animation-duration: 120s; animation-delay: -65s; transform: scale(0.7); opacity: 0.85; }
+.cloud-3 { top: 55%; animation-duration: 100s; animation-delay: -45s; transform: scale(1.25); opacity: 0.75; }
+
+@keyframes cloud-drift {
+    from { left: -180px; }
+    to   { left: calc(100% + 180px); }
+}
+
+/* ---------- theme switching ---------- */
+[data-theme="dark"] .sky {
+    background: linear-gradient(180deg, rgba(24, 21, 46, 0.35), transparent 55%);
+}
+
+[data-theme="dark"] .sun,
+[data-theme="dark"] .cloud {
+    display: none;
+}
+
+[data-theme="light"] .moon,
+[data-theme="light"] .stars,
+[data-theme="light"] .meteor {
+    display: none;
+}
+
+[data-theme="light"] .sky {
+    background: linear-gradient(180deg, rgba(197, 224, 255, 0.45), transparent 45%);
+}
+
+/* mobile: smaller celestial bodies */
+@media screen and (max-width: 768px) {
+    .moon { width: 56px; height: 56px; top: 7%; right: 8%; }
+    .sun  { width: 64px; height: 64px; top: 7%; right: 8%; }
+    .meteor-4, .meteor-5 { display: none; }
+}
+
+/* reduced motion: calm sky */
+@media (prefers-reduced-motion: reduce) {
+    .meteor, .stars { animation: none !important; }
+    .stars { opacity: 0.6; }
+    .moon, .sun { animation: none; }
+    .cloud { animation-duration: 400s; }
+}
