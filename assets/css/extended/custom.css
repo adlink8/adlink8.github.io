@@ -1658,13 +1658,15 @@ body:not(:has(.first-entry.home-info)) .main {
         rgba(158, 198, 242, 0.85) 0%,
         rgba(183, 214, 248, 0.8) 55%,
         rgba(209, 231, 252, 0.65) 100%);
+    /* smooth sine-sampled horizon — two gentle swells, no angular edges */
     clip-path: polygon(
         0 0, 100% 0,
-        100% 47%, 96% 52%, 90% 49%, 84% 54%, 77% 50%, 70% 55%,
-        63% 51%, 57% 56%, 50% 50%, 44% 55%, 37% 49%, 30% 54%,
-        24% 50%, 17% 56%, 11% 51%, 5% 55%, 0 50%
+        100% 51.0%, 95% 51.0%, 90% 48.4%, 85% 44.6%, 80% 45.7%,
+        75% 52.6%, 70% 58.5%, 65% 58.3%, 60% 55.0%, 55% 53.8%,
+        50% 54.0%, 45% 51.0%, 40% 45.3%, 35% 43.3%, 30% 48.3%,
+        25% 54.9%, 20% 56.9%, 15% 55.4%, 10% 55.4%, 5% 56.9%, 0 54.9%
     );
-    filter: blur(3px); /* softens the boundary into a hazy, organic edge */
+    filter: blur(2.5px); /* softens the boundary into a hazy, organic edge */
 }
 
 [data-theme="dark"] .sky-blue {
