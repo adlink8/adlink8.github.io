@@ -1526,3 +1526,34 @@ body:not(:has(.first-entry.home-info)) .main {
     .moon, .sun, .sunrays { animation: none; }
     .cloud { animation-duration: 400s; }
 }
+
+/* =======================================================
+   27. GLASSMORPHISM: frosted cards over the sky
+   (post-single excluded — long-form text needs a solid
+   surface, and backdrop-filter would break the fixed TOC)
+   ======================================================= */
+:root {
+    --glass-bg: color-mix(in srgb, var(--entry) 72%, transparent);
+    --glass-blur: blur(14px) saturate(1.5);
+}
+
+[data-theme="dark"] {
+    --glass-bg: color-mix(in srgb, var(--entry) 55%, transparent);
+}
+
+.first-entry.home-info,
+.post-entry,
+.featured-card,
+.terms-tags a,
+.back-link {
+    background: var(--glass-bg) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+}
+
+/* slightly crisper borders so the glass edge reads clearly */
+.first-entry.home-info,
+.post-entry,
+.featured-card {
+    border-color: color-mix(in srgb, var(--border) 70%, rgba(var(--accent), 0.18)) !important;
+}
