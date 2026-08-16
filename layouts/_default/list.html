@@ -51,6 +51,10 @@
 {{- partial "home_info.html" . }}
 {{- end }}
 
+{{- if and .IsHome (eq $paginator.PageNumber 1) }}
+{{- partial "featured_projects.html" . }}
+{{- end }}
+
 {{- if not .IsHome }}
 <aside class="sidebar-left-nav list-page-nav">
     <a href="{{ "/" | relLangURL }}" class="back-link">{{ i18n "back_to_home" }}</a>

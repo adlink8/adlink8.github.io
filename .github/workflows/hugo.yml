@@ -36,6 +36,14 @@ jobs:
       - name: Build with Hugo
         run: hugo --minify
 
+      # 死链检查：报告但不阻断部署（外部站点偶尔误报）
+      - name: Check links (non-blocking)
+        uses: lycheeverse/lychee-action@v2
+        continue-on-error: true
+        with:
+          args: --no-progress --exclude-loopback './public/**/*.html'
+          fail: false
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

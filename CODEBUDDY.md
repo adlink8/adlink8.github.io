@@ -15,9 +15,9 @@ hugo server -D --port 1313
 ./scripts/start.sh
 
 # Create a new post (use hyphens, not spaces)
-hugo new <category>/<filename>.md
-# Or use the convenience script
-./scripts/new-post.sh <category> <filename>
+# Bilingual: language is the first argument (en default, zh for Chinese)
+./scripts/new-post.sh <category> <filename>      # English post
+./scripts/new-post.sh zh <category> <filename>   # Chinese post
 
 # Build for production
 hugo --minify

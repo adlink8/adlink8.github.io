@@ -1,0 +1,16 @@
+{{- /* Featured projects on the home page — data comes from data/projects.yaml, keyed by language */ -}}
+{{- with index site.Data.projects site.Language.Lang }}
+<section class="featured-projects">
+  <h2 class="featured-title">{{ i18n "featured_projects" }}</h2>
+  {{- range first 2 .featured }}
+  <a class="featured-card" href="{{ .url }}" target="_blank" rel="noopener">
+    <div class="featured-name">{{ .name }}</div>
+    <p class="featured-tagline">{{ .tagline }}</p>
+    <div class="featured-stack">
+      {{- range .stack }}<code>{{ . }}</code>{{ end }}
+    </div>
+  </a>
+  {{- end }}
+  <a class="featured-more" href="{{ "/projects/" | relLangURL }}">{{ i18n "featured_more" }} →</a>
+</section>
+{{- end }}

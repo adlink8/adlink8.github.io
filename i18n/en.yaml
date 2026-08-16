@@ -40,3 +40,7 @@ nf_archives:
   other: "Browse Archives"
 nf_search:
   other: "Search"
+featured_projects:
+  other: "Featured Projects"
+featured_more:
+  other: "All projects"

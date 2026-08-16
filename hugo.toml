@@ -30,8 +30,8 @@ defaultContentLanguageInSubdir = false
     ShowPostNavLinks = true
     # Light by default (calmer first impression); visitors can toggle dark
     defaultTheme = "light"
-    # Open Graph fallback image for social sharing cards
-    images = ["/image/tx.jpg"]
+    # Open Graph fallback image for social sharing cards (regenerate: python tools/generate_og.py)
+    images = ["/image/og-cover.png"]
     # Ensures only posts appear in the main content area
     mainSections = ["daily", "pitfalls", "reflections", "insights", "project-logs"]
 

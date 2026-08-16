@@ -1032,3 +1032,96 @@ body:not(:has(.first-entry.home-info)) .main {
     padding-top: 24px;
     border-top: 1px dashed var(--border);
 }
+
+/* =======================================================
+   17. FEATURED PROJECTS (home page)
+   ======================================================= */
+.featured-projects {
+    margin-bottom: 30px;
+}
+
+@media screen and (min-width: 1024px) {
+    .main:has(.first-entry.home-info) .featured-projects {
+        grid-column: 2;
+    }
+}
+
+.featured-title {
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin: 0 0 14px;
+}
+
+.featured-card {
+    display: block;
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-left: 3px solid rgba(var(--accent), 0.55);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.35s var(--ease-spring),
+                box-shadow 0.35s var(--ease-spring),
+                border-color 0.35s ease;
+}
+
+.featured-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card-hover);
+    border-left-color: rgb(var(--accent));
+}
+
+.featured-name {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.02rem;
+}
+
+.featured-tagline {
+    color: var(--secondary);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin: 8px 0 10px;
+}
+
+.featured-stack code {
+    display: inline-block;
+    background: rgba(var(--accent), 0.1);
+    color: rgb(var(--accent));
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    margin: 0 6px 4px 0;
+}
+
+.featured-more {
+    color: rgb(var(--accent));
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* =======================================================
+   18. CODE BLOCK LANGUAGE LABEL (JS-injected)
+   ======================================================= */
+.code-lang {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.35);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    pointer-events: none;
+}
+
+.has-lang::after {
+    display: none !important; /* real language replaces the decorative "zsh" label */
+}
+
+@media screen and (max-width: 768px) {
+    .code-lang { display: none; }
+}

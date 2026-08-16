@@ -1,0 +1,21 @@
+en:
+  featured:
+    - name: "novel-mind — Long-text RAG Platform"
+      tagline: "Full RAG pipeline for long Chinese text with evaluation-driven iteration — every retrieval change is measured with Recall@K / MRR / faithfulness metrics."
+      stack: ["Python", "FastAPI", "ChromaDB", "Ollama"]
+      url: "https://github.com/adlink8"
+    - name: "t5ai-codex-quota — IoT Device Monitor"
+      tagline: "LVGL firmware on Tuya T5AI-Board with a dual-channel PC → MQTT → board architecture, HTTP polling fallback and reproducible WSL builds."
+      stack: ["C", "TuyaOpen SDK", "LVGL", "MQTT"]
+      url: "https://github.com/adlink8"
+
+zh:
+  featured:
+    - name: "novel-mind — 长文本 RAG 平台"
+      tagline: "面向中文长文本的完整 RAG 流水线，评估驱动迭代 —— 每一次检索改动都用 Recall@K / MRR / 忠实度指标说话。"
+      stack: ["Python", "FastAPI", "ChromaDB", "Ollama"]
+      url: "https://github.com/adlink8"
+    - name: "t5ai-codex-quota — IoT 设备监视器"
+      tagline: "运行在涂鸦 T5AI-Board 上的 LVGL 固件，PC → MQTT → 开发板双通道架构，HTTP 轮询兜底，WSL 可复现构建。"
+      stack: ["C", "TuyaOpen SDK", "LVGL", "MQTT"]
+      url: "https://github.com/adlink8"

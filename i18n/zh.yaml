@@ -40,3 +40,7 @@ nf_archives:
   other: "浏览归档"
 nf_search:
   other: "搜索"
+featured_projects:
+  other: "精选项目"
+featured_more:
+  other: "全部项目"
