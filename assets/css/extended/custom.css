@@ -1640,15 +1640,49 @@ html[data-moon-quarter="waning"] .moon::after {
         rgba(158, 198, 242, 0.85) 0%,
         rgba(183, 214, 248, 0.8) 55%,
         rgba(209, 231, 252, 0.65) 100%);
-    /* smooth sine-sampled horizon — two gentle swells, no angular edges */
+    /* smooth sine-sampled horizon — two gentle swells, no angular edges.
+       The boundary DRIFTS: three phase-shifted polygons (same 21 points)
+       interpolated in a loop, so the blue/white divide undulates slowly. */
     clip-path: polygon(
         0 0, 100% 0,
-        100% 51.0%, 95% 51.0%, 90% 48.4%, 85% 44.6%, 80% 45.7%,
-        75% 52.6%, 70% 58.5%, 65% 58.3%, 60% 55.0%, 55% 53.8%,
-        50% 54.0%, 45% 51.0%, 40% 45.3%, 35% 43.3%, 30% 48.3%,
-        25% 54.9%, 20% 56.9%, 15% 55.4%, 10% 55.4%, 5% 56.9%, 0 54.9%
+        100% 48.1%, 95% 52.5%, 90% 57.1%, 85% 59.8%, 80% 59.2%,
+        75% 55.7%, 70% 50.9%, 65% 47.1%, 60% 45.4%, 55% 45.9%,
+        50% 47.4%, 45% 48.6%, 40% 48.9%, 35% 49.0%, 30% 50.1%,
+        25% 52.6%, 20% 56.0%, 15% 58.6%, 10% 58.8%, 5% 56.0%, 0% 51.0%
     );
+    animation: sky-wave-drift 32s linear infinite;
     filter: blur(2.5px); /* softens the boundary into a hazy, organic edge */
+}
+
+@keyframes sky-wave-drift {
+    0% { clip-path: polygon(
+        0 0, 100% 0,
+        100% 48.1%, 95% 52.5%, 90% 57.1%, 85% 59.8%, 80% 59.2%,
+        75% 55.7%, 70% 50.9%, 65% 47.1%, 60% 45.4%, 55% 45.9%,
+        50% 47.4%, 45% 48.6%, 40% 48.9%, 35% 49.0%, 30% 50.1%,
+        25% 52.6%, 20% 56.0%, 15% 58.6%, 10% 58.8%, 5% 56.0%, 0% 51.0%
+    ); }
+    33% { clip-path: polygon(
+        0 0, 100% 0,
+        100% 47.9%, 95% 46.9%, 90% 46.2%, 85% 47.1%, 80% 50.1%,
+        75% 54.5%, 70% 58.4%, 65% 59.9%, 60% 58.1%, 55% 53.8%,
+        50% 48.9%, 45% 45.5%, 40% 44.7%, 35% 46.0%, 30% 48.0%,
+        25% 49.4%, 20% 49.9%, 15% 50.2%, 10% 51.4%, 5% 53.9%, 0% 56.8%
+    ); }
+    66% { clip-path: polygon(
+        0 0, 100% 0,
+        100% 48.4%, 95% 47.1%, 90% 47.3%, 85% 47.9%, 80% 47.9%,
+        75% 47.3%, 70% 47.2%, 65% 48.6%, 60% 51.9%, 55% 56.1%,
+        50% 59.2%, 45% 59.5%, 40% 56.5%, 35% 51.6%, 30% 46.8%,
+        25% 44.2%, 20% 44.3%, 15% 46.4%, 10% 48.9%, 5% 50.4%, 0% 51.0%
+    ); }
+    100% { clip-path: polygon(
+        0 0, 100% 0,
+        100% 48.1%, 95% 52.5%, 90% 57.1%, 85% 59.8%, 80% 59.2%,
+        75% 55.7%, 70% 50.9%, 65% 47.1%, 60% 45.4%, 55% 45.9%,
+        50% 47.4%, 45% 48.6%, 40% 48.9%, 35% 49.0%, 30% 50.1%,
+        25% 52.6%, 20% 56.0%, 15% 58.6%, 10% 58.8%, 5% 56.0%, 0% 51.0%
+    ); }
 }
 
 [data-theme="dark"] .sky-blue {
@@ -1665,7 +1699,7 @@ html[data-moon-quarter="waning"] .moon::after {
 @media (prefers-reduced-motion: reduce) {
     .meteor, .stars { animation: none !important; }
     .stars { opacity: 0.6; }
-    .moon, .sun, .sunrays { animation: none; }
+    .moon, .sun, .sunrays, .sky-blue { animation: none; }
     .cloud { animation-duration: 400s; }
     .mist { animation: none; }
 }
@@ -2230,7 +2264,7 @@ body.disco .main {
    NEW sky animations MUST consume var(--sky-clock) the same way.
    ======================================================= */
 .sun, .sunrays, .sunrays-b,
-.stars-a,
+.stars-a, .sky-blue,
 .mist-a, .mist-c {
     animation-delay: var(--sky-clock, 0s);
 }
