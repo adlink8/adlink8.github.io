@@ -28,6 +28,13 @@
     de.dataset.moonTerm = (theta < Math.PI / 2 || theta > 3 * Math.PI / 2) ? 'dark' : 'bright';
     de.style.setProperty('--moon-ts', Math.abs(Math.cos(theta)).toFixed(3));
     de.style.setProperty('--moon-illum', ((1 - Math.cos(theta)) / 2).toFixed(3));
+
+    // time-of-day sky tint (light theme only, custom.css §36)
+    var nowD = new Date();
+    var hr = nowD.getHours() + nowD.getMinutes() / 60;
+    de.dataset.daytime = (hr >= 5 && hr < 8) ? 'dawn'
+                       : (hr >= 8 && hr < 16.5) ? 'day'
+                       : (hr >= 16.5 && hr < 19.5) ? 'dusk' : 'night';
 })();
 </script>
 

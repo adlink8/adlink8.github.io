@@ -3,6 +3,7 @@
 <!-- Day/night sky background: moon + meteors (dark), sunlight rays (light) -->
 <div class="sky" aria-hidden="true">
     <div class="sky-blue"></div>
+    <div class="sky-tint"></div>
     <div class="stars stars-a"></div>
     <div class="stars stars-b"></div>
     <div class="moon"></div>
@@ -19,6 +20,14 @@
     <div class="mist mist-a"></div>
     <div class="mist mist-b"></div>
     <div class="mist mist-c"></div>
+
+    <!-- day-sky life: bird flock (periodic crossing) + double rainbow (egg) -->
+    <div class="birds">
+        <div class="bird"></div>
+        <div class="bird"></div>
+        <div class="bird"></div>
+    </div>
+    <div class="rainbow"></div>
 
     <!-- Scorpius constellation (Oct 23 – Nov 21), drawn star by star -->
     <svg class="constellation" viewBox="0 0 100 150" aria-hidden="true">
@@ -86,6 +95,29 @@
     }
 
     /**
+     * Dust Motes (generated)
+     * Daylight's counterpart to meteors: tiny glowing specks drifting
+     * slowly upward. Hidden by CSS in dark mode.
+     */
+    if (sky && !reduceMotion) {
+        var MOTES = isMobile ? 8 : 16;
+        for (var mi = 0; mi < MOTES; mi++) {
+            var mo = document.createElement('div');
+            mo.className = 'mote';
+            var msz = 2 + Math.random() * 4;
+            mo.style.width = msz + 'px';
+            mo.style.height = msz + 'px';
+            mo.style.left = (15 + Math.random() * 80) + '%';
+            mo.style.top = (25 + Math.random() * 70) + '%';
+            mo.style.setProperty('--mo', (0.4 + Math.random() * 0.45).toFixed(2));
+            var mdur = 16 + Math.random() * 20;
+            mo.style.animationDuration = mdur + 's';
+            mo.style.animationDelay = (Math.random() * mdur) + 's';
+            sky.appendChild(mo);
+        }
+    }
+
+    /**
      * 0. Theme Toggle
      * The theme's own handler lives in its footer partial, which this file
      * overrides — so we re-implement it here (same localStorage keys).
@@ -141,7 +173,7 @@
     var recruitStyle = "background: #8a2be2; color: #fff; font-size: 20px; font-weight: bold; border-radius: 5px; padding: 10px;";
     console.log("%c Hi! Looking for a DevOps Engineer? ", recruitStyle);
     console.log("%c Contact me at: 2448366060l@email.com ", "color: #8a2be2; font-family: monospace;");
-    console.log("%c psst… ↑↑↓↓←→←→BA · click the moon · type \"starry\"/\"scorpio\" · logo ×5 · Oct 25 🎂", "color: #8a2be2; font-family: monospace;");
+    console.log("%c psst… ↑↑↓↓←→←→BA · click the moon · type \"starry\"/\"scorpio\"/\"rainbow\" · logo ×5 · Oct 25 🎂", "color: #8a2be2; font-family: monospace;");
 
     /**
      * 4. Reading Progress Bar (rAF-throttled)
@@ -653,12 +685,33 @@
                 c.classList.add('con-show');
             }
             showToast(isZh ? '♏ 天蝎座重新点亮' : '♏ Scorpius relit');
+        } else if (typeBuf.endsWith('rainbow')) {
+            typeBuf = '';
+            showRainbow(false);
         }
     });
 
     // rare: ~4% of dark-mode visits get Van Gogh for free
     if (document.documentElement.dataset.theme === 'dark' && Math.random() < 0.04) {
         setTimeout(function() { starryNight(true); }, 2500);
+    }
+
+    // double rainbow — light-theme rare egg (~3% of day visits) / typed "rainbow"
+    var rainbowTimer = null;
+    var showRainbow = function(auto) {
+        if (!sky) return;
+        if (document.documentElement.dataset.theme !== 'light') {
+            showToast(isZh ? '🌈 彩虹只在白天出现' : '🌈 Rainbows only show by day');
+            return;
+        }
+        sky.classList.add('rainbow-on');
+        clearTimeout(rainbowTimer);
+        rainbowTimer = setTimeout(function() { sky.classList.remove('rainbow-on'); }, 15000);
+        showToast(auto ? (isZh ? '🌈 双彩虹！（稀有彩蛋）' : '🌈 Double rainbow! (rare!)')
+                       : (isZh ? '🌈 双彩虹' : '🌈 Double rainbow'));
+    };
+    if (document.documentElement.dataset.theme === 'light' && Math.random() < 0.03) {
+        setTimeout(function() { showRainbow(true); }, 4000);
     }
 
     // logo ×5 clicks within 3s: disco mode

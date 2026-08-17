@@ -1514,7 +1514,8 @@ html[data-moon-quarter="waning"] .moon::after {
     height: 38px;
     border-radius: 40px;
     background: rgba(244, 248, 252, 0.88);
-    box-shadow: 0 6px 18px rgba(120, 150, 190, 0.14);
+    box-shadow: inset -16px -12px 22px rgba(150, 175, 205, 0.30), /* shaded underside */
+                0 8px 20px rgba(120, 150, 190, 0.16);
     filter: blur(1.5px);
     animation: cloud-drift linear infinite;
 }
@@ -2264,7 +2265,7 @@ body.disco .main {
    NEW sky animations MUST consume var(--sky-clock) the same way.
    ======================================================= */
 .sun, .sunrays, .sunrays-b,
-.stars-a, .sky-blue,
+.stars-a, .sky-blue, .birds,
 .mist-a, .mist-c {
     animation-delay: var(--sky-clock, 0s);
 }
@@ -2289,4 +2290,123 @@ body.disco .main {
     ::view-transition-new(root) {
         animation: none;
     }
+}
+
+/* =======================================================
+   36. DAY SKY LIFE (light theme only) — dust motes, bird
+   flock, time-of-day tint (data-daytime from extend_head),
+   double-rainbow egg
+   ======================================================= */
+
+/* ---------- time-of-day tint: dawn gold / dusk amber ---------- */
+.sky-tint {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+html[data-daytime="dawn"] .sky-tint {
+    opacity: 1;
+    background: linear-gradient(180deg, rgba(255, 206, 140, 0.30), rgba(255, 236, 205, 0.10) 60%, transparent);
+}
+html[data-daytime="dusk"] .sky-tint {
+    opacity: 1;
+    background: linear-gradient(180deg, rgba(255, 176, 92, 0.30), rgba(255, 208, 152, 0.12) 60%, transparent);
+}
+/* warmer sun at the golden hours */
+html[data-daytime="dawn"] .sun { filter: saturate(1.3) hue-rotate(-8deg); }
+html[data-daytime="dusk"] .sun { filter: saturate(1.5) hue-rotate(-14deg) brightness(1.03); }
+html[data-daytime="dawn"] .sunrays, html[data-daytime="dawn"] .sunrays-b,
+html[data-daytime="dusk"] .sunrays, html[data-daytime="dusk"] .sunrays-b {
+    filter: sepia(0.35);
+}
+
+/* ---------- dust motes: daytime's drifting specks (JS-generated) ---------- */
+.mote {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(255, 252, 240, 0));
+    filter: blur(0.5px);
+    opacity: 0;
+    animation: mote-float linear infinite;
+}
+@keyframes mote-float {
+    0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+    12%  { opacity: var(--mo, 0.75); }
+    80%  { opacity: var(--mo, 0.75); }
+    100% { transform: translate(3vw, -38vh) scale(0.6); opacity: 0; }
+}
+
+/* ---------- bird flock crossing now and then (clock-synced, §35) ---------- */
+.birds {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    animation: birds-cross 78s linear infinite;
+}
+@keyframes birds-cross {
+    0%   { transform: translate(-15vw, 0); opacity: 0; }
+    2%   { opacity: 1; }
+    13%  { transform: translate(115vw, -7vh); opacity: 1; }
+    14%  { opacity: 0; }
+    100% { transform: translate(115vw, -7vh); opacity: 0; }
+}
+.bird {
+    position: absolute;
+    width: 22px;
+    height: 10px;
+}
+.bird::before, .bird::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    width: 11px;
+    height: 9px;
+    border-top: 2.5px solid rgba(70, 85, 110, 0.65);
+    border-radius: 50% 50% 0 0;
+    animation: bird-flap 0.9s ease-in-out infinite;
+}
+.bird::before { left: 0; }
+.bird::after  { right: 0; }
+@keyframes bird-flap {
+    0%, 100% { transform: scaleY(1); }
+    50%      { transform: scaleY(0.25); }
+}
+.bird:nth-child(2) { transform: translate(-28px, 16px) scale(0.8); }
+.bird:nth-child(3) { transform: translate(-56px, 34px) scale(0.65); }
+
+/* ---------- double rainbow (rare egg; .rainbow-on toggled by JS) ---------- */
+.rainbow {
+    position: absolute;
+    left: 34%;
+    bottom: -46vmin;
+    width: 92vmin;
+    height: 92vmin;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 3s ease;
+    background: radial-gradient(circle,
+        transparent 51%,
+        rgba(255, 70, 70, 0.20) 54%, rgba(255, 165, 0, 0.18) 56%,
+        rgba(255, 235, 59, 0.17) 58%, rgba(76, 200, 80, 0.16) 60%,
+        rgba(66, 165, 245, 0.15) 62%, rgba(171, 71, 188, 0.13) 64%,
+        transparent 67%,
+        rgba(171, 71, 188, 0.07) 71%, rgba(66, 165, 245, 0.07) 73%,
+        rgba(76, 200, 80, 0.06) 75%, rgba(255, 235, 59, 0.06) 76.5%,
+        rgba(255, 165, 0, 0.05) 78%, rgba(255, 70, 70, 0.05) 79.5%,
+        transparent 82%);
+}
+.sky.rainbow-on .rainbow { opacity: 1; }
+
+/* light theme only */
+[data-theme="dark"] .mote,
+[data-theme="dark"] .birds,
+[data-theme="dark"] .rainbow,
+[data-theme="dark"] .sky-tint {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mote, .birds { display: none; }
 }
