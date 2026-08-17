@@ -57,7 +57,7 @@ hugo.toml                   # config; menus & homeInfoParams exist PER LANGUAGE
 
 **The sky is CSS-only** — no images, no WebGL (custom.css §26, markup in footer.html). Dark: 60s moon-phase cycle (crescent → full → blood-moon eclipse; the shadow disc `.moon::before` needs `z-index: 2` or the opaque moon disc hides the phases), ~36 JS-generated meteors, two twinkling star layers. Light: sun-ray cones with sway, 7 clouds, mist bands, and a 50/50 blue/white sky split by a wavy `clip-path` border. The Scorpius constellation (§30) stays hidden by default — only the Oct 25 birthday egg (gold) or the typed word `scorpio` reveals it. The starry-night canvas is the single sanctioned exception to CSS-only.
 
-**Motion discipline.** Animate `transform` and `opacity` only. Every animation has a `prefers-reduced-motion` fallback and decorative markup is `aria-hidden`. Pointer effects (card tilt, avatar parallax) are gated behind `pointer: fine` so touch devices skip them.
+**Motion discipline.** Animate `transform` and `opacity` only. Every animation has a `prefers-reduced-motion` fallback and decorative markup is `aria-hidden`. Pointer effects (card tilt, avatar parallax, the cursor trail in §34 / footer.html §14) are gated behind `pointer: fine` so touch devices skip them.
 
 **One JS file, no dependencies.** All site-wide JS lives in the numbered inline script in `layouts/partials/footer.html`; no frameworks, no npm. Toast text is bilingual via the `isZh` lang check — always keep both strings.
 
