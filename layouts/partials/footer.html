@@ -439,7 +439,7 @@
         if (s.raf) cancelAnimationFrame(s.raf);
         sky.classList.remove('starry');
         s.canvas.classList.add('starry-out');
-        setTimeout(function() { s.canvas.remove(); }, 1800);
+        setTimeout(function() { s.canvas.remove(); }, 3200);
     };
 
     var startStarry = function() {
@@ -513,7 +513,9 @@
                 traveled: 0,
                 appearAt: appearAt,
                 px: x, py: y,
-                hist: [] // recent positions — the trail, redrawn each frame
+                hist: [], // recent positions — the trail, redrawn each frame
+                fade: 1,    // 0..1 brightness multiplier (birth/death ramp)
+                dying: false // true once the semicircle is done: dim out, then respawn
             };
         };
         var stars = cells.map(function(cellXY, idx) {
@@ -563,19 +565,31 @@
                 ctx.lineCap = 'round';
 
                 stars.forEach(function(s) {
-                    var dA = s.omega * speed * s.c.dir * dt / 1000 * Math.PI;
-                    s.ang += dA;
-                    s.traveled += Math.abs(dA);
-                    var nx = s.c.x + Math.cos(s.ang) * s.rad;
-                    var ny = s.c.y + Math.sin(s.ang) * s.rad;
-                    s.px = nx; s.py = ny;
-                    // trail = the last ~126° of arc (angle-based, not frame-based,
-                    // so it stays a long brush stroke at any speed)
-                    s.hist.push(nx, ny, s.traveled);
-                    while (s.hist.length > 6 && (s.traveled - s.hist[2]) > 2.2) s.hist.splice(0, 3);
-                    if (s.hist.length > 600) s.hist.splice(0, s.hist.length - 600);
+                    if (s.dying) {
+                        // semicircle done: freeze and dim out gently, then respawn
+                        s.fade -= dt / 1300;
+                        if (s.fade <= 0) {
+                            respawn(s);
+                            s.dying = false;
+                            s.fade = 0; // ramps back in below
+                        }
+                    } else {
+                        var dA = s.omega * speed * s.c.dir * dt / 1000 * Math.PI;
+                        s.ang += dA;
+                        s.traveled += Math.abs(dA);
+                        var nx = s.c.x + Math.cos(s.ang) * s.rad;
+                        var ny = s.c.y + Math.sin(s.ang) * s.rad;
+                        s.px = nx; s.py = ny;
+                        // trail = the last ~126° of arc (angle-based, not frame-based,
+                        // so it stays a long brush stroke at any speed)
+                        s.hist.push(nx, ny, s.traveled);
+                        while (s.hist.length > 6 && (s.traveled - s.hist[2]) > 2.2) s.hist.splice(0, 3);
+                        if (s.hist.length > 600) s.hist.splice(0, s.hist.length - 600);
+                        if (s.traveled >= Math.PI) s.dying = true;
+                        if (s.fade < 1) s.fade = Math.min(1, s.fade + dt / 900); // newborn ramp-in
+                    }
 
-                    var tw = 0.6 + 0.4 * Math.sin(now * s.twF + s.tw);
+                    var tw = (0.6 + 0.4 * Math.sin(now * s.twF + s.tw)) * Math.max(0, s.fade);
                     var rgb = s.col[0] + ',' + s.col[1] + ',' + s.col[2];
                     var n = s.hist.length / 3;
                     for (var i = 1; i < n; i++) {
@@ -588,13 +602,12 @@
                         ctx.stroke();
                     }
                     // bright head
-                    ctx.beginPath();
-                    ctx.arc(nx, ny, s.size * 0.9, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(' + rgb + ',' + (tw * 0.95).toFixed(3) + ')';
-                    ctx.fill();
-
-                    // semicircle brush stroke done -> respawn elsewhere
-                    if (s.traveled >= Math.PI) respawn(s);
+                    if (tw > 0.01) {
+                        ctx.beginPath();
+                        ctx.arc(s.px, s.py, s.size * 0.9, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(' + rgb + ',' + (tw * 0.95).toFixed(3) + ')';
+                        ctx.fill();
+                    }
                 });
             }
             sess.raf = requestAnimationFrame(frame);

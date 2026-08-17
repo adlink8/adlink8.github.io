@@ -2166,6 +2166,6 @@ body.disco .main {
 .starry-canvas {
     position: absolute;
     inset: 0;
-    transition: opacity 1.8s ease;
+    transition: opacity 3s ease;
 }
 .starry-canvas.starry-out { opacity: 0; }
