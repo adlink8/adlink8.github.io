@@ -1689,9 +1689,10 @@ body:not(:has(.first-entry.home-info)) .main {
 }
 
 /* =======================================================
-   27. GLASSMORPHISM: frosted cards over the sky
-   (post-single excluded — long-form text needs a solid
-   surface, and backdrop-filter would break the fixed TOC)
+   27. GLASSMORPHISM: every panel is translucent over the sky.
+   NOTE: .post-single gets a translucent background but NEVER
+   backdrop-filter — a backdrop-filter creates a containing
+   block that breaks the fixed floating TOC inside it.
    ======================================================= */
 :root {
     --glass-bg: color-mix(in srgb, var(--entry) 72%, transparent);
@@ -1709,6 +1710,20 @@ body:not(:has(.first-entry.home-info)) .main {
     background: var(--glass-bg) !important;
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
+}
+
+/* article body + inner cards: translucent, no backdrop-filter (see note) */
+.post-single,
+.project-card,
+.stat-card {
+    background: var(--glass-bg);
+}
+
+/* mobile/tablet TOC card joins the glass too */
+@media screen and (max-width: 1349px) {
+    .toc {
+        background: var(--glass-bg) !important;
+    }
 }
 
 /* slightly crisper borders so the glass edge reads clearly */
