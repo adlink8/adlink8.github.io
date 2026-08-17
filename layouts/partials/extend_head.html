@@ -8,3 +8,8 @@
 {{/* Same-origin page transitions (Chrome/Edge 126+, progressive enhancement) */}}
 <meta name="view-transition" content="same-origin">
 
+{{/* Sky clock-sync: negative animation-delay anchor for all long-cycle sky
+     animations (custom.css §35). Set pre-paint so the moon/clouds/mist never
+     visibly restart on navigation — their phase follows the wall clock. */}}
+<script>document.documentElement.style.setProperty('--sky-clock', '-' + (Math.floor(Date.now() / 1000) % 86400) + 's');</script>
+

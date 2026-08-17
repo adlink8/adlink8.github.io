@@ -2237,3 +2237,41 @@ body.disco .main {
 @media (prefers-reduced-motion: reduce) {
     .cursor-dot { display: none; }
 }
+
+/* =======================================================
+   35. PAGE-LOAD CONTINUITY — the sky never restarts
+   extend_head.html sets --sky-clock to -(seconds since midnight)
+   before first paint; every long-cycle sky animation consumes it
+   as a negative delay, so its phase follows the wall clock across
+   page navigations. Together with the cross-document view
+   transition (meta in extend_head.html) page changes are seamless.
+   NEW sky animations MUST consume var(--sky-clock) the same way.
+   ======================================================= */
+.moon, .moon::before, .moon::after,
+.sun, .sunrays, .sunrays-b,
+.stars-a,
+.mist-a, .mist-c {
+    animation-delay: var(--sky-clock, 0s);
+}
+.stars-b { animation-delay: calc(var(--sky-clock, 0s) + 2s); }
+.mist-b  { animation-delay: calc(var(--sky-clock, 0s) - 70s); }
+.cloud-1 { animation-delay: calc(var(--sky-clock, 0s) - 20s); }
+.cloud-2 { animation-delay: calc(var(--sky-clock, 0s) - 65s); }
+.cloud-3 { animation-delay: calc(var(--sky-clock, 0s) - 45s); }
+.cloud-4 { animation-delay: calc(var(--sky-clock, 0s) - 90s); }
+.cloud-5 { animation-delay: calc(var(--sky-clock, 0s) - 10s); }
+.cloud-6 { animation-delay: calc(var(--sky-clock, 0s) - 70s); }
+.cloud-7 { animation-delay: calc(var(--sky-clock, 0s) - 35s); }
+
+/* smoother cross-page fade than the UA default */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.35s;
+    animation-timing-function: ease;
+}
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none;
+    }
+}
