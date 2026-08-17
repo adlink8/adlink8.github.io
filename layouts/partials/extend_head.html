@@ -13,3 +13,21 @@
      visibly restart on navigation — their phase follows the wall clock. */}}
 <script>document.documentElement.style.setProperty('--sky-clock', '-' + (Math.floor(Date.now() / 1000) % 86400) + 's');</script>
 
+{{/* Real moon phase: lunar age from the 2000-01-06 18:14 UTC new moon.
+     Sets data-moon-quarter / data-moon-term / --moon-ts / --moon-illum,
+     consumed by the moon geometry in custom.css §26. Static per visit —
+     no animation, tonight's actual moon. */}}
+<script>
+(function () {
+    var synodic = 29.530588853;
+    var age = ((Date.now() - Date.UTC(2000, 0, 6, 18, 14)) / 86400000) % synodic;
+    if (age < 0) age += synodic;
+    var theta = age / synodic * 2 * Math.PI;
+    var de = document.documentElement;
+    de.dataset.moonQuarter = theta < Math.PI ? 'waxing' : 'waning';
+    de.dataset.moonTerm = (theta < Math.PI / 2 || theta > 3 * Math.PI / 2) ? 'dark' : 'bright';
+    de.style.setProperty('--moon-ts', Math.abs(Math.cos(theta)).toFixed(3));
+    de.style.setProperty('--moon-illum', ((1 - Math.cos(theta)) / 2).toFixed(3));
+})();
+</script>
+
