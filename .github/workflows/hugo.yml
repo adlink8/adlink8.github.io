@@ -38,13 +38,13 @@ jobs:
       - name: Build with Hugo
         run: hugo --minify
 
-      # 死链检查：报告但不阻断部署（外部站点偶尔误报）
+      # 死链检查：报告但不阻断部署（外部站点偶尔误报）。
+      # 同样用官方 release 二进制（v0.24.2），避开 lychee-action 的 codeload 限流
       - name: Check links (non-blocking)
-        uses: lycheeverse/lychee-action@v2
         continue-on-error: true
-        with:
-          args: --no-progress --exclude-loopback './public/**/*.html'
-          fail: false
+        run: |
+          curl -sSL https://github.com/lycheeverse/lychee/releases/download/lychee-v0.24.2/lychee-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C "$RUNNER_TEMP" lychee
+          "$RUNNER_TEMP/lychee" --no-progress --exclude-loopback './public/**/*.html' || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
