@@ -33,10 +33,9 @@ jobs:
         run: |
           curl -sSL https://github.com/gohugoio/hugo/releases/download/v0.165.0/hugo_extended_0.165.0_linux-amd64.tar.gz | tar -xz -C "$RUNNER_TEMP" hugo
           echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
-          hugo version
 
       - name: Build with Hugo
-        run: hugo --minify
+        run: hugo version && hugo --minify
 
       # 死链检查：报告但不阻断部署（外部站点偶尔误报）。
       # 同样用官方 release 二进制（v0.24.2），避开 lychee-action 的 codeload 限流
