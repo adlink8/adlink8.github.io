@@ -1,12 +1,12 @@
 +++
 title = '简历'
 layout = 'resume'
-description = 'Li Shuo Yan — DevOps 工程师简历'
+description = 'Li Shuo Yan — DevOps × AI 工程师简历'
 +++
 
 <div class="resume-head">
 <h1>Li Shuo Yan</h1>
-<p class="resume-role">DevOps 工程师 — CI/CD、容器化与云基础设施</p>
+<p class="resume-role">DevOps × AI 工程师 — CI/CD、云基础设施与 RAG/LLM 系统</p>
 <p class="resume-contact">
 <a href="https://github.com/adlink8">github.com/adlink8</a> ·
 <a href="mailto:2448366060l@email.com">2448366060l@email.com</a> ·
@@ -16,7 +16,7 @@ description = 'Li Shuo Yan — DevOps 工程师简历'
 
 ## 个人概述
 
-交付能跑起来的系统，而不是教程复现的 DevOps 工程师：**3 个已交付项目**，个人数据流水线日均接入 **11k+ 事件**、在管 **40k+ 知识单元**，7×24 运行。以阶段化方式与 AI 协作——规划 → 执行 → 验证 → 审计——验收标准由我制定，回归测试不通过不叫完成。
+交付能跑起来的系统，而不是教程复现的 DevOps × AI 工程师：**3 个已交付项目**，个人数据流水线日均接入 **11k+ 事件**、在管 **40k+ 知识单元**，7×24 运行。同时交付 AI 应用：面向中文长文本的 RAG 平台，以 Recall@K / MRR / 忠实度指标驱动每一次检索迭代。以阶段化方式与 AI 协作——规划 → 执行 → 验证 → 审计——验收标准由我制定，回归测试不通过不叫完成。
 
 ## 项目经历
 
@@ -45,6 +45,7 @@ description = 'Li Shuo Yan — DevOps 工程师简历'
 
 - **系统**：Linux 内核、系统调用、进程指标、WSL 工具链
 - **语言**：Python、C、Bash、JavaScript/TypeScript
+- **AI 工程**：RAG 流水线（分块/向量化/检索/生成）、ChromaDB 向量存储、Ollama 本地推理、LLM 评估（Recall@K / MRR / 忠实度）、MCP 集成
 - **交付**：Docker、GitHub Actions CI/CD、Terraform（学习中）、AWS 与 DigitalOcean（路线图）
 - **可观测性**：Prometheus / Grafana（路线图里程碑 4）
 - **方法论**：评估驱动开发、阶段化 AI 协作（GSD）、测试门禁交付

@@ -1,12 +1,12 @@
 +++
 title = 'Resume'
 layout = 'resume'
-description = 'Li Shuo Yan — DevOps Engineer resume'
+description = 'Li Shuo Yan — DevOps & AI Engineer resume'
 +++
 
 <div class="resume-head">
 <h1>Li Shuo Yan</h1>
-<p class="resume-role">DevOps Engineer — CI/CD, Containers &amp; Cloud Infrastructure</p>
+<p class="resume-role">DevOps &amp; AI Engineer — CI/CD, Cloud Infrastructure &amp; RAG/LLM Systems</p>
 <p class="resume-contact">
 <a href="https://github.com/adlink8">github.com/adlink8</a> ·
 <a href="mailto:2448366060l@email.com">2448366060l@email.com</a> ·
@@ -16,7 +16,7 @@ description = 'Li Shuo Yan — DevOps Engineer resume'
 
 ## Summary
 
-DevOps engineer who ships working systems, not tutorial replicas: **3 delivered projects**, a personal data pipeline ingesting **11k+ events** and managing **40k+ knowledge units**, running 7×24. I work stage-managed with AI — plan → execute → verify → audit — with acceptance criteria I own and regression tests that must pass before anything is called done.
+DevOps &amp; AI engineer who ships working systems, not tutorial replicas: **3 delivered projects**, a personal data pipeline ingesting **11k+ events** and managing **40k+ knowledge units**, running 7×24. I also ship AI applications: a long-text RAG platform for Chinese, where every retrieval iteration is driven by Recall@K / MRR / faithfulness metrics. I work stage-managed with AI — plan → execute → verify → audit — with acceptance criteria I own and regression tests that must pass before anything is called done.
 
 ## Projects
 
@@ -45,6 +45,7 @@ DevOps engineer who ships working systems, not tutorial replicas: **3 delivered 
 
 - **Systems**: Linux internals, system calls, process metrics, WSL toolchains
 - **Languages**: Python, C, Bash, JavaScript/TypeScript
+- **AI Engineering**: RAG pipelines (chunking/embedding/retrieval/generation), ChromaDB vector stores, local inference with Ollama, LLM evaluation (Recall@K / MRR / faithfulness), MCP integration
 - **Delivery**: Docker, GitHub Actions CI/CD, Terraform (learning), AWS & DigitalOcean (roadmap)
 - **Observability**: Prometheus / Grafana (roadmap milestone 4)
 - **Practices**: evaluation-driven development, staged AI-assisted engineering (GSD), test-gated delivery

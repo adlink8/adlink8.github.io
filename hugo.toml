@@ -71,7 +71,7 @@ defaultContentLanguageInSubdir = false
     contentDir = 'content/en'
     title = 'ShuoYan | Engineering Portfolio'
     [languages.en.params]
-        description = "DevOps engineering notes: CI/CD, containers, cloud infrastructure and the systems I build."
+        description = "DevOps & AI engineering notes: CI/CD, cloud infrastructure, RAG/LLM systems, and the systems I build."
         [languages.en.params.homeInfoParams]
             Title = ""
             Content = """
@@ -79,9 +79,9 @@ defaultContentLanguageInSubdir = false
 
 # Hi, I'm Li Shuo Yan
 
-**DevOps Engineer — CI/CD, Containers & Cloud Infrastructure**
+**DevOps × AI Engineering — CI/CD, Cloud Infrastructure & RAG/LLM Systems**
 
-I ship working systems, not tutorial replicas: 3 delivered projects, 11k+ events ingested, 40k+ knowledge units under management.
+I ship working systems, not tutorial replicas: 3 delivered projects, 11k+ events ingested, 40k+ knowledge units under management. I also build AI applications: long-text RAG pipelines, vector search, and evaluation-driven LLM iteration.
 
 ---
 
@@ -155,7 +155,7 @@ I ship working systems, not tutorial replicas: 3 delivered projects, 11k+ events
     title = 'ShuoYan | 工程作品集'
     hasCJKLanguage = true
     [languages.zh.params]
-        description = "DevOps 工程笔记：CI/CD、容器化、云基础设施，以及我构建的系统。"
+        description = "DevOps × AI 工程笔记：CI/CD、云基础设施、RAG/LLM 系统，以及我构建的项目。"
         [languages.zh.params.homeInfoParams]
             Title = ""
             Content = """
@@ -163,9 +163,9 @@ I ship working systems, not tutorial replicas: 3 delivered projects, 11k+ events
 
 # Hi，我是 Li Shuo Yan
 
-**DevOps 工程师 — CI/CD、容器化与云基础设施**
+**DevOps × AI 工程 — CI/CD、云基础设施与 RAG/LLM 系统**
 
-我交付的是能跑起来的系统，而不是教程复现：3 个已交付项目、11k+ 事件接入、40k+ 知识单元在管。
+我交付的是能跑起来的系统，而不是教程复现：3 个已交付项目、11k+ 事件接入、40k+ 知识单元在管。也构建 AI 应用：中文长文本 RAG 流水线、向量检索与评估驱动的 LLM 迭代。
 
 ---
 
