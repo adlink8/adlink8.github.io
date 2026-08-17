@@ -18,6 +18,8 @@ python tools/generate_og.py    # regenerate the OG share card after avatar/tagli
 
 Categories: `daily`, `pitfalls`, `insights`, `reflections`, `project-logs`.
 
+Writing content — category conventions, frontmatter rules, how project-hub aggregation works, per-page maintenance: see `WRITING.md`.
+
 ## Architecture
 
 ```
