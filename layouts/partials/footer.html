@@ -565,8 +565,21 @@
                 ctx.lineCap = 'round';
 
                 stars.forEach(function(s) {
+                    // movement — keeps flowing even while dimming out
+                    var dA = s.omega * speed * s.c.dir * dt / 1000 * Math.PI;
+                    s.ang += dA;
+                    s.traveled += Math.abs(dA);
+                    var nx = s.c.x + Math.cos(s.ang) * s.rad;
+                    var ny = s.c.y + Math.sin(s.ang) * s.rad;
+                    s.px = nx; s.py = ny;
+                    // trail = the last ~126° of arc (angle-based, not frame-based,
+                    // so it stays a long brush stroke at any speed)
+                    s.hist.push(nx, ny, s.traveled);
+                    while (s.hist.length > 6 && (s.traveled - s.hist[2]) > 2.2) s.hist.splice(0, 3);
+                    if (s.hist.length > 600) s.hist.splice(0, s.hist.length - 600);
+
                     if (s.dying) {
-                        // semicircle done: freeze and dim out gently, then respawn
+                        // semicircle done: dim out WHILE still flowing, then respawn
                         s.fade -= dt / 1300;
                         if (s.fade <= 0) {
                             respawn(s);
@@ -574,17 +587,6 @@
                             s.fade = 0; // ramps back in below
                         }
                     } else {
-                        var dA = s.omega * speed * s.c.dir * dt / 1000 * Math.PI;
-                        s.ang += dA;
-                        s.traveled += Math.abs(dA);
-                        var nx = s.c.x + Math.cos(s.ang) * s.rad;
-                        var ny = s.c.y + Math.sin(s.ang) * s.rad;
-                        s.px = nx; s.py = ny;
-                        // trail = the last ~126° of arc (angle-based, not frame-based,
-                        // so it stays a long brush stroke at any speed)
-                        s.hist.push(nx, ny, s.traveled);
-                        while (s.hist.length > 6 && (s.traveled - s.hist[2]) > 2.2) s.hist.splice(0, 3);
-                        if (s.hist.length > 600) s.hist.splice(0, s.hist.length - 600);
                         if (s.traveled >= Math.PI) s.dying = true;
                         if (s.fade < 1) s.fade = Math.min(1, s.fade + dt / 900); // newborn ramp-in
                     }
