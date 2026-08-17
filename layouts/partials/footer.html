@@ -647,7 +647,10 @@
             var c = document.querySelector('.constellation');
             if (c && !reduceMotion) {
                 var cl = c.cloneNode(true); // re-insert to replay the draw-in animation
+                cl.classList.add('con-show'); // hidden by default — summon it
                 c.parentNode.replaceChild(cl, c);
+            } else if (c) {
+                c.classList.add('con-show');
             }
             showToast(isZh ? '♏ 天蝎座重新点亮' : '♏ Scorpius relit');
         }

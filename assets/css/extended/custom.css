@@ -1888,11 +1888,13 @@ body:not(:has(.first-entry.home-info)) .main {
 }
 
 /* =======================================================
-   30. SCORPIUS CONSTELLATION (dark theme, Oct 25 birthday)
-   Stars light up one by one, lines draw along the path,
-   then the whole figure settles in.
+   30. SCORPIUS CONSTELLATION (dark theme)
+   Hidden by default — appears only as an egg:
+   golden on the author's birthday (Oct 25, .birthday),
+   or summoned by the typed word "scorpio" (.con-show).
    ======================================================= */
 .constellation {
+    display: none;
     position: absolute;
     left: 50%;
     top: 12%;
@@ -1901,6 +1903,11 @@ body:not(:has(.first-entry.home-info)) .main {
     transform: translateX(-50%);
     opacity: 0.35;
     overflow: visible;
+}
+
+.constellation.birthday,
+.constellation.con-show {
+    display: block;
 }
 
 .con-lines {
