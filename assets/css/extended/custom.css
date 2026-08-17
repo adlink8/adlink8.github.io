@@ -1689,10 +1689,11 @@ body:not(:has(.first-entry.home-info)) .main {
 }
 
 /* =======================================================
-   27. GLASSMORPHISM: every panel is translucent over the sky.
-   NOTE: .post-single gets a translucent background but NEVER
-   backdrop-filter — a backdrop-filter creates a containing
-   block that breaks the fixed floating TOC inside it.
+   27. PANEL-LESS: content floats directly on the sky.
+   No backgrounds, borders or shadows on any panel — the
+   day/night sky IS the page background. (.post-single must
+   also never get backdrop-filter: it would create a
+   containing block and break the fixed floating TOC.)
    ======================================================= */
 :root {
     --glass-bg: color-mix(in srgb, var(--entry) 72%, transparent);
@@ -1703,34 +1704,55 @@ body:not(:has(.first-entry.home-info)) .main {
     --glass-bg: color-mix(in srgb, var(--entry) 55%, transparent);
 }
 
-.first-entry.home-info,
-.post-entry,
-.featured-card,
+/* small tag chips keep a hint of glass — they don't block the sky */
 .terms-tags a {
     background: var(--glass-bg) !important;
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
 }
 
-/* article body + inner cards: translucent, no backdrop-filter (see note) */
-.post-single,
-.project-card,
-.stat-card {
-    background: var(--glass-bg);
-}
-
-/* mobile/tablet TOC card joins the glass too */
-@media screen and (max-width: 1349px) {
-    .toc {
-        background: var(--glass-bg) !important;
-    }
-}
-
-/* slightly crisper borders so the glass edge reads clearly */
+/* every big panel: fully transparent, frameless */
 .first-entry.home-info,
 .post-entry,
-.featured-card {
-    border-color: color-mix(in srgb, var(--border) 70%, rgba(var(--accent), 0.18)) !important;
+.featured-card,
+.project-card,
+.stat-card,
+.post-single {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* hairline dividers keep list rhythm without boxing the sky */
+.post-entry,
+.featured-card,
+.project-card {
+    border-bottom: 1px dashed var(--border) !important;
+    border-radius: 0 !important;
+    padding-bottom: 20px;
+}
+
+.post-entry:hover,
+.featured-card:hover,
+.project-card:hover,
+.stat-card:hover {
+    box-shadow: none !important;
+    border-bottom-color: rgba(var(--accent), 0.5) !important;
+}
+
+/* article body reclaims the old panel padding */
+.post-single {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+}
+
+/* mobile/tablet TOC: no card either */
+@media screen and (max-width: 1349px) {
+    .toc {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
 }
 
 /* =======================================================

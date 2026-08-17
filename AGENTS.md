@@ -43,7 +43,7 @@ hugo.toml                   # config; menus & homeInfoParams exist PER LANGUAGE
 
 **`layouts/partials/footer.html` shadows the theme footer.** PaperMod's theme-toggle handler lived there, so our override re-implements it (section 0 of the inline script). Removing it silently breaks dark/light switching. All site-wide JS lives in this one file.
 
-**`post-single` never gets `backdrop-filter`.** It creates a containing block that breaks the fixed floating TOC. The article body still goes translucent via `--glass-bg` (color-mix of `--entry`) — a plain background is safe; only filter-like properties break fixed positioning.
+**The site is panel-less.** No backgrounds/borders/shadows on any big panel (`.post-single`, `.post-entry`, `.first-entry.home-info`, `.featured-card`, `.project-card`, `.stat-card`) — the sky is the page background (custom.css section 27). `.post-single` must also never get `backdrop-filter`: it creates a containing block that breaks the fixed floating TOC. Only tiny elements (tag chips) may keep a hint of glass.
 
 **Sky background is CSS-only** (no images, no WebGL). Theme-conditional via `[data-theme="dark"|"light"]` selectors. Every animation must have a `prefers-reduced-motion` fallback and `aria-hidden` markup.
 
