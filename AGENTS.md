@@ -43,17 +43,27 @@ hugo.toml                   # config; menus & homeInfoParams exist PER LANGUAGE
 
 **`layouts/partials/footer.html` shadows the theme footer.** PaperMod's theme-toggle handler lived there, so our override re-implements it (section 0 of the inline script). Removing it silently breaks dark/light switching. All site-wide JS lives in this one file.
 
-**The site is panel-less.** No backgrounds/borders/shadows on any big panel (`.post-single`, `.post-entry`, `.first-entry.home-info`, `.featured-card`, `.project-card`, `.stat-card`) — the sky is the page background (custom.css section 27). `.post-single` must also never get `backdrop-filter`: it creates a containing block that breaks the fixed floating TOC. Only tiny elements (tag chips) may keep a hint of glass.
-
-**Sky background is CSS-only** (no images, no WebGL). Theme-conditional via `[data-theme="dark"|"light"]` selectors. Every animation must have a `prefers-reduced-motion` fallback and `aria-hidden` markup.
-
-**Easter eggs.** All eggs live in footer.html JS sections 12–13 + custom.css sections 32–33: Konami (↑↑↓↓←→←→BA), moon/sun click, Oct 25 golden Scorpius (the constellation is hidden by default — only the birthday egg or the `scorpio` typed word reveals it), typed words (`starry`/`scorpio`), logo ×5 disco, late-night toast, copy toast, rare (~4%) Van Gogh "Starry Night" (dark only; a 2D canvas of stars — gather one by one on a jittered grid, then swirl with blue trails around randomized centers along semicircle arcs; canvas is the one sanctioned exception to the CSS-only sky), 404 lost meteor. Toast text is bilingual via the `isZh` lang check in JS — keep both strings when editing.
-
 **Frontmatter.** TOML (`+++`). Every post needs a lead paragraph followed by `<!--more-->` (it becomes the home excerpt) and a `description`. Set `projects = ['<slug>']` to attach a post to a project hub; hubs at `/project/<slug>/` auto-aggregate across sections — do not create per-project directories anywhere else.
 
 **Deploy.** Push to `main` triggers the full pipeline (build → link check → deploy). The lychee link check is intentionally non-blocking. There is no staging; `hugo --minify` locally is the gate.
 
 **Housekeeping.** `public/`, `resources/`, `.hugo_build.lock` are gitignored — never commit, and never delete them while `hugo server` is running (stale-cache 404s follow).
+
+## Frontend — design constraints
+
+**Panel-less.** The sky IS the page background. Big surfaces (`.post-single`, `.post-entry`, `.first-entry.home-info`, `.featured-card`, `.project-card`, `.stat-card`, mobile `.toc`) stay fully transparent — no background, border, or shadow (custom.css §27). List rhythm comes from hairline dashed dividers; hover shifts the divider to accent, never a shadow. Glass (`--glass-bg` + `backdrop-filter`) is reserved for tiny elements like tag chips. `.post-single` never gets `backdrop-filter`/`filter`/`transform` — it creates a containing block that breaks the fixed floating TOC inside it.
+
+**Two themes, one design.** Any visual change ships for both `[data-theme="dark"]` and `[data-theme="light"]`, verified on both `/` and `/zh/`. Default theme is light; state lives in `data-theme` on `<html>` + localStorage `pref-theme`. Accent is purple (`--accent`); theme colors come from PaperMod's CSS vars (`--primary`, `--secondary`, `--entry`, `--border`, `--theme`) via `color-mix`, never hardcoded hex for themed surfaces.
+
+**The sky is CSS-only** — no images, no WebGL (custom.css §26, markup in footer.html). Dark: 60s moon-phase cycle (crescent → full → blood-moon eclipse; the shadow disc `.moon::before` needs `z-index: 2` or the opaque moon disc hides the phases), ~36 JS-generated meteors, two twinkling star layers. Light: sun-ray cones with sway, 7 clouds, mist bands, and a 50/50 blue/white sky split by a wavy `clip-path` border. The Scorpius constellation (§30) stays hidden by default — only the Oct 25 birthday egg (gold) or the typed word `scorpio` reveals it. The starry-night canvas is the single sanctioned exception to CSS-only.
+
+**Motion discipline.** Animate `transform` and `opacity` only. Every animation has a `prefers-reduced-motion` fallback and decorative markup is `aria-hidden`. Pointer effects (card tilt, avatar parallax) are gated behind `pointer: fine` so touch devices skip them.
+
+**One JS file, no dependencies.** All site-wide JS lives in the numbered inline script in `layouts/partials/footer.html`; no frameworks, no npm. Toast text is bilingual via the `isZh` lang check — always keep both strings.
+
+**Easter eggs** (footer.html JS §12–13, custom.css §32–33): Konami `↑↑↓↓←→←→BA`, moon/sun click, typed words `starry`/`scorpio`, logo ×5 disco, late-night toast, copy toast, ~4% dark-mode Van Gogh starry night, 404 lost meteor. Eggs respect `prefers-reduced-motion` and never interfere with normal reading.
+
+**Resume exception.** `/resume/` is always light, no sky, no animations, print-ready A4 (`layouts/_default/resume.html` + §31). Panel-less and sky rules do not apply there.
 
 ## Definition of done
 
