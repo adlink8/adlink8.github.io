@@ -1,0 +1,150 @@
+{{- /* AI Activity Heatmap Component — Powered by AgentsView Telemetry (site.Data.ai_activity) */ -}}
+{{- with site.Data.ai_activity }}
+{{- $isZh := eq site.Language.Lang "zh" }}
+<div class="ai-heatmap-wrapper">
+  <div class="ai-heatmap-container">
+    <div class="ai-heatmap-header">
+      <div class="ai-heatmap-title">
+        <span class="ai-heatmap-icon">⚡</span>
+        <h4>{{ if $isZh }}AI 协同研发活跃度 (AgentsView 遥测){{ else }}AI Engineering Activity (AgentsView Telemetry){{ end }}</h4>
+      </div>
+      <div class="ai-heatmap-summary">
+        <span class="ai-stat-badge"><strong>{{ .summary.total_messages }}</strong> {{ if $isZh }}条 AI 消息{{ else }}Messages{{ end }}</span>
+        <span class="ai-stat-badge"><strong>{{ .summary.total_sessions }}</strong> {{ if $isZh }}场会话{{ else }}Sessions{{ end }}</span>
+        <span class="ai-stat-badge"><strong>{{ .summary.active_days }}</strong> {{ if $isZh }}活跃天{{ else }}Days Active{{ end }}</span>
+        <span class="ai-stat-badge highlight"><strong>{{ .summary.max_daily_messages }}</strong> {{ if $isZh }}峰值日消息{{ else }}Peak/Day{{ end }}</span>
+      </div>
+    </div>
+
+    <div class="ai-heatmap-scroll">
+      <div class="ai-heatmap-body">
+        <!-- Weekday Labels Column -->
+        <div class="ai-heatmap-weekdays">
+          <div class="weekday-spacer"></div>
+          <span>{{ if $isZh }}一{{ else }}M{{ end }}</span>
+          <span></span>
+          <span>{{ if $isZh }}三{{ else }}W{{ end }}</span>
+          <span></span>
+          <span>{{ if $isZh }}五{{ else }}F{{ end }}</span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <!-- Weeks & Months Board -->
+        <div class="ai-heatmap-board">
+          <!-- Month & Year Timeline Row -->
+          <div class="ai-heatmap-months-row">
+            {{- range .months }}
+            <span class="month-label" style="grid-column: {{ add .week_col 1 }};">
+              {{ if $isZh }}{{ .name_zh }}{{ else }}{{ .name_en }}{{ end }}
+            </span>
+            {{- end }}
+          </div>
+
+          <!-- Weeks Grid (year to date) -->
+          <div class="ai-heatmap-grid">
+            {{- range .weeks }}
+            <div class="heatmap-week-col">
+              {{- range .days }}
+              {{- if .is_future }}
+              <div class="heatmap-cell level-0 future-cell" style="opacity: 0.15;"></div>
+              {{- else }}
+              <div class="heatmap-cell level-{{ .level }}"
+                   data-date="{{ .date }}"
+                   data-messages="{{ .messages }}"
+                   data-sessions="{{ .sessions }}"
+                   title="{{ .date }}: {{ .messages }} 条消息 · {{ .sessions }} 场会话">
+              </div>
+              {{- end }}
+              {{- end }}
+            </div>
+            {{- end }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{- /* Session health strip — computed by tools/sync_agentsview.py */ -}}
+    {{- with .summary.health }}
+    {{- $health := . }}
+    {{- $graded := add (add .grades.A .grades.B) (add .grades.C (add .grades.D .grades.F)) }}
+    <div class="ai-health">
+      <div class="ai-health-head">
+        <span class="ai-health-title">🩺 {{ if $isZh }}会话健康度{{ else }}Session Health{{ end }}</span>
+        {{- if gt $graded 0 }}
+        <span class="ai-health-sub">{{ if $isZh }}基于 {{ $graded }} 场已评分会话{{ else }}across {{ $graded }} graded sessions{{ end }}</span>
+        {{- end }}
+      </div>
+
+      <div class="ai-health-tiles">
+        <div class="ai-health-tile">
+          <span class="ai-health-value">{{ .avg_session_messages }}<small>{{ if $isZh }}条{{ else }}msgs{{ end }}</small></span>
+          <span class="ai-health-label">{{ if $isZh }}平均会话深度{{ else }}Avg session depth{{ end }}</span>
+        </div>
+        <div class="ai-health-tile">
+          <span class="ai-health-value">{{ .median_session_messages }}<small>{{ if $isZh }}条{{ else }}msgs{{ end }}</small></span>
+          <span class="ai-health-label">{{ if $isZh }}中位会话长度{{ else }}Median session{{ end }}</span>
+        </div>
+        <div class="ai-health-tile">
+          <span class="ai-health-value">{{ .completion_rate }}<small>%</small></span>
+          <span class="ai-health-label">{{ if $isZh }}会话完成率{{ else }}Completion rate{{ end }}</span>
+        </div>
+        <div class="ai-health-tile">
+          <span class="ai-health-value">{{ .healthy_ratio }}<small>%</small></span>
+          <span class="ai-health-label">{{ if $isZh }}健康会话占比 (A+B){{ else }}Healthy sessions (A+B){{ end }}</span>
+        </div>
+        <div class="ai-health-tile">
+          <span class="ai-health-value">{{ .avg_health_score }}<small>{{ if $isZh }}分{{ else }}pts{{ end }}</small></span>
+          <span class="ai-health-label">{{ if $isZh }}平均健康分{{ else }}Avg health score{{ end }}</span>
+        </div>
+        <div class="ai-health-tile">
+          <span class="ai-health-value">{{ .longest_streak }}<small>{{ if $isZh }}天{{ else }}d{{ end }}</small></span>
+          <span class="ai-health-label">{{ if $isZh }}最长连续活跃{{ else }}Longest streak{{ end }}</span>
+        </div>
+        <div class="ai-health-tile">
+          <span class="ai-health-value">{{ .current_streak }}<small>{{ if $isZh }}天{{ else }}d{{ end }}</small></span>
+          <span class="ai-health-label">{{ if $isZh }}当前连续活跃{{ else }}Current streak{{ end }}</span>
+        </div>
+      </div>
+
+      {{- if gt $graded 0 }}
+      <div class="ai-health-bar" role="img"
+           aria-label="{{ if $isZh }}会话健康等级分布{{ else }}Session health grade distribution{{ end }}">
+        {{- range $g := slice "A" "B" "C" "D" "F" }}
+        {{- $n := index $health.grades $g }}
+        {{- if gt $n 0 }}
+        {{- $pct := math.Round (div (mul $n 100) $graded) }}
+        <span class="ai-health-seg g-{{ $g }}" style="flex-grow: {{ $n }};"
+              title="{{ $g }}: {{ $n }} ({{ printf "%.0f%%" $pct }})"></span>
+        {{- end }}
+        {{- end }}
+      </div>
+      <div class="ai-health-legend">
+        {{- range $g := slice "A" "B" "C" "D" "F" }}
+        {{- $n := index $health.grades $g }}
+        {{- if gt $n 0 }}
+        <span><i class="ai-health-dot g-{{ $g }}"></i>{{ $g }} {{ $n }}</span>
+        {{- end }}
+        {{- end }}
+      </div>
+      {{- end }}
+    </div>
+    {{- end }}
+
+    <div class="ai-heatmap-footer">
+      <span class="ai-heatmap-foot-text">
+        {{ if $isZh }}{{ .summary.start_date }} 至 {{ .summary.end_date }}（年初至今）· 活跃 {{ .summary.active_days }} 天 · 数据源：AgentsView 遥测{{ else }}{{ .summary.start_date }} to {{ .summary.end_date }} (year to date) · {{ .summary.active_days }} Active Days · Source: AgentsView Telemetry{{ end }}
+      </span>
+      <div class="ai-heatmap-legend">
+        <span>{{ if $isZh }}低{{ else }}Less{{ end }}</span>
+        <span class="legend-cell level-0"></span>
+        <span class="legend-cell level-1"></span>
+        <span class="legend-cell level-2"></span>
+        <span class="legend-cell level-3"></span>
+        <span class="legend-cell level-4"></span>
+        <span>{{ if $isZh }}高强度{{ else }}More{{ end }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+{{- end }}

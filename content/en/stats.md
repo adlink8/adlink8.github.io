@@ -1,9 +1,15 @@
 +++
-title = 'Site Stats'
-description = 'Publishing statistics for this blog, recomputed on every deploy.'
+title = 'Site & AI Engineering Stats'
+description = 'Publishing statistics and AI engineering activity telemetry.'
 +++
 
-These numbers are computed at build time from the actual posts — no tracking, no database.
+These metrics are computed at build time from published posts, with AI engineering telemetry sourced from local AgentsView logs.
+
+{{< aiheatmap >}}
+
+---
+
+### 📝 Blog Publication Statistics
 
 {{< blogstats >}}
 

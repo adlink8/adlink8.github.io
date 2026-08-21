@@ -1,0 +1,2860 @@
+{
+  "summary": {
+    "active_days": 159,
+    "total_messages": 155934,
+    "total_sessions": 1508,
+    "start_date": "2025-12-29",
+    "end_date": "2026-08-21",
+    "max_daily_messages": 7416,
+    "weeks_count": 34,
+    "window_days": 236,
+    "health": {
+      "avg_session_messages": 103.4,
+      "median_session_messages": 33,
+      "completion_rate": 95,
+      "healthy_ratio": 93,
+      "avg_health_score": 94,
+      "longest_streak": 49,
+      "current_streak": 43,
+      "grades": {
+        "A": 1180,
+        "B": 212,
+        "C": 55,
+        "D": 39,
+        "F": 7
+      }
+    }
+  },
+  "months": [
+    {
+      "name_zh": "2026年 1月",
+      "name_en": "Jan '26",
+      "week_col": 0
+    },
+    {
+      "name_zh": "2月",
+      "name_en": "Feb",
+      "week_col": 4
+    },
+    {
+      "name_zh": "3月",
+      "name_en": "Mar",
+      "week_col": 8
+    },
+    {
+      "name_zh": "4月",
+      "name_en": "Apr",
+      "week_col": 13
+    },
+    {
+      "name_zh": "5月",
+      "name_en": "May",
+      "week_col": 17
+    },
+    {
+      "name_zh": "6月",
+      "name_en": "Jun",
+      "week_col": 22
+    },
+    {
+      "name_zh": "7月",
+      "name_en": "Jul",
+      "week_col": 26
+    },
+    {
+      "name_zh": "8月",
+      "name_en": "Aug",
+      "week_col": 30
+    }
+  ],
+  "weeks": [
+    {
+      "week_index": 0,
+      "days": [
+        {
+          "date": "2025-12-29",
+          "year": 2025,
+          "month": 12,
+          "day": 29,
+          "weekday": 0,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2025-12-30",
+          "year": 2025,
+          "month": 12,
+          "day": 30,
+          "weekday": 1,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2025-12-31",
+          "year": 2025,
+          "month": 12,
+          "day": 31,
+          "weekday": 2,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-01",
+          "year": 2026,
+          "month": 1,
+          "day": 1,
+          "weekday": 3,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-02",
+          "year": 2026,
+          "month": 1,
+          "day": 2,
+          "weekday": 4,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-03",
+          "year": 2026,
+          "month": 1,
+          "day": 3,
+          "weekday": 5,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-04",
+          "year": 2026,
+          "month": 1,
+          "day": 4,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 1,
+      "days": [
+        {
+          "date": "2026-01-05",
+          "year": 2026,
+          "month": 1,
+          "day": 5,
+          "weekday": 0,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-06",
+          "year": 2026,
+          "month": 1,
+          "day": 6,
+          "weekday": 1,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-07",
+          "year": 2026,
+          "month": 1,
+          "day": 7,
+          "weekday": 2,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-08",
+          "year": 2026,
+          "month": 1,
+          "day": 8,
+          "weekday": 3,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-09",
+          "year": 2026,
+          "month": 1,
+          "day": 9,
+          "weekday": 4,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-10",
+          "year": 2026,
+          "month": 1,
+          "day": 10,
+          "weekday": 5,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-11",
+          "year": 2026,
+          "month": 1,
+          "day": 11,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 2,
+      "days": [
+        {
+          "date": "2026-01-12",
+          "year": 2026,
+          "month": 1,
+          "day": 12,
+          "weekday": 0,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-13",
+          "year": 2026,
+          "month": 1,
+          "day": 13,
+          "weekday": 1,
+          "messages": 36,
+          "sessions": 2,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-14",
+          "year": 2026,
+          "month": 1,
+          "day": 14,
+          "weekday": 2,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-15",
+          "year": 2026,
+          "month": 1,
+          "day": 15,
+          "weekday": 3,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-16",
+          "year": 2026,
+          "month": 1,
+          "day": 16,
+          "weekday": 4,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-17",
+          "year": 2026,
+          "month": 1,
+          "day": 17,
+          "weekday": 5,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-18",
+          "year": 2026,
+          "month": 1,
+          "day": 18,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 3,
+      "days": [
+        {
+          "date": "2026-01-19",
+          "year": 2026,
+          "month": 1,
+          "day": 19,
+          "weekday": 0,
+          "messages": 34,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-20",
+          "year": 2026,
+          "month": 1,
+          "day": 20,
+          "weekday": 1,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-21",
+          "year": 2026,
+          "month": 1,
+          "day": 21,
+          "weekday": 2,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-22",
+          "year": 2026,
+          "month": 1,
+          "day": 22,
+          "weekday": 3,
+          "messages": 2,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-23",
+          "year": 2026,
+          "month": 1,
+          "day": 23,
+          "weekday": 4,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-24",
+          "year": 2026,
+          "month": 1,
+          "day": 24,
+          "weekday": 5,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-25",
+          "year": 2026,
+          "month": 1,
+          "day": 25,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 4,
+      "days": [
+        {
+          "date": "2026-01-26",
+          "year": 2026,
+          "month": 1,
+          "day": 26,
+          "weekday": 0,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-27",
+          "year": 2026,
+          "month": 1,
+          "day": 27,
+          "weekday": 1,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-28",
+          "year": 2026,
+          "month": 1,
+          "day": 28,
+          "weekday": 2,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-29",
+          "year": 2026,
+          "month": 1,
+          "day": 29,
+          "weekday": 3,
+          "messages": 46,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-30",
+          "year": 2026,
+          "month": 1,
+          "day": 30,
+          "weekday": 4,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-01-31",
+          "year": 2026,
+          "month": 1,
+          "day": 31,
+          "weekday": 5,
+          "messages": 26,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-01",
+          "year": 2026,
+          "month": 2,
+          "day": 1,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 5,
+      "days": [
+        {
+          "date": "2026-02-02",
+          "year": 2026,
+          "month": 2,
+          "day": 2,
+          "weekday": 0,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-03",
+          "year": 2026,
+          "month": 2,
+          "day": 3,
+          "weekday": 1,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-04",
+          "year": 2026,
+          "month": 2,
+          "day": 4,
+          "weekday": 2,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-05",
+          "year": 2026,
+          "month": 2,
+          "day": 5,
+          "weekday": 3,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-06",
+          "year": 2026,
+          "month": 2,
+          "day": 6,
+          "weekday": 4,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-07",
+          "year": 2026,
+          "month": 2,
+          "day": 7,
+          "weekday": 5,
+          "messages": 2,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-08",
+          "year": 2026,
+          "month": 2,
+          "day": 8,
+          "weekday": 6,
+          "messages": 6,
+          "sessions": 2,
+          "level": 1,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 6,
+      "days": [
+        {
+          "date": "2026-02-09",
+          "year": 2026,
+          "month": 2,
+          "day": 9,
+          "weekday": 0,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-10",
+          "year": 2026,
+          "month": 2,
+          "day": 10,
+          "weekday": 1,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-11",
+          "year": 2026,
+          "month": 2,
+          "day": 11,
+          "weekday": 2,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-12",
+          "year": 2026,
+          "month": 2,
+          "day": 12,
+          "weekday": 3,
+          "messages": 26,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-13",
+          "year": 2026,
+          "month": 2,
+          "day": 13,
+          "weekday": 4,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-14",
+          "year": 2026,
+          "month": 2,
+          "day": 14,
+          "weekday": 5,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-15",
+          "year": 2026,
+          "month": 2,
+          "day": 15,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 7,
+      "days": [
+        {
+          "date": "2026-02-16",
+          "year": 2026,
+          "month": 2,
+          "day": 16,
+          "weekday": 0,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-17",
+          "year": 2026,
+          "month": 2,
+          "day": 17,
+          "weekday": 1,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-18",
+          "year": 2026,
+          "month": 2,
+          "day": 18,
+          "weekday": 2,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-19",
+          "year": 2026,
+          "month": 2,
+          "day": 19,
+          "weekday": 3,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-20",
+          "year": 2026,
+          "month": 2,
+          "day": 20,
+          "weekday": 4,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-21",
+          "year": 2026,
+          "month": 2,
+          "day": 21,
+          "weekday": 5,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-22",
+          "year": 2026,
+          "month": 2,
+          "day": 22,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 8,
+      "days": [
+        {
+          "date": "2026-02-23",
+          "year": 2026,
+          "month": 2,
+          "day": 23,
+          "weekday": 0,
+          "messages": 6,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-24",
+          "year": 2026,
+          "month": 2,
+          "day": 24,
+          "weekday": 1,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-25",
+          "year": 2026,
+          "month": 2,
+          "day": 25,
+          "weekday": 2,
+          "messages": 14,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-26",
+          "year": 2026,
+          "month": 2,
+          "day": 26,
+          "weekday": 3,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-27",
+          "year": 2026,
+          "month": 2,
+          "day": 27,
+          "weekday": 4,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-02-28",
+          "year": 2026,
+          "month": 2,
+          "day": 28,
+          "weekday": 5,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-01",
+          "year": 2026,
+          "month": 3,
+          "day": 1,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 9,
+      "days": [
+        {
+          "date": "2026-03-02",
+          "year": 2026,
+          "month": 3,
+          "day": 2,
+          "weekday": 0,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-03",
+          "year": 2026,
+          "month": 3,
+          "day": 3,
+          "weekday": 1,
+          "messages": 4,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-04",
+          "year": 2026,
+          "month": 3,
+          "day": 4,
+          "weekday": 2,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-05",
+          "year": 2026,
+          "month": 3,
+          "day": 5,
+          "weekday": 3,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-06",
+          "year": 2026,
+          "month": 3,
+          "day": 6,
+          "weekday": 4,
+          "messages": 8,
+          "sessions": 2,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-07",
+          "year": 2026,
+          "month": 3,
+          "day": 7,
+          "weekday": 5,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-08",
+          "year": 2026,
+          "month": 3,
+          "day": 8,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 10,
+      "days": [
+        {
+          "date": "2026-03-09",
+          "year": 2026,
+          "month": 3,
+          "day": 9,
+          "weekday": 0,
+          "messages": 4,
+          "sessions": 2,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-10",
+          "year": 2026,
+          "month": 3,
+          "day": 10,
+          "weekday": 1,
+          "messages": 132,
+          "sessions": 1,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-11",
+          "year": 2026,
+          "month": 3,
+          "day": 11,
+          "weekday": 2,
+          "messages": 4,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-12",
+          "year": 2026,
+          "month": 3,
+          "day": 12,
+          "weekday": 3,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-13",
+          "year": 2026,
+          "month": 3,
+          "day": 13,
+          "weekday": 4,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-14",
+          "year": 2026,
+          "month": 3,
+          "day": 14,
+          "weekday": 5,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-15",
+          "year": 2026,
+          "month": 3,
+          "day": 15,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 11,
+      "days": [
+        {
+          "date": "2026-03-16",
+          "year": 2026,
+          "month": 3,
+          "day": 16,
+          "weekday": 0,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-17",
+          "year": 2026,
+          "month": 3,
+          "day": 17,
+          "weekday": 1,
+          "messages": 7,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-18",
+          "year": 2026,
+          "month": 3,
+          "day": 18,
+          "weekday": 2,
+          "messages": 10,
+          "sessions": 0,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-19",
+          "year": 2026,
+          "month": 3,
+          "day": 19,
+          "weekday": 3,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-20",
+          "year": 2026,
+          "month": 3,
+          "day": 20,
+          "weekday": 4,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-21",
+          "year": 2026,
+          "month": 3,
+          "day": 21,
+          "weekday": 5,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-22",
+          "year": 2026,
+          "month": 3,
+          "day": 22,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 12,
+      "days": [
+        {
+          "date": "2026-03-23",
+          "year": 2026,
+          "month": 3,
+          "day": 23,
+          "weekday": 0,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-24",
+          "year": 2026,
+          "month": 3,
+          "day": 24,
+          "weekday": 1,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-25",
+          "year": 2026,
+          "month": 3,
+          "day": 25,
+          "weekday": 2,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-26",
+          "year": 2026,
+          "month": 3,
+          "day": 26,
+          "weekday": 3,
+          "messages": 0,
+          "sessions": 1,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-27",
+          "year": 2026,
+          "month": 3,
+          "day": 27,
+          "weekday": 4,
+          "messages": 67,
+          "sessions": 2,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-28",
+          "year": 2026,
+          "month": 3,
+          "day": 28,
+          "weekday": 5,
+          "messages": 364,
+          "sessions": 4,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-29",
+          "year": 2026,
+          "month": 3,
+          "day": 29,
+          "weekday": 6,
+          "messages": 414,
+          "sessions": 9,
+          "level": 3,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 13,
+      "days": [
+        {
+          "date": "2026-03-30",
+          "year": 2026,
+          "month": 3,
+          "day": 30,
+          "weekday": 0,
+          "messages": 25,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-03-31",
+          "year": 2026,
+          "month": 3,
+          "day": 31,
+          "weekday": 1,
+          "messages": 197,
+          "sessions": 2,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-01",
+          "year": 2026,
+          "month": 4,
+          "day": 1,
+          "weekday": 2,
+          "messages": 532,
+          "sessions": 1,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-02",
+          "year": 2026,
+          "month": 4,
+          "day": 2,
+          "weekday": 3,
+          "messages": 694,
+          "sessions": 5,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-03",
+          "year": 2026,
+          "month": 4,
+          "day": 3,
+          "weekday": 4,
+          "messages": 277,
+          "sessions": 5,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-04",
+          "year": 2026,
+          "month": 4,
+          "day": 4,
+          "weekday": 5,
+          "messages": 1595,
+          "sessions": 11,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-05",
+          "year": 2026,
+          "month": 4,
+          "day": 5,
+          "weekday": 6,
+          "messages": 211,
+          "sessions": 2,
+          "level": 2,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 14,
+      "days": [
+        {
+          "date": "2026-04-06",
+          "year": 2026,
+          "month": 4,
+          "day": 6,
+          "weekday": 0,
+          "messages": 1873,
+          "sessions": 6,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-07",
+          "year": 2026,
+          "month": 4,
+          "day": 7,
+          "weekday": 1,
+          "messages": 954,
+          "sessions": 1,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-08",
+          "year": 2026,
+          "month": 4,
+          "day": 8,
+          "weekday": 2,
+          "messages": 146,
+          "sessions": 0,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-09",
+          "year": 2026,
+          "month": 4,
+          "day": 9,
+          "weekday": 3,
+          "messages": 112,
+          "sessions": 3,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-10",
+          "year": 2026,
+          "month": 4,
+          "day": 10,
+          "weekday": 4,
+          "messages": 1472,
+          "sessions": 28,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-11",
+          "year": 2026,
+          "month": 4,
+          "day": 11,
+          "weekday": 5,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-12",
+          "year": 2026,
+          "month": 4,
+          "day": 12,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 15,
+      "days": [
+        {
+          "date": "2026-04-13",
+          "year": 2026,
+          "month": 4,
+          "day": 13,
+          "weekday": 0,
+          "messages": 479,
+          "sessions": 3,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-14",
+          "year": 2026,
+          "month": 4,
+          "day": 14,
+          "weekday": 1,
+          "messages": 17,
+          "sessions": 2,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-15",
+          "year": 2026,
+          "month": 4,
+          "day": 15,
+          "weekday": 2,
+          "messages": 247,
+          "sessions": 3,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-16",
+          "year": 2026,
+          "month": 4,
+          "day": 16,
+          "weekday": 3,
+          "messages": 1121,
+          "sessions": 8,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-17",
+          "year": 2026,
+          "month": 4,
+          "day": 17,
+          "weekday": 4,
+          "messages": 210,
+          "sessions": 4,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-18",
+          "year": 2026,
+          "month": 4,
+          "day": 18,
+          "weekday": 5,
+          "messages": 172,
+          "sessions": 0,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-19",
+          "year": 2026,
+          "month": 4,
+          "day": 19,
+          "weekday": 6,
+          "messages": 17,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 16,
+      "days": [
+        {
+          "date": "2026-04-20",
+          "year": 2026,
+          "month": 4,
+          "day": 20,
+          "weekday": 0,
+          "messages": 339,
+          "sessions": 7,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-21",
+          "year": 2026,
+          "month": 4,
+          "day": 21,
+          "weekday": 1,
+          "messages": 30,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-22",
+          "year": 2026,
+          "month": 4,
+          "day": 22,
+          "weekday": 2,
+          "messages": 22,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-23",
+          "year": 2026,
+          "month": 4,
+          "day": 23,
+          "weekday": 3,
+          "messages": 729,
+          "sessions": 4,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-24",
+          "year": 2026,
+          "month": 4,
+          "day": 24,
+          "weekday": 4,
+          "messages": 587,
+          "sessions": 15,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-25",
+          "year": 2026,
+          "month": 4,
+          "day": 25,
+          "weekday": 5,
+          "messages": 150,
+          "sessions": 2,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-26",
+          "year": 2026,
+          "month": 4,
+          "day": 26,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 17,
+      "days": [
+        {
+          "date": "2026-04-27",
+          "year": 2026,
+          "month": 4,
+          "day": 27,
+          "weekday": 0,
+          "messages": 289,
+          "sessions": 2,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-28",
+          "year": 2026,
+          "month": 4,
+          "day": 28,
+          "weekday": 1,
+          "messages": 124,
+          "sessions": 3,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-29",
+          "year": 2026,
+          "month": 4,
+          "day": 29,
+          "weekday": 2,
+          "messages": 643,
+          "sessions": 1,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-04-30",
+          "year": 2026,
+          "month": 4,
+          "day": 30,
+          "weekday": 3,
+          "messages": 1718,
+          "sessions": 3,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-01",
+          "year": 2026,
+          "month": 5,
+          "day": 1,
+          "weekday": 4,
+          "messages": 1572,
+          "sessions": 17,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-02",
+          "year": 2026,
+          "month": 5,
+          "day": 2,
+          "weekday": 5,
+          "messages": 1193,
+          "sessions": 1,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-03",
+          "year": 2026,
+          "month": 5,
+          "day": 3,
+          "weekday": 6,
+          "messages": 375,
+          "sessions": 2,
+          "level": 3,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 18,
+      "days": [
+        {
+          "date": "2026-05-04",
+          "year": 2026,
+          "month": 5,
+          "day": 4,
+          "weekday": 0,
+          "messages": 285,
+          "sessions": 3,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-05",
+          "year": 2026,
+          "month": 5,
+          "day": 5,
+          "weekday": 1,
+          "messages": 378,
+          "sessions": 1,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-06",
+          "year": 2026,
+          "month": 5,
+          "day": 6,
+          "weekday": 2,
+          "messages": 285,
+          "sessions": 2,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-07",
+          "year": 2026,
+          "month": 5,
+          "day": 7,
+          "weekday": 3,
+          "messages": 142,
+          "sessions": 1,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-08",
+          "year": 2026,
+          "month": 5,
+          "day": 8,
+          "weekday": 4,
+          "messages": 530,
+          "sessions": 2,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-09",
+          "year": 2026,
+          "month": 5,
+          "day": 9,
+          "weekday": 5,
+          "messages": 453,
+          "sessions": 3,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-10",
+          "year": 2026,
+          "month": 5,
+          "day": 10,
+          "weekday": 6,
+          "messages": 62,
+          "sessions": 0,
+          "level": 2,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 19,
+      "days": [
+        {
+          "date": "2026-05-11",
+          "year": 2026,
+          "month": 5,
+          "day": 11,
+          "weekday": 0,
+          "messages": 109,
+          "sessions": 0,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-12",
+          "year": 2026,
+          "month": 5,
+          "day": 12,
+          "weekday": 1,
+          "messages": 665,
+          "sessions": 7,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-13",
+          "year": 2026,
+          "month": 5,
+          "day": 13,
+          "weekday": 2,
+          "messages": 163,
+          "sessions": 1,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-14",
+          "year": 2026,
+          "month": 5,
+          "day": 14,
+          "weekday": 3,
+          "messages": 797,
+          "sessions": 5,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-15",
+          "year": 2026,
+          "month": 5,
+          "day": 15,
+          "weekday": 4,
+          "messages": 241,
+          "sessions": 1,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-16",
+          "year": 2026,
+          "month": 5,
+          "day": 16,
+          "weekday": 5,
+          "messages": 302,
+          "sessions": 0,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-17",
+          "year": 2026,
+          "month": 5,
+          "day": 17,
+          "weekday": 6,
+          "messages": 608,
+          "sessions": 5,
+          "level": 3,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 20,
+      "days": [
+        {
+          "date": "2026-05-18",
+          "year": 2026,
+          "month": 5,
+          "day": 18,
+          "weekday": 0,
+          "messages": 392,
+          "sessions": 7,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-19",
+          "year": 2026,
+          "month": 5,
+          "day": 19,
+          "weekday": 1,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-20",
+          "year": 2026,
+          "month": 5,
+          "day": 20,
+          "weekday": 2,
+          "messages": 39,
+          "sessions": 0,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-21",
+          "year": 2026,
+          "month": 5,
+          "day": 21,
+          "weekday": 3,
+          "messages": 572,
+          "sessions": 2,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-22",
+          "year": 2026,
+          "month": 5,
+          "day": 22,
+          "weekday": 4,
+          "messages": 763,
+          "sessions": 12,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-23",
+          "year": 2026,
+          "month": 5,
+          "day": 23,
+          "weekday": 5,
+          "messages": 555,
+          "sessions": 5,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-24",
+          "year": 2026,
+          "month": 5,
+          "day": 24,
+          "weekday": 6,
+          "messages": 198,
+          "sessions": 1,
+          "level": 2,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 21,
+      "days": [
+        {
+          "date": "2026-05-25",
+          "year": 2026,
+          "month": 5,
+          "day": 25,
+          "weekday": 0,
+          "messages": 272,
+          "sessions": 4,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-26",
+          "year": 2026,
+          "month": 5,
+          "day": 26,
+          "weekday": 1,
+          "messages": 272,
+          "sessions": 0,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-27",
+          "year": 2026,
+          "month": 5,
+          "day": 27,
+          "weekday": 2,
+          "messages": 294,
+          "sessions": 4,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-28",
+          "year": 2026,
+          "month": 5,
+          "day": 28,
+          "weekday": 3,
+          "messages": 66,
+          "sessions": 2,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-29",
+          "year": 2026,
+          "month": 5,
+          "day": 29,
+          "weekday": 4,
+          "messages": 959,
+          "sessions": 5,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-30",
+          "year": 2026,
+          "month": 5,
+          "day": 30,
+          "weekday": 5,
+          "messages": 890,
+          "sessions": 4,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-05-31",
+          "year": 2026,
+          "month": 5,
+          "day": 31,
+          "weekday": 6,
+          "messages": 151,
+          "sessions": 2,
+          "level": 2,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 22,
+      "days": [
+        {
+          "date": "2026-06-01",
+          "year": 2026,
+          "month": 6,
+          "day": 1,
+          "weekday": 0,
+          "messages": 17,
+          "sessions": 2,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-02",
+          "year": 2026,
+          "month": 6,
+          "day": 2,
+          "weekday": 1,
+          "messages": 564,
+          "sessions": 2,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-03",
+          "year": 2026,
+          "month": 6,
+          "day": 3,
+          "weekday": 2,
+          "messages": 1830,
+          "sessions": 36,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-04",
+          "year": 2026,
+          "month": 6,
+          "day": 4,
+          "weekday": 3,
+          "messages": 449,
+          "sessions": 12,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-05",
+          "year": 2026,
+          "month": 6,
+          "day": 5,
+          "weekday": 4,
+          "messages": 134,
+          "sessions": 1,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-06",
+          "year": 2026,
+          "month": 6,
+          "day": 6,
+          "weekday": 5,
+          "messages": 774,
+          "sessions": 16,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-07",
+          "year": 2026,
+          "month": 6,
+          "day": 7,
+          "weekday": 6,
+          "messages": 578,
+          "sessions": 3,
+          "level": 3,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 23,
+      "days": [
+        {
+          "date": "2026-06-08",
+          "year": 2026,
+          "month": 6,
+          "day": 8,
+          "weekday": 0,
+          "messages": 412,
+          "sessions": 7,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-09",
+          "year": 2026,
+          "month": 6,
+          "day": 9,
+          "weekday": 1,
+          "messages": 436,
+          "sessions": 8,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-10",
+          "year": 2026,
+          "month": 6,
+          "day": 10,
+          "weekday": 2,
+          "messages": 1606,
+          "sessions": 9,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-11",
+          "year": 2026,
+          "month": 6,
+          "day": 11,
+          "weekday": 3,
+          "messages": 2675,
+          "sessions": 20,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-12",
+          "year": 2026,
+          "month": 6,
+          "day": 12,
+          "weekday": 4,
+          "messages": 1641,
+          "sessions": 11,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-13",
+          "year": 2026,
+          "month": 6,
+          "day": 13,
+          "weekday": 5,
+          "messages": 1198,
+          "sessions": 14,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-14",
+          "year": 2026,
+          "month": 6,
+          "day": 14,
+          "weekday": 6,
+          "messages": 595,
+          "sessions": 12,
+          "level": 3,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 24,
+      "days": [
+        {
+          "date": "2026-06-15",
+          "year": 2026,
+          "month": 6,
+          "day": 15,
+          "weekday": 0,
+          "messages": 1058,
+          "sessions": 7,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-16",
+          "year": 2026,
+          "month": 6,
+          "day": 16,
+          "weekday": 1,
+          "messages": 587,
+          "sessions": 6,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-17",
+          "year": 2026,
+          "month": 6,
+          "day": 17,
+          "weekday": 2,
+          "messages": 1117,
+          "sessions": 17,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-18",
+          "year": 2026,
+          "month": 6,
+          "day": 18,
+          "weekday": 3,
+          "messages": 2834,
+          "sessions": 7,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-19",
+          "year": 2026,
+          "month": 6,
+          "day": 19,
+          "weekday": 4,
+          "messages": 76,
+          "sessions": 0,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-20",
+          "year": 2026,
+          "month": 6,
+          "day": 20,
+          "weekday": 5,
+          "messages": 12,
+          "sessions": 0,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-21",
+          "year": 2026,
+          "month": 6,
+          "day": 21,
+          "weekday": 6,
+          "messages": 1,
+          "sessions": 0,
+          "level": 1,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 25,
+      "days": [
+        {
+          "date": "2026-06-22",
+          "year": 2026,
+          "month": 6,
+          "day": 22,
+          "weekday": 0,
+          "messages": 87,
+          "sessions": 1,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-23",
+          "year": 2026,
+          "month": 6,
+          "day": 23,
+          "weekday": 1,
+          "messages": 111,
+          "sessions": 1,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-24",
+          "year": 2026,
+          "month": 6,
+          "day": 24,
+          "weekday": 2,
+          "messages": 779,
+          "sessions": 2,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-25",
+          "year": 2026,
+          "month": 6,
+          "day": 25,
+          "weekday": 3,
+          "messages": 200,
+          "sessions": 2,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-26",
+          "year": 2026,
+          "month": 6,
+          "day": 26,
+          "weekday": 4,
+          "messages": 565,
+          "sessions": 15,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-27",
+          "year": 2026,
+          "month": 6,
+          "day": 27,
+          "weekday": 5,
+          "messages": 992,
+          "sessions": 4,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-28",
+          "year": 2026,
+          "month": 6,
+          "day": 28,
+          "weekday": 6,
+          "messages": 702,
+          "sessions": 6,
+          "level": 3,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 26,
+      "days": [
+        {
+          "date": "2026-06-29",
+          "year": 2026,
+          "month": 6,
+          "day": 29,
+          "weekday": 0,
+          "messages": 2805,
+          "sessions": 37,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-06-30",
+          "year": 2026,
+          "month": 6,
+          "day": 30,
+          "weekday": 1,
+          "messages": 2638,
+          "sessions": 50,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-01",
+          "year": 2026,
+          "month": 7,
+          "day": 1,
+          "weekday": 2,
+          "messages": 2442,
+          "sessions": 43,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-02",
+          "year": 2026,
+          "month": 7,
+          "day": 2,
+          "weekday": 3,
+          "messages": 2393,
+          "sessions": 20,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-03",
+          "year": 2026,
+          "month": 7,
+          "day": 3,
+          "weekday": 4,
+          "messages": 965,
+          "sessions": 6,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-04",
+          "year": 2026,
+          "month": 7,
+          "day": 4,
+          "weekday": 5,
+          "messages": 498,
+          "sessions": 1,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-05",
+          "year": 2026,
+          "month": 7,
+          "day": 5,
+          "weekday": 6,
+          "messages": 1332,
+          "sessions": 29,
+          "level": 4,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 27,
+      "days": [
+        {
+          "date": "2026-07-06",
+          "year": 2026,
+          "month": 7,
+          "day": 6,
+          "weekday": 0,
+          "messages": 1643,
+          "sessions": 18,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-07",
+          "year": 2026,
+          "month": 7,
+          "day": 7,
+          "weekday": 1,
+          "messages": 1237,
+          "sessions": 9,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-08",
+          "year": 2026,
+          "month": 7,
+          "day": 8,
+          "weekday": 2,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-09",
+          "year": 2026,
+          "month": 7,
+          "day": 9,
+          "weekday": 3,
+          "messages": 1571,
+          "sessions": 13,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-10",
+          "year": 2026,
+          "month": 7,
+          "day": 10,
+          "weekday": 4,
+          "messages": 1792,
+          "sessions": 13,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-11",
+          "year": 2026,
+          "month": 7,
+          "day": 11,
+          "weekday": 5,
+          "messages": 1989,
+          "sessions": 9,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-12",
+          "year": 2026,
+          "month": 7,
+          "day": 12,
+          "weekday": 6,
+          "messages": 1935,
+          "sessions": 21,
+          "level": 4,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 28,
+      "days": [
+        {
+          "date": "2026-07-13",
+          "year": 2026,
+          "month": 7,
+          "day": 13,
+          "weekday": 0,
+          "messages": 3483,
+          "sessions": 36,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-14",
+          "year": 2026,
+          "month": 7,
+          "day": 14,
+          "weekday": 1,
+          "messages": 1104,
+          "sessions": 3,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-15",
+          "year": 2026,
+          "month": 7,
+          "day": 15,
+          "weekday": 2,
+          "messages": 1969,
+          "sessions": 19,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-16",
+          "year": 2026,
+          "month": 7,
+          "day": 16,
+          "weekday": 3,
+          "messages": 291,
+          "sessions": 3,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-17",
+          "year": 2026,
+          "month": 7,
+          "day": 17,
+          "weekday": 4,
+          "messages": 3240,
+          "sessions": 22,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-18",
+          "year": 2026,
+          "month": 7,
+          "day": 18,
+          "weekday": 5,
+          "messages": 6240,
+          "sessions": 39,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-19",
+          "year": 2026,
+          "month": 7,
+          "day": 19,
+          "weekday": 6,
+          "messages": 935,
+          "sessions": 16,
+          "level": 3,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 29,
+      "days": [
+        {
+          "date": "2026-07-20",
+          "year": 2026,
+          "month": 7,
+          "day": 20,
+          "weekday": 0,
+          "messages": 31,
+          "sessions": 1,
+          "level": 1,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-21",
+          "year": 2026,
+          "month": 7,
+          "day": 21,
+          "weekday": 1,
+          "messages": 289,
+          "sessions": 1,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-22",
+          "year": 2026,
+          "month": 7,
+          "day": 22,
+          "weekday": 2,
+          "messages": 3936,
+          "sessions": 36,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-23",
+          "year": 2026,
+          "month": 7,
+          "day": 23,
+          "weekday": 3,
+          "messages": 1056,
+          "sessions": 5,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-24",
+          "year": 2026,
+          "month": 7,
+          "day": 24,
+          "weekday": 4,
+          "messages": 370,
+          "sessions": 1,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-25",
+          "year": 2026,
+          "month": 7,
+          "day": 25,
+          "weekday": 5,
+          "messages": 580,
+          "sessions": 18,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-26",
+          "year": 2026,
+          "month": 7,
+          "day": 26,
+          "weekday": 6,
+          "messages": 4544,
+          "sessions": 55,
+          "level": 4,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 30,
+      "days": [
+        {
+          "date": "2026-07-27",
+          "year": 2026,
+          "month": 7,
+          "day": 27,
+          "weekday": 0,
+          "messages": 2591,
+          "sessions": 6,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-28",
+          "year": 2026,
+          "month": 7,
+          "day": 28,
+          "weekday": 1,
+          "messages": 2829,
+          "sessions": 9,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-29",
+          "year": 2026,
+          "month": 7,
+          "day": 29,
+          "weekday": 2,
+          "messages": 1913,
+          "sessions": 13,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-30",
+          "year": 2026,
+          "month": 7,
+          "day": 30,
+          "weekday": 3,
+          "messages": 2864,
+          "sessions": 2,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-07-31",
+          "year": 2026,
+          "month": 7,
+          "day": 31,
+          "weekday": 4,
+          "messages": 1073,
+          "sessions": 1,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-01",
+          "year": 2026,
+          "month": 8,
+          "day": 1,
+          "weekday": 5,
+          "messages": 2686,
+          "sessions": 61,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-02",
+          "year": 2026,
+          "month": 8,
+          "day": 2,
+          "weekday": 6,
+          "messages": 3412,
+          "sessions": 30,
+          "level": 4,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 31,
+      "days": [
+        {
+          "date": "2026-08-03",
+          "year": 2026,
+          "month": 8,
+          "day": 3,
+          "weekday": 0,
+          "messages": 559,
+          "sessions": 1,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-04",
+          "year": 2026,
+          "month": 8,
+          "day": 4,
+          "weekday": 1,
+          "messages": 3298,
+          "sessions": 40,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-05",
+          "year": 2026,
+          "month": 8,
+          "day": 5,
+          "weekday": 2,
+          "messages": 593,
+          "sessions": 1,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-06",
+          "year": 2026,
+          "month": 8,
+          "day": 6,
+          "weekday": 3,
+          "messages": 75,
+          "sessions": 1,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-07",
+          "year": 2026,
+          "month": 8,
+          "day": 7,
+          "weekday": 4,
+          "messages": 400,
+          "sessions": 5,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-08",
+          "year": 2026,
+          "month": 8,
+          "day": 8,
+          "weekday": 5,
+          "messages": 2920,
+          "sessions": 48,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-09",
+          "year": 2026,
+          "month": 8,
+          "day": 9,
+          "weekday": 6,
+          "messages": 3563,
+          "sessions": 75,
+          "level": 4,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 32,
+      "days": [
+        {
+          "date": "2026-08-10",
+          "year": 2026,
+          "month": 8,
+          "day": 10,
+          "weekday": 0,
+          "messages": 4124,
+          "sessions": 43,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-11",
+          "year": 2026,
+          "month": 8,
+          "day": 11,
+          "weekday": 1,
+          "messages": 3326,
+          "sessions": 44,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-12",
+          "year": 2026,
+          "month": 8,
+          "day": 12,
+          "weekday": 2,
+          "messages": 7416,
+          "sessions": 67,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-13",
+          "year": 2026,
+          "month": 8,
+          "day": 13,
+          "weekday": 3,
+          "messages": 2110,
+          "sessions": 4,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-14",
+          "year": 2026,
+          "month": 8,
+          "day": 14,
+          "weekday": 4,
+          "messages": 61,
+          "sessions": 3,
+          "level": 2,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-15",
+          "year": 2026,
+          "month": 8,
+          "day": 15,
+          "weekday": 5,
+          "messages": 2623,
+          "sessions": 17,
+          "level": 4,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-16",
+          "year": 2026,
+          "month": 8,
+          "day": 16,
+          "weekday": 6,
+          "messages": 1566,
+          "sessions": 14,
+          "level": 4,
+          "is_future": false
+        }
+      ]
+    },
+    {
+      "week_index": 33,
+      "days": [
+        {
+          "date": "2026-08-17",
+          "year": 2026,
+          "month": 8,
+          "day": 17,
+          "weekday": 0,
+          "messages": 989,
+          "sessions": 3,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-18",
+          "year": 2026,
+          "month": 8,
+          "day": 18,
+          "weekday": 1,
+          "messages": 419,
+          "sessions": 5,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-19",
+          "year": 2026,
+          "month": 8,
+          "day": 19,
+          "weekday": 2,
+          "messages": 765,
+          "sessions": 2,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-20",
+          "year": 2026,
+          "month": 8,
+          "day": 20,
+          "weekday": 3,
+          "messages": 644,
+          "sessions": 8,
+          "level": 3,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-21",
+          "year": 2026,
+          "month": 8,
+          "day": 21,
+          "weekday": 4,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": false
+        },
+        {
+          "date": "2026-08-22",
+          "year": 2026,
+          "month": 8,
+          "day": 22,
+          "weekday": 5,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": true
+        },
+        {
+          "date": "2026-08-23",
+          "year": 2026,
+          "month": 8,
+          "day": 23,
+          "weekday": 6,
+          "messages": 0,
+          "sessions": 0,
+          "level": 0,
+          "is_future": true
+        }
+      ]
+    }
+  ]
+}
