@@ -59,8 +59,10 @@
 {{- end }}
 
 {{- if and .IsHome (eq $paginator.PageNumber 1) }}
+<div class="home-right-col">
 {{- partial "featured_projects.html" . }}
 {{- partial "ai_heatmap.html" . }}
+</div>
 {{- end }}
 
 {{- if not .IsHome }}

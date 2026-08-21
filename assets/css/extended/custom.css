@@ -134,7 +134,7 @@ code, pre, kbd, samp {
     /* Fixed left-side profile card */
     .first-entry.home-info {
         grid-column: 1;
-        grid-row: 1 / span 100;
+        grid-row: 1;
         position: sticky;
         top: 70px;
         padding: 22px !important;
@@ -150,6 +150,13 @@ code, pre, kbd, samp {
 
     .first-entry.home-info:hover {
         box-shadow: var(--shadow-card-hover);
+    }
+
+    /* Everything in the right column stacks inside this single grid item,
+       so no phantom auto rows are generated (the old "span 100" trick) */
+    .main:has(.first-entry.home-info) .home-right-col {
+        grid-column: 2;
+        min-width: 0;
     }
 
     /* Post list on the right side */
@@ -2444,14 +2451,6 @@ html[data-daytime="dusk"] .sunrays, html[data-daytime="dusk"] .sunrays-b {
     margin-bottom: 16px;
 }
 
-@media screen and (min-width: 1024px) {
-    .main:has(.first-entry.home-info) .ai-heatmap-wrapper {
-        grid-column: 2;
-        width: 100%;
-        margin-bottom: 16px;
-    }
-}
-
 .ai-heatmap-container {
     background: var(--entry);
     border: 1px solid var(--border);
@@ -2514,7 +2513,8 @@ html[data-daytime="dusk"] .sunrays, html[data-daytime="dusk"] .sunrays-b {
     font-weight: 600;
 }
 
-.ai-stat-badge.highlight {
+/* ai-stat-hl: NOT ".highlight" — that class is Chroma code-block chrome inside .post-content */
+.ai-stat-badge.ai-stat-hl {
     border-color: rgba(16, 185, 129, 0.4);
     color: #10b981;
 }

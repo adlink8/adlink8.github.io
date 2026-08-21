@@ -12,7 +12,7 @@
         <span class="ai-stat-badge"><strong>{{ .summary.total_messages }}</strong> {{ if $isZh }}条 AI 消息{{ else }}Messages{{ end }}</span>
         <span class="ai-stat-badge"><strong>{{ .summary.total_sessions }}</strong> {{ if $isZh }}场会话{{ else }}Sessions{{ end }}</span>
         <span class="ai-stat-badge"><strong>{{ .summary.active_days }}</strong> {{ if $isZh }}活跃天{{ else }}Days Active{{ end }}</span>
-        <span class="ai-stat-badge highlight"><strong>{{ .summary.max_daily_messages }}</strong> {{ if $isZh }}峰值日消息{{ else }}Peak/Day{{ end }}</span>
+        <span class="ai-stat-badge ai-stat-hl"><strong>{{ .summary.max_daily_messages }}</strong> {{ if $isZh }}峰值日消息{{ else }}Peak/Day{{ end }}</span>
       </div>
     </div>
 
