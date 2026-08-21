@@ -1,6 +1,9 @@
 baseURL = 'https://adlink8.github.io/'
 theme = 'PaperMod'
 
+# Emit robots.txt pointing crawlers at the auto-generated sitemap
+enableRobotsTXT = true
+
 # Multilingual: English at site root, Chinese under /zh/
 defaultContentLanguage = 'en'
 defaultContentLanguageInSubdir = false
