@@ -1,39 +1,77 @@
 +++
-title = 'novel-mind Phase 完成进度'
+title = 'novel-mind 研发全景进度与工程量化日志'
 date = 2026-08-17T10:00:00Z
 draft = false
 ShowToc = true
 TocOpen = true
 categories = ['project-logs']
-tags = ['Phase', '进度', 'GSD']
+tags = ['Phase', '进度', 'GSD', '量化度量', 'Multi-Agent']
 projects = ['novel-mind']
-description = '18 个 Phase 的完成状态、执行日期、工具和关键产出。'
+description = '从 Phase 07 到最终交付的完整进度、420 场协同会话与 63 万保真事件的工程量化复盘。'
 +++
 
-项目从 Phase 07 到审计阶段的完整 Phase 完成进度。
+项目从 Phase 07 到最终审计收口的完整里程碑、多 Agent 协同流水线及 63 万细粒度事件的量化事实。
 
 <!--more-->
 
-| Phase | 内容 | 日期 | 工具 | 状态 |
+## 1. 核心 Phase 交付进度与工具分工
+
+| Phase | 内容 | 执行日期 | 主力 Agent | 交付状态 |
 |---|---|---|---|---|
-| 07 | 层级重建 | 07-17 | grok | ✅ |
-| 09-11 | 规划审查 | 07-15 | grok | ✅ |
-| 13 | Alembic 迁移 | 07-15 | codex | ✅ |
-| 14 | durable-bottom-up-candidate-builder | 07-16 | codex | ✅ |
-| 15 | adaptive-hierarchical-retrieval | 07-16 | codex | ✅ |
-| 16 | dependency-aware-local-rebuild | 07-16 | codex | ✅ |
-| 17 | frozen-single-book-qualification | 07-16 | codex | ✅ |
-| 18 | frontend-motion-and-transition | 07-16 | codex | ✅ |
-| 21 | 实际交付核查 | 07-26 | claude | ✅ |
-| 23 | 层级注册表+叙事边界+契约测试 | 07-26 | claude | ✅ |
-| 24 | raw 检索统一 | 07-26 | claude | ✅ |
-| 25 | 占位 API 双轨收口 | 07-26 | claude | ✅ |
-| 25.1 | chat 区间锚点 + analysis 对话窗口 | 07-26 | claude | ✅ |
-| 25.2-39 | 全阶段规划（三轮收敛） | 08-01~02 | codex | ✅ |
-| 26-32 | 规划剩余修复 | 08-02 | codex | ✅ |
-| 33-39 | 规划复核（HIGH 全关闭） | 08-02 | codex | ✅ |
-| 41 | Electron 架构 | 08-01 | codex | ✅ |
-| 43 | managed-local-runtime | 08-01 | codex | ✅ |
-| 执行 | GSD executor 大规模执行 | 08-08~10 | zcode | ✅ |
-| TDD | 设置中心六类垂直切片 | 08-12 | codex | ✅ |
-| 审计 | 全面只读审计+五项清单收口 | 08-12 | codex | ✅ |
+| **07** | 故事层级重建 | 07-17 | grok | ✅ 已交付 |
+| **09–11** | 整体规划与依赖审查 | 07-15 | grok | ✅ 已交付 |
+| **13** | PostgreSQL + Alembic 数据迁移 | 07-15 | codex | ✅ 已交付 |
+| **14** | Durable Bottom-Up 候选提取器 | 07-16 | codex | ✅ 已交付 |
+| **15** | Adaptive Hierarchical 检索器 | 07-16 | codex | ✅ 已交付 |
+| **16** | 依赖感知局部重构机制 | 07-16 | codex | ✅ 已交付 |
+| **17** | 单书冻结基准质检 | 07-16 | codex | ✅ 已交付 |
+| **18** | 前端动效与页面过渡 | 07-16 | codex | ✅ 已交付 |
+| **21** | 实际代码交付核查 | 07-26 | claude | ✅ 已交付 |
+| **23** | 层级注册表 + 叙事边界契约测试 | 07-26 | claude | ✅ 已交付 |
+| **24** | Raw 检索契约统一 | 07-26 | claude | ✅ 已交付 |
+| **25** | 占位 API 双轨收口 | 07-26 | claude | ✅ 已交付 |
+| **25.1** | Chat 区间锚点 + Analysis 窗口 | 07-26 | claude | ✅ 已交付 |
+| **25.2–39**| 全阶段规划（三轮收敛） | 08-01~02 | codex | ✅ 已交付 |
+| **26–32** | 规划缺陷收敛修复 | 08-02 | codex | ✅ 已交付 |
+| **33–39** | 架构复核（HIGH 级缺陷清零） | 08-02 | codex | ✅ 已交付 |
+| **41** | Electron 跨平台架构集成 | 08-01 | codex | ✅ 已交付 |
+| **43** | Managed Local Runtime 本地服务管理 | 08-01 | codex | ✅ 已交付 |
+| **执行期** | GSD Executor 大规模批处理执行 | 08-08~10 | zcode | ✅ 已交付 |
+| **TDD** | 设置中心六类垂直切片驱动开发 | 08-12 | codex | ✅ 已交付 |
+| **审计** | 全面只读审计 + 五项清单收口 | 08-12 | codex | ✅ 已交付 |
+
+---
+
+## 2. 数据库底层研发量化指标 (Telemetry Data)
+
+基于对话事件数据库的真实埋点统计：
+
+| 研发维度 | 统计值 | 说明 |
+| :--- | :--- | :--- |
+| **有效研发周期** | 2026-06-06 → 2026-08-12 | 历时 68 天高强度敏捷交付 |
+| **标准会话总量** | **420 场** | 包含 27,690 轮会话交互，16.07M 总字符 |
+| **底层保真事件** | **630,323 个事件** | 包含 15.5 万次 Usage 计量、12.6 万次 Reasoning 推理 |
+| **人机交互比率** | **1 : 7.3** | 用户 3,203 条指令牵引 AI 23,318 轮次执行 |
+| **Git 提交量** | **621 次** | `novel-mind-new` 分支多 Agent 并行交付提交 |
+
+---
+
+## 3. 自动化工具调用 TOP 矩阵
+
+AI 在研发过程中自主调用的终端与代码修改工具分布（累计调用 204,423 次）：
+
+| 工具名称 / 类别 | 调用频次 | 主要应用场景 |
+| :--- | :--- | :--- |
+| **终端执行 (`exec` / `Bash` / `PowerShell`)** | **17,274 次** | 运行单元测试、启动 FastAPI/Next.js 开发服务、Alembic 数据库迁移 |
+| **上下文检视 (`read_file` / `Read` / `list_dir`)** | **6,299 次** | 源码结构分析、跨层调用链路排查、配置文件审查 |
+| **精确修改 (`search_replace` / `Edit` / `write`)** | **3,738 次** | 契约重构、巨型文件拆分、TDD 红绿循环重构 |
+| **任务编排 (`wait` / `TodoWrite` / `TaskUpdate`)** | **5,143 次** | 子代理状态同步、GSD 任务卡片状态跃迁与异步轮询 |
+| **深度逻辑推导 (`reasoning`)** | **126,245 次** | 代码编写前的算法复杂度推演、类型定义与依赖树检查 |
+
+---
+
+## 4. 月度节奏演进
+
+- **6 月（39 场会话）**：启动冷启动与 GSD Onboarding，建立代码事实基线。
+- **7 月（211 场会话，占比 50.2%）**：爆发期，密集完成 Phase 07–25.1 核心功能与检索器实现。
+- **8 月（170 场会话）**：架构收敛与重构，引入 Claude Worktree 子代理并行交付，完成 TDD 切片与全量只读审计。
