@@ -63,7 +63,7 @@
         <span class="footer-sep">·</span>
         <a href="{{ "index.xml" | relLangURL }}" title="RSS Feed">RSS</a>
     </nav>
-    <span>&copy; {{ now.Year }} {{ site.Title }}</span>
+    <span>&copy; {{ now.Year }} {{ site.Title }}{{ with site.Params.goatcounter }} · {{ i18n "footer_privacy" }}{{ end }}</span>
 </footer>
 
 {{/* ============================================================

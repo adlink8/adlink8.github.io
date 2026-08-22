@@ -38,6 +38,13 @@ defaultContentLanguageInSubdir = false
     # Ensures only posts appear in the main content area
     mainSections = ["daily", "pitfalls", "reflections", "insights", "project-logs"]
 
+    # Privacy-friendly analytics: cookieless, no personal data (goatcounter.com).
+    # Renders the counter script via layouts/partials/extend_head.html.
+    # GoatCounter ignores localhost by default, so `hugo server` previews pollute nothing.
+    # NOTE: keep this above the [params.giscus] subtable — plain keys after a
+    # subtable header belong to that subtable in TOML.
+    goatcounter = "liberty"
+
     # Comments via giscus (GitHub Discussions). Flip to true after:
     # 1. enabling Discussions on the repo (Settings > General > Features)
     # 2. installing the giscus app: https://github.com/apps/giscus
@@ -50,9 +57,6 @@ defaultContentLanguageInSubdir = false
         categoryId = "" # paste category node ID here (get it from https://giscus.app)
         mapping = "pathname"
         theme = "preferred_color_scheme"
-
-    # Analytics: set your GoatCounter site code to enable (free signup at goatcounter.com)
-    # goatcounter = "shuoyan"
 
     # Social Media Links
     [[params.socialIcons]]
