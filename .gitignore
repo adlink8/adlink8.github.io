@@ -10,3 +10,7 @@
 # 忽略本地操作系统产生的垃圾文件
 .DS_Store
 Thumbs.db
+# 本机 Windows 启动器（保留在磁盘，不进公共仓库）
+/tools/*.lnk
+/tools/*.vbs
+/tools/*.bat
