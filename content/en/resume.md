@@ -7,10 +7,10 @@ description = 'Li Shuo Yan — DevOps & AI Engineer resume'
 <div class="resume-head">
 <h1>Li Shuo Yan</h1>
 <p class="resume-role">DevOps &amp; AI Engineer — CI/CD, Cloud Infrastructure &amp; RAG/LLM Systems</p>
+<p class="resume-intent">Seeking: AI Application / RAG Engineering Internship · Tech Support | Suzhou / Wuxi / Shenzhen | Class of 2027</p>
 <p class="resume-contact">
 <a href="https://github.com/adlink8">github.com/adlink8</a> ·
-<a href="mailto:2448366060l@email.com">2448366060l@email.com</a> ·
-<a href="https://shuoyan.me">shuoyan.me</a>
+<a href="mailto:2448366060l@gmail.com">2448366060l@gmail.com</a>
 </p>
 </div>
 
@@ -55,15 +55,20 @@ DevOps &amp; AI engineer who ships working systems, not tutorial replicas: **3 d
 - Mandarin — Native
 - English — Fluent reading & writing; conversational speaking
 
-## Work Experience
+## Competition & Early Practice
 
-<!-- TODO: 填写你的工作经历，格式如下
-### 公司名称 — 职位 <span class="resume-meta">起止时间</span>
-- 一句话量化成果
--->
+### Jiangsu Province IoT Skills Competition — Networking Track <span class="resume-meta">2024 · Award-winning entry</span>
+
+- Designed and deployed the LAN topology; configured the gateway and pulled data from the cloud platform API
+- Isolated a VLAN connectivity fault via packet captures (trunk-port misconfiguration); 100% system integration pass rate
+
+### AWS IoT Data Pipeline (ESP32 → MQTT → AWS)
+
+- Dockerized an MQTT gateway on Ubuntu; device telemetry routed by AWS IoT Core rules to S3
+- Root-caused frequent device dropouts from MQTT logs (keepalive misconfiguration), lifting uptime from 85% to 99%
 
 ## Education
 
-<!-- TODO: 填写你的教育经历，格式如下
-### 学校名称 — 专业 <span class="resume-meta">起止时间</span>
--->
+### Changzhou University — Computer Science &amp; Technology, B.Eng. <span class="resume-meta">Graduating June 2027</span>
+
+- Track: systems &amp; networking → cloud native → AI application engineering; roadmap and progress on the [projects page](/projects/)

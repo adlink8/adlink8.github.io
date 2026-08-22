@@ -5,12 +5,12 @@ description = 'Li Shuo Yan — DevOps × AI 工程师简历'
 +++
 
 <div class="resume-head">
-<h1>Li Shuo Yan</h1>
-<p class="resume-role">DevOps × AI 工程师 — CI/CD、云基础设施与 RAG/LLM 系统</p>
+<h1>李硕研（Li Shuo Yan）</h1>
+<p class="resume-role">DevOps × AI 工程 — CI/CD、云基础设施与 RAG/LLM 系统</p>
+<p class="resume-intent">求职意向：AI 应用 / RAG 工程实习 · 技术支持｜苏州 / 无锡 / 深圳｜2027 届</p>
 <p class="resume-contact">
 <a href="https://github.com/adlink8">github.com/adlink8</a> ·
-<a href="mailto:2448366060l@email.com">2448366060l@email.com</a> ·
-<a href="https://shuoyan.me">shuoyan.me</a>
+<a href="mailto:2448366060l@gmail.com">2448366060l@gmail.com</a>
 </p>
 </div>
 
@@ -55,15 +55,20 @@ description = 'Li Shuo Yan — DevOps × AI 工程师简历'
 - 中文 — 母语
 - 英语 — 读写流利，口语可交流
 
-## 工作经历
+## 竞赛与实践经历
 
-<!-- TODO: 填写你的工作经历，格式如下
-### 公司名称 — 职位 <span class="resume-meta">起止时间</span>
-- 一句话量化成果
--->
+### 江苏省物联网技能大赛 — 网络组网方向 <span class="resume-meta">2024 · 获奖作品</span>
+
+- 负责局域网组网方案设计与实施、网关参数配置与云平台 API 数据获取
+- 独立排查 VLAN 通信故障：抓包定位 trunk 端口配置问题，系统联调通过率 100%
+
+### AWS IoT 数据管道（ESP32 → MQTT → AWS）
+
+- 在 Ubuntu 上 Docker 化部署 MQTT 网关，设备数据经 AWS IoT Core 规则引擎路由至 S3
+- 通过 MQTT 日志分析定位设备频繁掉线根因（keepalive 参数），在线率 85% → 99%
 
 ## 教育经历
 
-<!-- TODO: 填写你的教育经历，格式如下
-### 学校名称 — 专业 <span class="resume-meta">起止时间</span>
--->
+### 常州大学 — 计算机科学与技术 · 本科 <span class="resume-meta">2027 年 6 月毕业</span>
+
+- 主线：系统与网络 → 云原生 → AI 应用工程，路线图与进度见[项目页](/zh/projects/)

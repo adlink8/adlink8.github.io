@@ -2056,6 +2056,12 @@ html[data-moon-quarter="waning"] .moon::after {
     margin: 0 0 6px;
 }
 
+.resume-intent {
+    font-size: 0.88rem;
+    color: #333;
+    margin: 0 0 6px;
+}
+
 .resume-page .resume-contact {
     font-size: 0.88rem;
     color: #777 !important;

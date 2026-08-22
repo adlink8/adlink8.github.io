@@ -19,4 +19,4 @@ description = 'What I am currently focused on.'
 
 ## Open To
 
-DevOps / Cloud Native internship and junior opportunities — see [Projects](/projects/) for proof of work, or reach me via [GitHub](https://github.com/adlink8).
+AI application / RAG engineering internships (tech-support roles also welcome) — see [Projects](/projects/) for proof of work, or reach me via [GitHub](https://github.com/adlink8) / [email](mailto:2448366060l@gmail.com). Preferred cities: Suzhou / Wuxi / Shenzhen.

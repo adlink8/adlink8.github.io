@@ -19,4 +19,4 @@ description = '我当前正在专注的事情。'
 
 ## 正在寻找
 
-DevOps / 云原生方向的实习与初级岗位 —— 成果见[项目页](/zh/projects/)，或通过 [GitHub](https://github.com/adlink8) 联系我。
+AI 应用 / RAG 工程方向的实习（技术支持方向亦可）—— 成果见[项目页](/zh/projects/)，或通过 [GitHub](https://github.com/adlink8) / [邮箱](mailto:2448366060l@gmail.com) 联系我。期望城市：苏州 / 无锡 / 深圳。
