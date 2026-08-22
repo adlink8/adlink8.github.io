@@ -148,6 +148,66 @@ function readBody(req) {
     });
 }
 
+/**
+ * SSE variant of the chat reply. Validation, rate limiting and the kill
+ * switch have already run JSON-mode before we get here, so this only owns
+ * the streaming response. Protocol — one JSON object per `data:` frame:
+ *   {"type":"chunk","text":"..."}   incremental reply text
+ *   {"type":"done","usage":{...}}   terminal, carries token usage
+ *   {"type":"error","message":".."} terminal, sent when generation fails
+ * The quick tier keeps generateText + quickTruncate: its deterministic
+ * ≤60-char cut cannot be applied to partial chunks, so it emits one chunk.
+ * Verified live: the gateway forwards res.write() chunks incrementally.
+ */
+async function streamChat(req, res, ctx) {
+    const { ip, message, lang, cleanHistory, quick, systemPrompt } = ctx;
+    res.writeHead(200, {
+        'Content-Type': 'text/event-stream; charset=utf-8',
+        'Cache-Control': 'no-store',
+        'X-Accel-Buffering': 'no',
+    });
+
+    let clientGone = false;
+    const onGone = () => { if (!res.writableEnded) clientGone = true; };
+    req.on('close', onGone);
+    res.on('close', onGone);
+
+    const writeEvent = (obj) => {
+        if (clientGone || res.destroyed || res.writableEnded) return;
+        res.write('data: ' + JSON.stringify(obj) + '\n\n');
+    };
+
+    try {
+        const messages = [
+            { role: 'system', content: systemPrompt + '\n' + await buildSystemReferences(lang, message) },
+            ...cleanHistory,
+            { role: 'user', content: message },
+        ];
+
+        let usage = null;
+        if (quick) {
+            const result = await model.generateText({ model: MODEL_ID, messages, temperature: 0.6 });
+            usage = result.usage?.total_tokens ?? null;
+            writeEvent({ type: 'chunk', text: quickTruncate(result.text) });
+        } else {
+            const stream = await model.streamText({ model: MODEL_ID, messages, temperature: 0.6 });
+            for await (const t of stream.textStream) {
+                if (clientGone) break;
+                writeEvent({ type: 'chunk', text: t });
+            }
+            try { usage = (await stream.usage)?.total_tokens ?? null; } catch { usage = null; }
+        }
+
+        console.log(`chat ok ip=${ip.slice(0, 8)} stream=1 tokens=${usage ?? '?'}`);
+        writeEvent({ type: 'done', usage: { total_tokens: usage } });
+    } catch (err) {
+        console.error('stream request failed:', err && err.message ? err.message : err);
+        writeEvent({ type: 'error', message: 'model call failed' });
+    } finally {
+        res.end();
+    }
+}
+
 const server = http.createServer(async (req, res) => {
     const origin = req.headers.origin || '';
     const cors = {
@@ -197,18 +257,27 @@ const server = http.createServer(async (req, res) => {
             .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
             .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_MESSAGE_CHARS) }));
 
+        // Dispatch is body-based: the gateway normalizes req.url to '/', so
+        // POST /api/chat with {"stream":true} gets SSE, anything else the
+        // original JSON reply — old clients keep working untouched.
+        const quick = quickAsked(message);
+        const systemPrompt = SYSTEM_PROMPTS[lang] + '\n' + DEPTH_GUIDE[lang] + (quick ? QUICK_HARD[lang] : '');
+
+        if (body.stream === true) {
+            return await streamChat(req, res, { ip, message, lang, cleanHistory, quick, systemPrompt });
+        }
+
         const result = await model.generateText({
             model: MODEL_ID,
             messages: [
-                { role: 'system', content: SYSTEM_PROMPTS[lang] + '\n' + DEPTH_GUIDE[lang] + (quickAsked(message) ? QUICK_HARD[lang] : '') + '\n' + await buildSystemReferences(lang, message) },
+                { role: 'system', content: systemPrompt + '\n' + await buildSystemReferences(lang, message) },
                 ...cleanHistory,
                 { role: 'user', content: message },
             ],
             temperature: 0.6,
         });
 
-        var reply = result.text;
-        if (quickAsked(message)) reply = quickTruncate(reply);
+        var reply = quick ? quickTruncate(result.text) : result.text;
         console.log(`chat ok ip=${ip.slice(0, 8)} tokens=${result.usage?.total_tokens ?? '?'}`);
         send(res, 200, origin, { reply: reply, usage: { total_tokens: result.usage?.total_tokens ?? null } });
     } catch (err) {
