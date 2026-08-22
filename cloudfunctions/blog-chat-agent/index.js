@@ -27,6 +27,54 @@ const MAX_HISTORY_MESSAGES = 12; // prior turns kept in context
 const RATE_PER_MINUTE = 6;       // per IP
 const DAILY_GLOBAL_CAP = 500;
 
+// Depth is inferred by the model from the question's wording — no UI tiers.
+// Server-side quick-tier detection: prompt-only guides proved too soft for
+// this model, so explicit trigger words force a hard per-request constraint.
+const QUICK_TRIGGERS = [
+    /一句话/, /简短/, /简单说/, /只要结论/, /速览/, /快速了解/, /长话短说/,
+    /in one sentence/i, /briefly/i, /in short/i, /just the (?:point|answer)/i, /tl;?dr/i, /quick(?:ly)? answer/i,
+];
+const QUICK_HARD = {
+    zh: '\n[本次硬性要求]提问者要求极速版:回答必须 1~2 句、总计不超过 60 字,禁止使用列表和"要点"段。',
+    en: '\n[HARD RULE for this reply] The asker wants the quick version: answer in 1-2 sentences, under 40 words total, no lists.',
+};
+
+function quickAsked(text) {
+    return QUICK_TRIGGERS.some(function (re) { return re.test(text); });
+}
+
+// Deterministic tier-1 enforcement: the model tends to append a "要点" block
+// even when told not to, so keep only leading complete sentences up to ~60 chars.
+function quickTruncate(text) {
+    var parts = text.replace(/^[-*•]\s*/gm, '').split(/(?<=[。！？!?])/);
+    var out = '';
+    for (var i = 0; i < parts.length; i++) {
+        var s = parts[i].trim();
+        if (!s) continue;
+        if (out && (out + s).length > 60) break;
+        out += (out ? '' : '') + s;
+        if (out.length >= 40) break;
+    }
+    return out || text.slice(0, 60);
+}
+
+const DEPTH_GUIDE = {
+    zh: [
+        '回答深度自适应提问者意图,自主判断三类:',
+        '① 极速了解——措辞含"一句话""简短""简单说""快速""只要结论""速览"任一时,必须执行:1~2 句、合计不超过 60 字、禁止列表;',
+        '② 轻微了解(一般性提问)→ 约 100~150 字,先结论后要点;',
+        '③ 深入了解(明确要细节、原理、做法、架构)→ 分层展开:结论 → 背景/原理 → 关键细节或例子,可用小标题与列表,至多约 400 字。',
+        '依据提问措辞与上下文自行判断,不要反问用户想要哪种深度。',
+    ].join('\n'),
+    en: [
+        'Adapt answer depth to the asker\u2019s intent, self-classified into three tiers:',
+        '(1) quick skim — when wording contains "in one sentence", "briefly", "quick", "just the point", or similar, this tier is MANDATORY: 1-2 sentences, under 40 words total, no lists;',
+        '(2) light understanding (ordinary questions) -> ~100-150 words, conclusion first;',
+        '(3) deep dive (explicitly asks for details, how it works, architecture) -> layered: conclusion -> context -> key details/examples, headings/lists allowed, up to ~300 words.',
+        'Judge from the wording and context yourself; never ask which depth the user wants.',
+    ].join('\n'),
+};
+
 const SYSTEM_PROMPTS = {
     zh: [
         '你是 Li Shuo Yan 个人博客（adlink8.github.io）的站内助手。',
@@ -151,15 +199,17 @@ const server = http.createServer(async (req, res) => {
         const result = await model.generateText({
             model: MODEL_ID,
             messages: [
-                { role: 'system', content: SYSTEM_PROMPTS[lang] },
+                { role: 'system', content: SYSTEM_PROMPTS[lang] + '\n' + DEPTH_GUIDE[lang] + (quickAsked(message) ? QUICK_HARD[lang] : '') },
                 ...cleanHistory,
                 { role: 'user', content: message },
             ],
             temperature: 0.6,
         });
 
+        var reply = result.text;
+        if (quickAsked(message)) reply = quickTruncate(reply);
         console.log(`chat ok ip=${ip.slice(0, 8)} tokens=${result.usage?.total_tokens ?? '?'}`);
-        send(res, 200, origin, { reply: result.text, usage: { total_tokens: result.usage?.total_tokens ?? null } });
+        send(res, 200, origin, { reply: reply, usage: { total_tokens: result.usage?.total_tokens ?? null } });
     } catch (err) {
         console.error('request failed:', err && err.message ? err.message : err);
         if (!res.headersSent) send(res, 502, origin, { error: 'model call failed' });
