@@ -37,6 +37,26 @@ jobs:
       - name: Build with Hugo
         run: hugo version && hugo --minify
 
+      # 简历 PDF：无头 Chrome 按打印样式渲染 /resume/ 与 /zh/resume/，
+      # 每次部署重新生成 → 页面上的下载链接永远与线上简历内容一致。
+      # fonts-noto-cjk 保证中文渲染；产物不进 git，只进部署产物。
+      - name: Generate resume PDFs
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk >/dev/null
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable)"
+          echo "Using browser: $CHROME"
+          python3 -m http.server 1313 --directory public &
+          SERVER_PID=$!
+          sleep 2
+          for variant in "resume.pdf:/resume/" "zh/resume.pdf:/zh/resume/"; do
+            out="${variant%%:*}"; path="${variant#*:}"
+            "$CHROME" --headless=new --disable-gpu --no-sandbox \
+              --no-pdf-header-footer --print-to-pdf="public/$out" \
+              "http://127.0.0.1:1313$path"
+          done
+          kill "$SERVER_PID"
+          ls -la public/resume.pdf public/zh/resume.pdf
+
       # 死链检查：报告但不阻断部署（外部站点偶尔误报）。
       # 同样用官方 release 二进制（v0.24.2），避开 lychee-action 的 codeload 限流
       - name: Check links (non-blocking)

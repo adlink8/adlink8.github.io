@@ -2108,11 +2108,44 @@ html[data-moon-quarter="waning"] .moon::after {
 
 .resume-page a { color: #6d4bc4; }
 
+.resume-toolbar {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.resume-download {
+    display: inline-block;
+    padding: 7px 18px;
+    border: 1px solid #6d4bc4;
+    border-radius: 8px;
+    color: #6d4bc4 !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.resume-download:hover {
+    background: #6d4bc4;
+    color: #fff !important;
+}
+
 .resume-hint {
-    margin-top: 40px;
+    margin-top: 0;
     text-align: center;
     font-size: 0.78rem;
     color: #aaa !important;
+}
+
+/* Paged output (headless-Chrome PDF + manual Ctrl+P) — same A4 geometry
+   the CI-generated /resume.pdf is printed with. */
+@page {
+    size: A4;
+    margin: 14mm 16mm;
 }
 
 @media screen and (max-width: 768px) {

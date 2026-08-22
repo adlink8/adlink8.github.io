@@ -60,3 +60,5 @@ series_title:
   other: "series"
 footer_privacy:
   other: "privacy-friendly stats, no cookies"
+resume_download:
+  other: "Download PDF"

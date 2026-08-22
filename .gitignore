@@ -14,3 +14,7 @@ Thumbs.db
 /tools/*.lnk
 /tools/*.vbs
 /tools/*.bat
+
+# locally generated resume PDFs (CI regenerates per deploy)
+static/resume.pdf
+static/zh/resume.pdf

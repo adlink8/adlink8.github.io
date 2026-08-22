@@ -13,6 +13,7 @@ hugo server -D --port 1313     # local preview (drafts included), en at /, zh at
 hugo --minify                  # production build — must pass before every commit
 ./scripts/new-post.sh <category> <file>      # new English post
 ./scripts/new-post.sh zh <category> <file>   # new Chinese post
+./scripts/gen-resume-pdf.sh                  # rebuild /resume.pdf + /zh/resume.pdf locally (also mirrors them into static/ for `hugo server`; gitignored)
 python tools/generate_og.py    # regenerate the OG share card after avatar/tagline changes
 ```
 
@@ -47,7 +48,7 @@ hugo.toml                   # config; menus & homeInfoParams exist PER LANGUAGE
 
 **Frontmatter.** TOML (`+++`). Every post needs a lead paragraph followed by `<!--more-->` (it becomes the home excerpt) and a `description`. Set `projects = ['<slug>']` to attach a post to a project hub; hubs at `/project/<slug>/` auto-aggregate across sections — do not create per-project directories anywhere else.
 
-**Deploy.** Push to `main` triggers the full pipeline (build → link check → deploy). The lychee link check is intentionally non-blocking. There is no staging; `hugo --minify` locally is the gate.
+**Deploy.** Push to `main` triggers the full pipeline (build → resume PDFs via headless Chrome → link check → deploy). The resume PDFs are regenerated from the live pages on every deploy — never commit a PDF. The lychee link check is intentionally non-blocking. There is no staging; `hugo --minify` locally is the gate.
 
 **Housekeeping.** `public/`, `resources/`, `.hugo_build.lock` are gitignored — never commit, and never delete them while `hugo server` is running (stale-cache 404s follow).
 
