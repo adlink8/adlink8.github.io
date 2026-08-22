@@ -72,6 +72,10 @@ function chatInit() {
         if (open && !log.childNodes.length) bubble('assistant', greeting);
         if (open) {
             requestAnimationFrame(function () { panel.classList.add('on'); });
+            // rAF stays suspended in some embedded webviews (in-app browsers);
+            // without this fallback the panel would sit at opacity:0 with
+            // pointer-events:none forever. classList.add is idempotent.
+            setTimeout(function () { panel.classList.add('on'); }, 60);
             input.focus();
         } else {
             panel.classList.remove('on');
