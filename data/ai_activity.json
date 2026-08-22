@@ -4,10 +4,10 @@
     "total_messages": 155934,
     "total_sessions": 1508,
     "start_date": "2025-12-29",
-    "end_date": "2026-08-21",
+    "end_date": "2026-08-22",
     "max_daily_messages": 7416,
     "weeks_count": 34,
-    "window_days": 236,
+    "window_days": 237,
     "health": {
       "avg_session_messages": 103.4,
       "median_session_messages": 33,
@@ -15,7 +15,7 @@
       "healthy_ratio": 93,
       "avg_health_score": 94,
       "longest_streak": 49,
-      "current_streak": 43,
+      "current_streak": 0,
       "grades": {
         "A": 1180,
         "B": 212,
@@ -2841,7 +2841,7 @@
           "messages": 0,
           "sessions": 0,
           "level": 0,
-          "is_future": true
+          "is_future": false
         },
         {
           "date": "2026-08-23",
