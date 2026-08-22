@@ -2865,3 +2865,193 @@ a.series-title:hover {
     color: rgb(var(--accent));
     opacity: 0.75;
 }
+
+/* =======================================================
+   38. CHAT PANEL — floating site assistant (cloud function)
+   Functional widget: solid --entry card is allowed (same as
+   the home profile card); motion respects reduced-motion.
+   ======================================================= */
+.chat-widget {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 90;
+}
+
+.chat-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--entry);
+    box-shadow: var(--shadow-card);
+    cursor: pointer;
+    transition: transform 0.25s var(--ease-spring), box-shadow 0.25s ease;
+}
+
+.chat-fab:hover {
+    transform: scale(1.08);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.chat-fab-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.chat-panel {
+    position: absolute;
+    right: 0;
+    bottom: 58px;
+    width: min(360px, calc(100vw - 44px));
+    height: min(480px, 62vh);
+    display: flex;
+    flex-direction: column;
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow-card-hover);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.chat-panel.on {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.chat-panel[hidden] {
+    display: none;
+}
+
+.chat-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px dashed var(--border);
+}
+
+.chat-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.chat-close {
+    border: none;
+    background: none;
+    color: var(--secondary);
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 6px;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.chat-close:hover {
+    color: rgb(var(--accent));
+    background: color-mix(in srgb, var(--theme) 70%, transparent);
+}
+
+.chat-log {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scrollbar-width: thin;
+}
+
+.chat-msg {
+    max-width: 86%;
+    padding: 8px 11px;
+    border-radius: 10px;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.chat-assistant {
+    align-self: flex-start;
+    color: var(--primary);
+    background: color-mix(in srgb, var(--theme) 72%, transparent);
+    border: 1px solid var(--border);
+    border-left: 2px solid rgba(var(--accent), 0.55);
+}
+
+.chat-user {
+    align-self: flex-end;
+    color: var(--theme);
+    background: rgb(var(--accent));
+}
+
+.chat-msg.chat-error {
+    border-left-color: #f85149;
+    color: var(--secondary);
+}
+
+.chat-form {
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px;
+    border-top: 1px dashed var(--border);
+}
+
+.chat-input {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.85rem;
+    padding: 7px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--primary);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.chat-input:focus {
+    border-color: rgba(var(--accent), 0.65);
+}
+
+.chat-send {
+    padding: 7px 13px;
+    font-size: 0.82rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--secondary);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.chat-send:hover:not(:disabled) {
+    color: rgb(var(--accent));
+    border-color: rgba(var(--accent), 0.65);
+}
+
+.chat-send:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+@media screen and (max-width: 640px) {
+    .chat-widget {
+        right: 14px;
+        bottom: 14px;
+    }
+    .chat-panel {
+        height: min(420px, 56vh);
+    }
+}

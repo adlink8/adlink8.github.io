@@ -79,7 +79,8 @@
     "08-code-lang-labels" "09-toc-scrollspy" "10-timeline-scrollspy"
     "11-stats-count-up" "12-lightbox" "13-external-links"
     "14-avatar-parallax-tilt" "15-easter-eggs" "16-easter-eggs-more"
-    "17-cursor-trail-disabled" "18-heatmap-day-tip" "19-scroll-reveal" }}
+    "17-cursor-trail-disabled" "18-heatmap-day-tip" "19-scroll-reveal"
+    "20-chat-panel" }}
 {{- $parts := slice }}
 {{- range $jsFiles }}
     {{- with resources.Get (printf "js/site/%s.js" .) }}{{ $parts = $parts | append . }}{{ end }}

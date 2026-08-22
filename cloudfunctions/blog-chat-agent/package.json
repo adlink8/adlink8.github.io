@@ -1,0 +1,9 @@
+{
+  "name": "blog-chat-agent",
+  "version": "1.0.0",
+  "description": "Server-side chat endpoint for adlink8.github.io — hunyuan-exp, rate-limited, CORS-locked",
+  "main": "index.js",
+  "dependencies": {
+    "@cloudbase/node-sdk": "^3.16.0"
+  }
+}
