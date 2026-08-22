@@ -2761,3 +2761,107 @@ html[data-daytime="dusk"] .sunrays, html[data-daytime="dusk"] .sunrays-b {
 
 .ai-day-tip.on { opacity: 1; }
 
+
+/* =======================================================
+   37. POST NAVIGATION: Breadcrumbs + Project Series Map
+   Panel-less: hairline dashed divider only, both themes.
+   ======================================================= */
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    color: var(--secondary);
+    margin-bottom: 10px;
+}
+
+.breadcrumb a {
+    color: var(--secondary);
+    transition: color 0.2s ease;
+}
+
+.breadcrumb a:hover {
+    color: rgb(var(--accent));
+}
+
+.crumb-sep {
+    opacity: 0.45;
+}
+
+.crumb-here {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.post-series {
+    width: 100%;
+    margin-bottom: 22px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--border);
+}
+
+.series-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0 0 8px;
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.series-head a {
+    color: var(--primary);
+    transition: color 0.2s ease;
+}
+
+.series-head a:hover {
+    color: rgb(var(--accent));
+}
+
+.series-meta {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+.series-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.series-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 5px 0;
+    font-size: 0.86rem;
+}
+
+.series-date {
+    flex-shrink: 0;
+    min-width: 84px;
+    font-size: 0.74rem;
+    color: var(--secondary);
+    font-variant-numeric: tabular-nums;
+}
+
+.series-title {
+    color: var(--secondary);
+    transition: color 0.2s ease;
+}
+
+a.series-title:hover {
+    color: rgb(var(--accent));
+}
+
+.series-current .series-title {
+    color: rgb(var(--accent));
+    font-weight: 600;
+}
+
+.series-current .series-date {
+    color: rgb(var(--accent));
+    opacity: 0.75;
+}

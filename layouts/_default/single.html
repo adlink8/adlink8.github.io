@@ -9,6 +9,7 @@
   </aside>
 
   <header class="post-header">
+    {{- partial "post_breadcrumbs.html" . }}
     <h1 class="post-title">{{ .Title }}</h1>
     <div class="post-meta">
       {{- partial "post_meta.html" . -}}
@@ -26,6 +27,7 @@
   </div>
 
   <footer class="post-footer">
+    {{- partial "post_series.html" . }}
     {{- with .Params.projects }}
     <ul class="post-tags post-projects" aria-label="{{ i18n "project_label" }}">
       {{- range . }}

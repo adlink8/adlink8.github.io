@@ -52,3 +52,9 @@ project_posts:
   other: "相关文章"
 project_label:
   other: "所属项目"
+breadcrumb_home:
+  other: "首页"
+breadcrumb_label:
+  other: "面包屑导航"
+series_title:
+  other: "系列"

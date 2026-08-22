@@ -1,0 +1,13 @@
+{{- /* Breadcrumb trail: Home › Section › This page. The section crumb is
+       skipped for loose root-level pages (stats, search…) whose current
+       section is the home section. */}}
+<nav class="breadcrumb" aria-label="{{ i18n "breadcrumb_label" }}">
+  <a href="{{ "/" | relLangURL }}">{{ i18n "breadcrumb_home" }}</a>
+  {{- $sec := .CurrentSection }}
+  {{- if and $sec (ne $sec.Kind "home") ($sec.File) }}
+    <span class="crumb-sep" aria-hidden="true">›</span>
+    <a href="{{ $sec.RelPermalink }}">{{ $sec.Title }}</a>
+  {{- end }}
+  <span class="crumb-sep" aria-hidden="true">›</span>
+  <span class="crumb-here" aria-current="page">{{ .Title }}</span>
+</nav>

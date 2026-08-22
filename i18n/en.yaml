@@ -52,3 +52,9 @@ project_posts:
   other: "Posts"
 project_label:
   other: "Project"
+breadcrumb_home:
+  other: "Home"
+breadcrumb_label:
+  other: "Breadcrumb"
+series_title:
+  other: "series"

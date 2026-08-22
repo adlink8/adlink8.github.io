@@ -1,0 +1,32 @@
+{{- /* Project series map: every post attached to the same project, oldest
+       first (= reading order for the phase narrative). Current post is
+       highlighted instead of linked. Hidden when a project has only one
+       post — a one-item map is noise. */}}
+{{- range $proj := .Params.projects }}
+  {{- with where site.RegularPages "Params.projects" "intersect" (slice $proj) }}
+    {{- if gt (len .) 1 }}
+      {{- $posts := .ByDate }}
+      <section class="post-series">
+        <h4 class="series-head">
+          <a href="{{ (printf "/project/%s/" $proj) | relLangURL }}">🚀 {{ $proj }}</a>
+          <span class="series-meta">· {{ i18n "series_title" }} · {{ len $posts }}</span>
+        </h4>
+        <ol class="series-list">
+          {{- range $posts }}
+            {{- if eq . $ }}
+              <li class="series-current" aria-current="page">
+                <span class="series-date">{{ .Date.Format "2006-01-02" }}</span>
+                <span class="series-title">{{ .Title }}</span>
+              </li>
+            {{- else }}
+              <li>
+                <span class="series-date">{{ .Date.Format "2006-01-02" }}</span>
+                <a class="series-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+              </li>
+            {{- end }}
+          {{- end }}
+        </ol>
+      </section>
+    {{- end }}
+  {{- end }}
+{{- end }}

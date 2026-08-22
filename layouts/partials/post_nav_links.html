@@ -1,0 +1,23 @@
+{{- /* Section-scoped prev/next (overrides PaperMod's global stream):
+       paging stays inside the current category, matching the order of that
+       section's list page. Falls back silently when the page is not a post
+       in a real section. */}}
+{{- $pages := .CurrentSection.RegularPages }}
+{{- if and (gt (len $pages) 1) (in $pages .) }}
+<nav class="paginav">
+  {{- with $pages.Next . }}
+  <a class="prev" href="{{ .Permalink }}">
+    <span class="title">« {{ i18n "prev_page" }}</span>
+    <br>
+    <span>{{- .Name -}}</span>
+  </a>
+  {{- end }}
+  {{- with $pages.Prev . }}
+  <a class="next" href="{{ .Permalink }}">
+    <span class="title">{{ i18n "next_page" }} »</span>
+    <br>
+    <span>{{- .Name -}}</span>
+  </a>
+  {{- end }}
+</nav>
+{{- end }}
