@@ -11,6 +11,7 @@
  */
 const http = require('http');
 const tcb = require('@cloudbase/node-sdk');
+const { buildSystemReferences } = require('./retrieval');
 
 const app = tcb.init({ env: 'hunyuan-d2gk9echy7cc73225' });
 const ai = app.ai();
@@ -199,7 +200,7 @@ const server = http.createServer(async (req, res) => {
         const result = await model.generateText({
             model: MODEL_ID,
             messages: [
-                { role: 'system', content: SYSTEM_PROMPTS[lang] + '\n' + DEPTH_GUIDE[lang] + (quickAsked(message) ? QUICK_HARD[lang] : '') },
+                { role: 'system', content: SYSTEM_PROMPTS[lang] + '\n' + DEPTH_GUIDE[lang] + (quickAsked(message) ? QUICK_HARD[lang] : '') + '\n' + await buildSystemReferences(lang, message) },
                 ...cleanHistory,
                 { role: 'user', content: message },
             ],
