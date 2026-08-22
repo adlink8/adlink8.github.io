@@ -43,7 +43,7 @@ hugo.toml                   # config; menus & homeInfoParams exist PER LANGUAGE
 
 **`hugo new` is broken here.** With per-language `contentDir`, it always writes into the default language tree. Use `scripts/new-post.sh`, which instantiates archetypes manually.
 
-**`layouts/partials/footer.html` shadows the theme footer.** PaperMod's theme-toggle handler lived there, so our override re-implements it (section 0 of the inline script). Removing it silently breaks dark/light switching. All site-wide JS lives in this one file.
+**`layouts/partials/footer.html` shadows the theme footer.** PaperMod's theme-toggle handler lived there, so our override re-implements it (section 03). Removing it silently breaks dark/light switching. All site-wide JS is emitted inline by this one partial.
 
 **Frontmatter.** TOML (`+++`). Every post needs a lead paragraph followed by `<!--more-->` (it becomes the home excerpt) and a `description`. Set `projects = ['<slug>']` to attach a post to a project hub; hubs at `/project/<slug>/` auto-aggregate across sections — do not create per-project directories anywhere else.
 
@@ -61,7 +61,7 @@ hugo.toml                   # config; menus & homeInfoParams exist PER LANGUAGE
 
 **Motion discipline.** Animate `transform` and `opacity` only. Every animation has a `prefers-reduced-motion` fallback and decorative markup is `aria-hidden`. Pointer effects (card tilt, avatar parallax) are gated behind `pointer: fine` so touch devices skip them. The cursor trail (§34 / footer.html §14) exists but is DISABLED by default (commented out — too gamey for a portfolio); re-enable only deliberately.
 
-**One JS file, no dependencies.** All site-wide JS lives in the numbered inline script in `layouts/partials/footer.html`; no frameworks, no npm. Toast text is bilingual via the `isZh` lang check — always keep both strings.
+**One inline bundle, no dependencies.** Site-wide JS lives as numbered section files in `assets/js/site/` (one file per numbered section, LF, no BOM), concatenated in the explicit `$jsFiles` order at the bottom of `layouts/partials/footer.html` and emitted inside one IIFE. Adding a section = drop `NN-name.js` there + register it in `$jsFiles`. No frameworks, no npm. Two hard rules: never add `| minify` to the bundle (tdewolff's standalone JS minifier rejects valid constructs in it — compression happens via site-level `hugo --minify` on the HTML), and keep the `| safeJS` on `{{ $bundle.Content }}` (without it, script-context auto-escaping wraps the content in backticks and breaks minification). Toast text is bilingual via the `isZh` lang check — always keep both strings.
 
 **Easter eggs** (footer.html JS §12–13, custom.css §32–33): Konami `↑↑↓↓←→←→BA`, moon/sun click, typed words `starry`/`scorpio`/`rainbow`, logo ×5 disco, late-night toast, copy toast, ~4% dark-mode Van Gogh starry night, ~3% light-mode double rainbow, 404 lost meteor. Eggs respect `prefers-reduced-motion` and never interfere with normal reading.
 
